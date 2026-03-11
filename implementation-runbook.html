@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sensory Galaxy - Phase 2-3 Implementation Runbook">
+    <title>Sensory Galaxy - Implementation Runbook</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Menlo', 'Monaco', monospace;
+            background: linear-gradient(135deg, #0a0a1e 0%, #1a0a3e 50%, #0a0a1e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2.5rem; background: linear-gradient(135deg, #00d9ff, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; }
+        .subtitle { color: #999; font-size: 1.1rem; margin-bottom: 40px; }
+        h2 { color: #00d9ff; font-size: 1.8rem; margin-top: 60px; margin-bottom: 20px; border-bottom: 2px solid rgba(0,217,255,0.3); padding-bottom: 10px; }
+        h3 { color: #667eea; font-size: 1.3rem; margin-top: 30px; margin-bottom: 15px; }
+        .section { background: rgba(15, 15, 40, 0.8); border: 1px solid rgba(0, 217, 255, 0.2); border-radius: 12px; padding: 30px; margin-bottom: 30px; }
+        .subsection { background: rgba(20, 20, 50, 0.8); border-left: 3px solid rgba(102, 126, 234, 0.5); padding: 20px; margin: 20px 0; border-radius: 6px; }
+        .checklist { list-style: none; padding-left: 0; }
+        .checklist-item { background: rgba(25, 25, 60, 0.5); padding: 12px 15px; margin: 10px 0; border-radius: 6px; border-left: 4px solid #667eea; }
+        .checklist-item input[type="checkbox"] { margin-right: 12px; cursor: pointer; }
+        .checklist-item label { cursor: pointer; }
+        .step { background: rgba(25, 25, 60, 0.7); border: 1px solid rgba(0, 217, 255, 0.15); padding: 15px; margin: 15px 0; border-radius: 6px; }
+        .step-num { color: #00d9ff; font-weight: bold; display: inline-block; width: 30px; }
+        code { background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; color: #00d9ff; }
+        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; margin-left: 10px; }
+        .todo { background: rgba(233, 30, 99, 0.3); color: #e91e63; }
+        .inprogress { background: rgba(102, 126, 234, 0.3); color: #667eea; }
+        .note { background: rgba(212, 175, 55, 0.1); border-left: 3px solid #d4af37; padding: 15px; margin: 15px 0; border-radius: 6px; color: #ddd; }
+        .note strong { color: #d4af37; }
+        ul { list-style: none; padding-left: 20px; }
+        li { padding: 8px 0; }
+        li::before { content: '→ '; color: #00d9ff; font-weight: bold; }
+        a { color: #00d9ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Phase 2-3 Implementation Runbook</h1>
+        <p class="subtitle">Sensory Galaxy Launch Checklist & Step-by-Step Guides</p>
+
+        <!-- PHASE 2: EMAIL & SOCIAL -->
+        <h2>Phase 2: Email & Social Setup</h2>
+        <div class="section">
+            <h3>Task 1: Google Workspace Email (5-10 min)</h3>
+            <p style="margin-bottom: 15px;"><strong>Goal:</strong> Set up <code>hello@sensorygalaxy.com</code> for customer support, beta signups, partnerships.</p>
+
+            <div class="step">
+                <span class="step-num">1</span> Go to <code>google.com/workspace</code>
+            </div>
+
+            <div class="step">
+                <span class="step-num">2</span> Click <strong>"Get Started"</strong> → Select <strong>Business Starter</strong> ($6/user/month)
+            </div>
+
+            <div class="step">
+                <span class="step-num">3</span> Enter domain: <code>sensorygalaxy.com</code>
+            </div>
+
+            <div class="step">
+                <span class="step-num">4</span> Verify domain ownership:
+                <ul style="margin-top: 10px;">
+                    <li><strong>Vercel already has your DNS</strong> → should auto-verify</li>
+                    <li>If manual needed: Add TXT record from Google to your Vercel DNS</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <span class="step-num">5</span> Create email: <code>hello@sensorygalaxy.com</code> (or whatever address makes sense)
+            </div>
+
+            <div class="step">
+                <span class="step-num">6</span> Set up forwarding (optional):
+                <ul style="margin-top: 10px;">
+                    <li>Forward to your personal email for now</li>
+                    <li>Later: Use Google Workspace email directly</li>
+                </ul>
+            </div>
+
+            <div class="note">
+                <strong>⏱️ Time estimate:</strong> 5-10 minutes. Mostly waiting for domain verification.
+            </div>
+
+            <h3 style="margin-top: 30px;">Task 2: Instagram Handle Reservation (2 min)</h3>
+            <p style="margin-bottom: 15px;"><strong>Goal:</strong> Lock in <code>@sensorygalaxyapp</code> on Instagram before anyone else grabs it.</p>
+
+            <div class="step">
+                <span class="step-num">1</span> Go to <code>instagram.com</code> → Sign in (or create account)
+            </div>
+
+            <div class="step">
+                <span class="step-num">2</span> Go to <strong>Settings → Edit Profile</strong>
+            </div>
+
+            <div class="step">
+                <span class="step-num">3</span> Change username to: <code>sensorygalaxyapp</code>
+            </div>
+
+            <div class="step">
+                <span class="step-num">4</span> Add profile info (temporary for now):
+                <ul style="margin-top: 10px;">
+                    <li><strong>Name:</strong> Sensory Galaxy</li>
+                    <li><strong>Bio:</strong> "Sensory feeding intelligence. Coming soon." (or empty for now)</li>
+                    <li><strong>Link:</strong> sensorygalaxy.com</li>
+                </ul>
+            </div>
+
+            <div class="note">
+                <strong>🔒 Security tip:</strong> Use same password manager as other accounts. Enable 2FA once you have time.
+            </div>
+
+            <h3 style="margin-top: 30px;">Task 3: TikTok Handle Reservation (2 min)</h3>
+            <p style="margin-bottom: 15px;"><strong>Goal:</strong> Lock in <code>@sensorygalaxyapp</code> on TikTok.</p>
+
+            <div class="step">
+                <span class="step-num">1</span> Go to <code>tiktok.com</code> → Sign up (or sign in)
+            </div>
+
+            <div class="step">
+                <span class="step-num">2</span> Go to <strong>Profile → Edit Profile</strong>
+            </div>
+
+            <div class="step">
+                <span class="step-num">3</span> Change username to: <code>sensorygalaxyapp</code>
+            </div>
+
+            <div class="step">
+                <span class="step-num">4</span> Add bio:
+                <ul style="margin-top: 10px;">
+                    <li><strong>Bio:</strong> "Sensory feeding intelligence for kids. 🌌 Coming soon..."</li>
+                    <li><strong>Link:</strong> sensorygalaxy.com</li>
+                </ul>
+            </div>
+
+            <div class="note">
+                <strong>📝 Note:</strong> TikTok requires phone verification. Have your phone ready.
+            </div>
+
+            <h3 style="margin-top: 30px;">Phase 2 Checklist</h3>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="email"> <label for="email">✅ Google Workspace email setup (hello@sensorygalaxy.com)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="instagram"> <label for="instagram">✅ Instagram handle (@sensorygalaxyapp)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="tiktok"> <label for="tiktok">✅ TikTok handle (@sensorygalaxyapp)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="bio"> <label for="bio">✅ Bio copied to both platforms (link to sensorygalaxy.com)</label>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px; color: #d4af37;"><strong>Phase 2 Status:</strong> <span class="status-badge todo">TODO</span> (15 minutes total)</p>
+        </div>
+
+        <!-- PHASE 3: SITE REBUILD -->
+        <h2>Phase 3: Site Rebuild (FAQ, Sign-Up, Pricing)</h2>
+        <div class="section">
+            <h3>Overview</h3>
+            <p>Add 3 new pages to sensory-galaxy website. Keep design consistent with landing page (dark starfield, cyan/gold accents, emotional messaging).</p>
+
+            <h3 style="margin-top: 30px;">Page 1: FAQ Page</h3>
+            <p style="margin-bottom: 15px;"><strong>Purpose:</strong> Answer parent questions about SOS method, app features, pricing, data privacy.</p>
+
+            <div class="subsection">
+                <h4>FAQ Structure</h4>
+                <ul>
+                    <li><strong>About Selective Eating:</strong> What is sensory sensitivity? Why won't forcing help? How long does it take?</li>
+                    <li><strong>About SOS Method:</strong> What are the 5 phases? Do I have to follow them in order? What if my kid resists?</li>
+                    <li><strong>About the App:</strong> What data does it collect? Is it secure? Can I export data for my pediatrician?</li>
+                    <li><strong>Pricing & Trial:</strong> How does the 7-day trial work? No credit card? What happens after?</li>
+                    <li><strong>Support:</strong> How do I contact you? Do you have therapist partnerships?</li>
+                </ul>
+            </div>
+
+            <div class="note">
+                <strong>✍️ Copy Strategy:</strong> Answer like a therapist would. Warm, knowledgeable, not clinical. Use examples from real parents.
+            </div>
+
+            <h3 style="margin-top: 30px;">Page 2: Sign-Up Page</h3>
+            <p style="margin-bottom: 15px;"><strong>Purpose:</strong> Get parents into 7-day free trial. No credit card. Just email.</p>
+
+            <div class="subsection">
+                <h4>Sign-Up Flow</h4>
+                <div class="step">
+                    <span class="step-num">1</span> <strong>Hero Section:</strong> "Start Your Free 7-Day Trial"
+                    <ul style="margin-top: 10px;">
+                        <li>Copy: "No credit card. No commitment. See if Sensory Galaxy works for your family."</li>
+                        <li>Visual: Hero image (parent + child, warm lighting, hopeful)</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="step-num">2</span> <strong>Form:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>Child's name</li>
+                        <li>Child's age</li>
+                        <li>Parent email</li>
+                        <li>[CTA Button]: "Start Free Trial"</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="step-num">3</span> <strong>Trust Signals (below form):</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>✅ No credit card required</li>
+                        <li>✅ Full access to all features (7 days)</li>
+                        <li>✅ Cancel anytime</li>
+                        <li>✅ Your data is secure</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="step-num">4</span> <strong>Timeline (optional, below form):</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>Day 1-2: Onboarding (9 cards, data collection)</li>
+                        <li>Day 3-5: Start logging foods, exploring planets</li>
+                        <li>Day 6: Review progress, see patterns</li>
+                        <li>Day 7: Decide: Continue ($3.99/month) or cancel</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px;">Page 3: Pricing Page</h3>
+            <p style="margin-bottom: 15px;"><strong>Purpose:</strong> Show value, justify pricing, reduce friction to conversion.</p>
+
+            <div class="subsection">
+                <h4>Pricing Section Layout</h4>
+                <div class="step">
+                    <span class="step-num">1</span> <strong>Hero:</strong> "Simple, Transparent Pricing"
+                    <ul style="margin-top: 10px;">
+                        <li>Copy: "No hidden fees. Cancel anytime. Try free for 7 days."</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="step-num">2</span> <strong>Two Pricing Cards (side by side):</strong>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Card 1: Monthly</strong>
+                            <ul>
+                                <li>$3.99/month</li>
+                                <li>Full access to all features</li>
+                                <li>Cancel anytime</li>
+                                <li>[CTA]: "Start 7-Day Free Trial"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Card 2: Annual (RECOMMENDED)</strong>
+                            <ul>
+                                <li>$24.99/year (saves $23.88/year)</li>
+                                <li>Same full features</li>
+                                <li>Better value (48% discount)</li>
+                                <li>"BEST VALUE" badge</li>
+                                <li>[CTA]: "Start 7-Day Free Trial"</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="step-num">3</span> <strong>What You Get Section:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>✅ 8 planets to explore (visual progress)</li>
+                        <li>✅ Bridge food recommendations (AI-powered)</li>
+                        <li>✅ Analytics dashboard (food diversity tracking)</li>
+                        <li>✅ Daily streaks & badges (motivation)</li>
+                        <li>✅ Data export (share with therapists)</li>
+                        <li>✅ Weekly parent insights (AI summaries)</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <span class="step-num">4</span> <strong>FAQ Section (collapsed):</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>What happens after my trial ends?</li>
+                        <li>Can I switch from monthly to annual?</li>
+                        <li>What's your refund policy?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px;">Phase 3 Checklist</h3>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="faq"> <label for="faq">✅ FAQ page created (questions + answers)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="signup"> <label for="signup">✅ Sign-Up page created (email form + trust signals)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="pricing"> <label for="pricing">✅ Pricing page created (monthly/annual cards + value section)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="nav"> <label for="nav">✅ Navigation links added to all 3 pages (header, footer)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="mobile"> <label for="mobile">✅ All pages responsive (mobile/tablet/desktop)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="deploy"> <label for="deploy">✅ Push to GitHub + verify live on sensorygalaxy.com</label>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px; color: #d4af37;"><strong>Phase 3 Status:</strong> <span class="status-badge todo">TODO</span> (3-4 hours of design/copy, then integration)</p>
+        </div>
+
+        <!-- BLOCKING ISSUES -->
+        <h2>⚠️ Known Blockers</h2>
+        <div class="section">
+            <div class="subsection">
+                <h3>Blocker 1: DNS Propagation (TBD)</h3>
+                <p>sensorygalaxy.com domain is configured but DNS is still propagating (24-48 hours). Once live, it will auto-resolve to Vercel.</p>
+                <p style="margin-top: 10px;"><strong>What to do:</strong> Check status tomorrow. If DNS shows "CNAME verified" in Vercel dashboard, you're good.</p>
+            </div>
+
+            <div class="subsection">
+                <h3>Blocker 2: App Development Waiting on Site Messaging (TBD)</h3>
+                <p>Phase 4 (app UI sprint) can't start until Phase 3 site is finalized. Need to confirm messaging consistency between web + app.</p>
+                <p style="margin-top: 10px;"><strong>What to do:</strong> Once FAQ + pricing + sign-up pages are live, send brief to Rork confirming tone + messaging, then kick off Phase 2-5 UI sprint.</p>
+            </div>
+        </div>
+
+        <!-- TIMELINE -->
+        <h2>⏱️ Timeline</h2>
+        <div class="section">
+            <div class="step">
+                <span class="step-num">TODAY</span> <strong>Phase 2:</strong> Email + social (15 min)
+            </div>
+
+            <div class="step">
+                <span class="step-num">TOMORROW</span> <strong>Phase 3 Draft:</strong> Write FAQ + sign-up + pricing copy (2 hours)
+            </div>
+
+            <div class="step">
+                <span class="step-num">NEXT DAY</span> <strong>Phase 3 Build:</strong> Create HTML pages (2 hours), push to GitHub
+            </div>
+
+            <div class="step">
+                <span class="step-num">SAME DAY</span> <strong>Verify DNS:</strong> Check sensorygalaxy.com is live, pages accessible
+            </div>
+
+            <div class="step">
+                <span class="step-num">AFTER SITE LIVE</span> <strong>Phase 4 Kickoff:</strong> Send briefs to Rork, start app UI sprint (5-6 hours)
+            </div>
+
+            <div class="step">
+                <span class="step-num">WEEK OF MARCH 12</span> <strong>Beta Launch:</strong> 5 Portland families test app + website
+            </div>
+        </div>
+
+        <div style="margin-top: 80px; padding-top: 30px; border-top: 2px solid rgba(0, 217, 255, 0.2); color: #666; text-align: center; font-size: 0.85rem;">
+            <p>📋 Sensory Galaxy Phase 2-3 Implementation Runbook</p>
+            <p style="margin-top: 10px;">Actionable, step-by-step guides. Print this page or bookmark it.</p>
+        </div>
+    </div>
+</body>
+</html>
