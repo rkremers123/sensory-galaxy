@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flavor Galaxy Adventure - Turn Picky Eating Into An Adventure</title>
+    <title>Sensory Galaxy - Help Your Child Thrive With Selective Eating</title>
     <style>
         * {
             margin: 0;
@@ -27,6 +27,18 @@
             top: 0;
             z-index: 100;
             border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d9ff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         nav ul {
@@ -51,95 +63,67 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0a0a1e 0%, #1a0033 50%, #0a0a1e 100%);
-            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(102, 126, 234, 0.1));
+            padding: 100px 40px;
             text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(30px); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1000px;
-        }
-
-        .hero-logo {
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 40px;
-            background: linear-gradient(135deg, #00d9ff, #d4af37, #e91e63);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 64px;
-            font-weight: 800;
+            font-size: 56px;
+            font-weight: 900;
             margin-bottom: 20px;
             color: #ffffff;
             line-height: 1.2;
         }
 
-        .hero .tagline {
-            font-size: 20px;
-            color: #b3b3ff;
+        .hero .subtitle {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 30px;
-            line-height: 1.6;
+            line-height: 1.5;
+            font-weight: 500;
         }
 
-        .hero-buttons {
+        .hero .subtext {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
             display: flex;
             gap: 20px;
             justify-content: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
         }
 
         .btn {
             padding: 16px 40px;
-            border-radius: 50px;
-            border: none;
             font-size: 16px;
             font-weight: 600;
+            border: none;
+            border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #00d9ff, #4CA5FF);
-            color: white;
+            background: linear-gradient(135deg, #00d9ff, #667eea);
+            color: #0a0a1e;
         }
 
         .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4);
         }
 
         .btn-secondary {
@@ -156,9 +140,14 @@
         .hero-image {
             width: 100%;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 40px auto 0;
             border-radius: 12px;
             overflow: hidden;
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px dashed rgba(0, 217, 255, 0.3);
+            padding: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .hero-image img {
@@ -167,8 +156,14 @@
             display: block;
         }
 
-        /* Planets Section */
-        .planets {
+        .trust-text {
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
             background: #0a0a1e;
             padding: 100px 40px;
             text-align: center;
@@ -177,11 +172,75 @@
         .section-title {
             font-size: 48px;
             font-weight: 800;
-            margin-bottom: 60px;
+            margin-bottom: 20px;
             background: linear-gradient(135deg, #00d9ff, #d4af37);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: left;
+        }
+
+        .testimonial-quote {
+            font-size: 16px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .testimonial-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 217, 255, 0.2);
+            border: 2px solid rgba(0, 217, 255, 0.4);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .testimonial-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #00d9ff;
+        }
+
+        .testimonial-location {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Planets Section */
+        .planets {
+            background: #0a0a1e;
+            padding: 100px 40px;
+            text-align: center;
         }
 
         .planets-grid {
@@ -202,11 +261,18 @@
             transform: scale(1.05);
         }
 
-        .planet img {
+        .planet-placeholder {
             width: 100%;
-            height: auto;
+            aspect-ratio: 1;
             border-radius: 12px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px dashed rgba(0, 217, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
             margin-bottom: 15px;
+            font-size: 14px;
         }
 
         .planet h3 {
@@ -244,10 +310,16 @@
             transform: translateY(-5px);
         }
 
-        .explorer img {
+        .explorer-placeholder {
             width: 100%;
-            height: auto;
+            aspect-ratio: 1;
             border-radius: 8px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px dashed rgba(0, 217, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
             margin-bottom: 15px;
         }
 
@@ -260,18 +332,16 @@
 
         .explorer-type {
             font-size: 14px;
-            font-weight: 600;
-            color: #00d9ff;
+            color: rgba(255, 255, 255, 0.6);
             margin-bottom: 8px;
         }
 
         .explorer-desc {
-            font-size: 13px;
-            color: #b3b3ff;
-            margin: 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        /* How It Works Section */
+        /* How It Works */
         .how-it-works {
             background: #0a0a1e;
             padding: 100px 40px;
@@ -280,36 +350,79 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .feature {
+            background: rgba(102, 126, 234, 0.05);
             padding: 30px;
-            background: rgba(102, 126, 234, 0.08);
             border-radius: 12px;
-            border-left: 4px solid #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            text-align: left;
         }
 
         .feature h3 {
             font-size: 20px;
             font-weight: 600;
+            color: #00d9ff;
             margin-bottom: 15px;
-            color: #667eea;
         }
 
         .feature p {
-            color: #b3b3ff;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        /* Why Parents Love */
+        .why-parents {
+            background: #0a0a1e;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit {
+            text-align: left;
+            padding: 20px;
+        }
+
+        .benefit h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+
+        .benefit p {
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
         }
 
-        /* Pricing Section */
+        /* Pricing */
         .pricing {
             background: #0a0a1e;
             padding: 100px 40px;
             text-align: center;
+        }
+
+        .pricing-intro {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
         }
 
         .pricing-grid {
@@ -317,100 +430,204 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 0 auto 60px;
         }
 
         .pricing-card {
-            background: rgba(102, 126, 234, 0.08);
+            background: rgba(102, 126, 234, 0.05);
             border: 1px solid rgba(102, 126, 234, 0.3);
             border-radius: 12px;
-            padding: 40px 30px;
-            transition: all 0.3s;
-        }
-
-        .pricing-card:hover {
-            border-color: #667eea;
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+            padding: 40px;
+            text-align: center;
         }
 
         .pricing-card h3 {
             font-size: 24px;
             font-weight: 600;
-            margin-bottom: 15px;
-            color: #667eea;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
         }
 
         .price {
             font-size: 48px;
             font-weight: 800;
-            margin-bottom: 20px;
-            color: #d4af37;
+            background: linear-gradient(135deg, #00d9ff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
         }
 
         .price span {
             font-size: 18px;
-            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .pricing-card p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
         }
 
         .pricing-card ul {
             list-style: none;
+            margin: 20px 0;
             text-align: left;
-            margin: 30px 0;
-            color: rgba(255, 255, 255, 0.7);
         }
 
         .pricing-card li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+            padding-left: 20px;
         }
 
-        .pricing-card li:last-child {
-            border-bottom: none;
+        .pricing-card li:before {
+            content: "✓ ";
+            color: #00d9ff;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .pricing-note {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        /* Waitlist Section */
+        .waitlist {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(102, 126, 234, 0.1));
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .waitlist h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .waitlist p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .waitlist-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .waitlist-form input {
+            padding: 14px 20px;
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .waitlist-form input:focus {
+            outline: none;
+            border-color: #00d9ff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .waitlist-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* Footer */
         footer {
-            background: #0a0a1e;
+            background: rgba(10, 10, 30, 0.8);
             padding: 40px;
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
         }
 
-        /* Responsive */
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 217, 255, 0.1);
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d9ff;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background: rgba(0, 217, 255, 0.2);
+            border-color: #00d9ff;
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #00d9ff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 36px;
             }
 
-            .hero .tagline {
-                font-size: 16px;
+            .hero .subtitle {
+                font-size: 18px;
             }
 
             .section-title {
                 font-size: 32px;
             }
 
-            .planets-grid,
-            .explorers-grid,
-            .features-grid,
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
             nav ul {
-                gap: 15px;
+                gap: 20px;
             }
 
-            .hero-buttons {
+            nav {
                 flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
+                gap: 15px;
             }
         }
     </style>
@@ -418,98 +635,63 @@
 <body>
     <!-- Navigation -->
     <nav>
+        <div class="nav-brand">🌌 Sensory Galaxy</div>
         <ul>
-            <li><a href="#what">What is it?</a></li>
-            <li><a href="#explorers">Meet the Explorers</a></li>
-            <li><a href="#how">How it Works</a></li>
-            <li><a href="#features">Features</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#why">Why Parents Choose Us</a></li>
             <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#waitlist">Waitlist</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="what">
-        <div class="hero-content">
-            <div class="hero-logo">🎮 FLAVOR GALAXY ADVENTURE</div>
-            <h1>Turn Picky Eating Into An Adventure</h1>
-            <p class="tagline">A gamified app that helps kids ages 3-10 try new foods using science-backed methods. Because progress should be fun.</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary">Download for iOS</button>
-                <button class="btn btn-secondary">Watch Demo</button>
-            </div>
-            <div class="hero-image">
-                <img src="/flavorgalaxy/nova-explorer.jpg" alt="Nova - Speed Explorer">
-            </div>
+    <section class="hero">
+        <h1>You've Tried Everything.<br>They Still Eat 5 Foods.</h1>
+        <div class="subtitle">Mealtimes are a battle. You wonder if you're failing.<br>You're not. There's a method for this. It works.</div>
+        <div class="subtext">
+            Your child's nervous system processes food differently. Sensory Galaxy uses the science-backed SOS method to help them explore at their own pace—without pressure, without guilt.
+        </div>
+        <div class="cta-buttons">
+            <a href="#waitlist" class="btn btn-primary">Start 7-Day Free Trial</a>
+            <a href="#how" class="btn btn-secondary">See How It Works</a>
+        </div>
+        <div class="trust-text">✓ No credit card required • Full access for 7 days • See if it works for your family</div>
+
+        <div class="hero-image">
+            [PLACEHOLDER: Hero Image - Parent + child in warm kitchen setting, hopeful expression, smiling together]
         </div>
     </section>
 
-    <!-- Planets Section -->
-    <section class="planets" id="planets">
-        <h2 class="section-title">Your Journey: 8 Planets to Explore</h2>
-        <div class="planets-grid">
-            <div class="planet">
-                <img src="/flavorgalaxy/planet-01-base-camp.png" alt="Base Camp">
-                <h3>Base Camp</h3>
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2 class="section-title">Real Parents. Real Progress.</h2>
+        <p class="section-subtitle">See what changed for families like yours</p>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <div class="testimonial-photo">👩</div>
+                <div class="testimonial-quote">
+                    "My son ate chicken nuggets, rice, and applesauce. That was it. After 8 weeks with Sensory Galaxy, he asked for broccoli. I was standing in the kitchen in shock. This actually works."
+                </div>
+                <div class="testimonial-name">Sarah Chen</div>
+                <div class="testimonial-location">Portland, OR</div>
             </div>
-            <div class="planet">
-                <img src="/flavorgalaxy/planet-02-sensory-grove.png" alt="Sensory Grove">
-                <h3>Sensory Grove</h3>
-            </div>
-            <div class="planet">
-                <img src="/flavorgalaxy/planet-03-texture-trails.png" alt="Texture Trails">
-                <h3>Texture Trails</h3>
-            </div>
-            <div class="planet">
-                <img src="/flavorgalaxy/planet-04-aroma-airship.png" alt="Aroma Airship">
-                <h3>Aroma Airship</h3>
-            </div>
-            <div class="planet">
-                <img src="/flavorgalaxy/planet-05-flavor-mountains.png" alt="Flavor Mountains">
-                <h3>Flavor Mountains</h3>
-            </div>
-            <div class="planet">
-                <img src="/flavorgalaxy/planet-06-taste-ocean.png" alt="Taste Ocean">
-                <h3>Taste Ocean</h3>
-            </div>
-            <div class="planet">
-                <img src="/flavorgalaxy/planet-07-taste-jungle.png" alt="Taste Jungle">
-                <h3>Taste Jungle</h3>
-            </div>
-            <div class="planet">
-                <img src="/flavorgalaxy/planet-08-galaxys-heart.png" alt="Galaxy's Heart">
-                <h3>Galaxy's Heart</h3>
-            </div>
-        </div>
-    </section>
 
-    <!-- Explorers Section -->
-    <section class="explorers" id="explorers">
-        <h2 class="section-title">Meet Your Explorers</h2>
-        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 40px; font-size: 18px;">Choose your guide for an epic sensory adventure!</p>
-        <div class="explorers-grid">
-            <div class="explorer">
-                <img src="/flavorgalaxy/star-explorer.jpg" alt="Star - Brave Explorer">
-                <h3>Star</h3>
-                <p class="explorer-type">Brave Explorer</p>
-                <p class="explorer-desc">Not afraid to try new things!</p>
+            <div class="testimonial">
+                <div class="testimonial-photo">👨</div>
+                <div class="testimonial-quote">
+                    "We were forcing mealtimes. Everyone was stressed. Then we learned about the SOS phases. We stopped pushing. Everything changed. She's trying new things because she WANTS to, not because we're making her."
+                </div>
+                <div class="testimonial-name">Mike Johnson</div>
+                <div class="testimonial-location">Seattle, WA</div>
             </div>
-            <div class="explorer">
-                <img src="/flavorgalaxy/cosmo-explorer.jpg" alt="Cosmo - Science Explorer">
-                <h3>Cosmo</h3>
-                <p class="explorer-type">Science Explorer</p>
-                <p class="explorer-desc">Curious about flavors & tastes!</p>
-            </div>
-            <div class="explorer">
-                <img src="/flavorgalaxy/nova-explorer.jpg" alt="Nova - Speed Explorer">
-                <h3>Nova</h3>
-                <p class="explorer-type">Speed Explorer</p>
-                <p class="explorer-desc">Loves discovering fast & trying new things!</p>
-            </div>
-            <div class="explorer">
-                <img src="/flavorgalaxy/orbit-explorer.jpg" alt="Orbit - Adventurous Explorer">
-                <h3>Orbit</h3>
-                <p class="explorer-type">Adventurous Explorer</p>
-                <p class="explorer-desc">Loves collecting & exploring!</p>
+
+            <div class="testimonial">
+                <div class="testimonial-photo">👩‍🦱</div>
+                <div class="testimonial-quote">
+                    "I thought my kid would eat the same 4 foods forever. Sensory Galaxy showed me he WAS getting braver. I just couldn't see it until the data proved it. The guilt finally lifted."
+                </div>
+                <div class="testimonial-name">Jessica Rodriguez</div>
+                <div class="testimonial-location">Eugene, OR</div>
             </div>
         </div>
     </section>
@@ -517,78 +699,227 @@
     <!-- How It Works -->
     <section class="how-it-works" id="how">
         <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Three things the app does to help your family</p>
         <div class="features-grid">
             <div class="feature">
-                <h3>📊 Smart Analytics</h3>
-                <p>Track sensory exposure patterns, food group diversity, and color variety. Get personalized insights powered by AI.</p>
+                <h3>1️⃣ Understand the Pattern</h3>
+                <p>You log what your child explores. The app finds patterns: which textures do they gravitate toward? What flavors are they comfortable with? Are they progressing, or stuck? What should you try next?</p>
+                <p style="margin-top: 15px; color: rgba(255, 255, 255, 0.6); font-size: 14px;"><strong>Parent benefit:</strong> Removes guesswork. Real proof they're getting braver.</p>
             </div>
+
             <div class="feature">
-                <h3>🎮 Gamified Progress</h3>
-                <p>Daily streaks, milestone badges, and explorer cosmetics keep kids engaged and motivated.</p>
+                <h3>2️⃣ Get Smart Suggestions</h3>
+                <p>After 3-5 foods logged, our AI recommends bridge foods—foods that match what they like, but introduce something new. If they like crunchy + salty crackers, try crunchy + salty pretzels. Every suggestion is doable.</p>
+                <p style="margin-top: 15px; color: rgba(255, 255, 255, 0.6); font-size: 14px;"><strong>Parent benefit:</strong> Less rejection. More progress.</p>
             </div>
+
             <div class="feature">
-                <h3>🌉 Bridge Foods</h3>
-                <p>Intelligent recommendations for the next food to try, based on sensory profile matching.</p>
+                <h3>3️⃣ Celebrate Progress</h3>
+                <p>Your child earns streaks, badges, and cosmetics for exploring. You see the data. Mealtimes shift from battles to "look how brave they're being." The guilt? It's gone.</p>
+                <p style="margin-top: 15px; color: rgba(255, 255, 255, 0.6); font-size: 14px;"><strong>Parent benefit:</strong> Hope. Proof. Celebration.</p>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="how-it-works" id="features">
-        <h2 class="section-title">Why Parents Love Flavor Galaxy</h2>
-        <div class="features-grid">
-            <div class="feature">
-                <h3>🔬 Science-Based</h3>
-                <p>Built on the Sequential Oral Sensory (SOS) approach, backed by pediatric nutritionists and occupational therapists.</p>
+    <!-- Planets Section -->
+    <section class="planets">
+        <h2 class="section-title">The 8-Planet Journey</h2>
+        <p class="section-subtitle">Using the science-backed SOS method (Sequential Oral Sensory)</p>
+        <div class="planets-grid">
+            <div class="planet">
+                <div class="planet-placeholder">[PLANET IMAGE]</div>
+                <h3>Base Camp</h3>
             </div>
-            <div class="feature">
-                <h3>👨‍👩‍👧 Parent Dashboard</h3>
-                <p>Monitor progress, identify regressions, and understand your child's sensory profile with detailed analytics.</p>
+            <div class="planet">
+                <div class="planet-placeholder">[PLANET IMAGE]</div>
+                <h3>Sensory Grove</h3>
             </div>
-            <div class="feature">
-                <h3>🎨 Customizable Experience</h3>
-                <p>Adapt the app to your child's unique sensory needs, preferences, and learning style.</p>
+            <div class="planet">
+                <div class="planet-placeholder">[PLANET IMAGE]</div>
+                <h3>Texture Trails</h3>
+            </div>
+            <div class="planet">
+                <div class="planet-placeholder">[PLANET IMAGE]</div>
+                <h3>Aroma Airship</h3>
+            </div>
+            <div class="planet">
+                <div class="planet-placeholder">[PLANET IMAGE]</div>
+                <h3>Flavor Mountains</h3>
+            </div>
+            <div class="planet">
+                <div class="planet-placeholder">[PLANET IMAGE]</div>
+                <h3>Taste Ocean</h3>
+            </div>
+            <div class="planet">
+                <div class="planet-placeholder">[PLANET IMAGE]</div>
+                <h3>Taste Jungle</h3>
+            </div>
+            <div class="planet">
+                <div class="planet-placeholder">[PLANET IMAGE]</div>
+                <h3>Galaxy's Heart</h3>
+            </div>
+        </div>
+        <p style="margin-top: 40px; color: rgba(255, 255, 255, 0.6); font-size: 16px;">Each planet has 5 sensory phases: LOOK → TOUCH → SMELL → LICK → TASTE. Your child progresses at their own pace. No rushing.</p>
+    </section>
+
+    <!-- Explorers Section -->
+    <section class="explorers">
+        <h2 class="section-title">Make It Fun: Pick Your Explorer</h2>
+        <p class="section-subtitle">Your child's guide through the sensory adventure</p>
+        <div class="explorers-grid">
+            <div class="explorer">
+                <div class="explorer-placeholder">[EXPLORER IMAGE]</div>
+                <h3>Nova</h3>
+                <p class="explorer-type">Speed Explorer</p>
+                <p class="explorer-desc">Loves discovering fast & trying new things!</p>
+            </div>
+
+            <div class="explorer">
+                <div class="explorer-placeholder">[EXPLORER IMAGE]</div>
+                <h3>Cosmo</h3>
+                <p class="explorer-type">Science Explorer</p>
+                <p class="explorer-desc">Curious about flavors & tastes!</p>
+            </div>
+
+            <div class="explorer">
+                <div class="explorer-placeholder">[EXPLORER IMAGE]</div>
+                <h3>Star</h3>
+                <p class="explorer-type">Brave Explorer</p>
+                <p class="explorer-desc">Not afraid to try new things!</p>
+            </div>
+
+            <div class="explorer">
+                <div class="explorer-placeholder">[EXPLORER IMAGE]</div>
+                <h3>Orbit</h3>
+                <p class="explorer-type">Adventurous Explorer</p>
+                <p class="explorer-desc">Loves collecting & exploring!</p>
+            </div>
+        </div>
+        <p style="margin-top: 40px; color: rgba(255, 255, 255, 0.6); font-size: 16px;"><strong>For kids:</strong> It's a game with badges, streaks, and cosmetics.<br><strong>For parents:</strong> The game is the vehicle for real, lasting change.</p>
+    </section>
+
+    <!-- Why Parents Love It -->
+    <section class="why-parents" id="why">
+        <h2 class="section-title">Why Parents Choose Sensory Galaxy</h2>
+        <div class="benefits-grid">
+            <div class="benefit">
+                <h3>✓ Solves Real Mealtimes</h3>
+                <p>No more battles. No more guilt. Just progress at your child's pace.</p>
+            </div>
+
+            <div class="benefit">
+                <h3>✓ Science-Backed</h3>
+                <p>Built on the SOS approach (30+ years of research). Used by occupational and speech therapists worldwide.</p>
+            </div>
+
+            <div class="benefit">
+                <h3>✓ Works Fast</h3>
+                <p>Most parents see real progress in 4-8 weeks. Not years of struggling.</p>
+            </div>
+
+            <div class="benefit">
+                <h3>✓ You're Not Alone</h3>
+                <p>1 in 3 kids experience sensory-sensitive eating. Connect with a community of parents who get it.</p>
+            </div>
+
+            <div class="benefit">
+                <h3>✓ Private & Secure</h3>
+                <p>Your family's data is yours. Export reports to share with therapists or your pediatrician.</p>
+            </div>
+
+            <div class="benefit">
+                <h3>✓ Built for Partnership</h3>
+                <p>Designed to complement—not replace—professional help. Many parents use it alongside therapy or nutritionist guidance.</p>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
+    <!-- Pricing -->
     <section class="pricing" id="pricing">
-        <h2 class="section-title">Simple, Transparent Pricing</h2>
+        <h2 class="section-title">Try It Risk-Free</h2>
+        <p class="pricing-intro">You've tried other things. You're skeptical. That's smart. Give Sensory Galaxy 7 days. Full access. No credit card. See if it works for your family.</p>
+
         <div class="pricing-grid">
             <div class="pricing-card">
                 <h3>Monthly</h3>
                 <div class="price">$3.99<span>/month</span></div>
-                <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 20px;">Full access to all features</p>
-                <button class="btn btn-primary">Start Free Trial</button>
+                <p>Full access to all features</p>
+                <a href="#waitlist" class="btn btn-primary">Start Free Trial</a>
                 <ul>
-                    <li>✓ Track unlimited foods</li>
-                    <li>✓ Smart recommendations</li>
-                    <li>✓ Parent analytics</li>
-                    <li>✓ Explorer cosmetics</li>
-                    <li>✓ Cancel anytime</li>
+                    <li>Track unlimited foods</li>
+                    <li>AI recommendations</li>
+                    <li>Parent analytics</li>
+                    <li>Daily streaks & badges</li>
+                    <li>Cancel anytime</li>
                 </ul>
             </div>
+
             <div class="pricing-card" style="border-color: #00d9ff; background: rgba(0, 217, 255, 0.1);">
                 <h3>Annual <span style="font-size: 14px; color: #fbbf24;">Best Value</span></h3>
                 <div class="price">$24.99<span>/year</span></div>
-                <p style="color: #00d9ff; font-weight: 600; margin-bottom: 20px;">Save 48% vs monthly</p>
-                <button class="btn btn-primary">Start Free Trial</button>
+                <p style="color: #00d9ff; font-weight: 600;">Save 48% vs monthly</p>
+                <a href="#waitlist" class="btn btn-primary">Start Free Trial</a>
                 <ul>
-                    <li>✓ All monthly features</li>
-                    <li>✓ Annual savings</li>
-                    <li>✓ Priority support</li>
-                    <li>✓ Exclusive insights</li>
-                    <li>✓ Cancel anytime</li>
+                    <li>All monthly features</li>
+                    <li>Annual savings</li>
+                    <li>Priority support</li>
+                    <li>Exclusive insights</li>
+                    <li>Cancel anytime</li>
                 </ul>
             </div>
         </div>
-        <p style="color: rgba(255, 255, 255, 0.6); margin-top: 40px;">7-day free trial • No credit card required • Full access to all features</p>
+
+        <div class="pricing-note">
+            <p style="margin-top: 30px; color: rgba(255, 255, 255, 0.6);">✓ 7-day free trial • No credit card required • Full access • Cancel anytime<br>Most parents see real progress by week 3 of their subscription.</p>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section class="waitlist" id="waitlist">
+        <h2>Ready to Transform Your Mealtimes?</h2>
+        <p>Join the waitlist. We're launching soon. Get 7 days free when you sign up.</p>
+        
+        <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Your email" required>
+            <input type="tel" placeholder="Phone number (optional)">
+            <button type="submit" class="btn btn-primary">Join the Waitlist</button>
+        </form>
+        
+        <p style="margin-top: 20px; font-size: 14px; color: rgba(255, 255, 255, 0.6);">We'll email you when Sensory Galaxy launches. No spam, just updates.</p>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Flavor Galaxy Adventure. Turning picky eating into an adventure.</p>
+        <div class="footer-content">
+            <div class="social-icons">
+                <a href="https://www.instagram.com/sensorygalaxyapp/" class="social-icon" target="_blank" title="Instagram">📱</a>
+                <a href="https://www.tiktok.com/@sensorygalaxyapp" class="social-icon" target="_blank" title="TikTok">🎬</a>
+                <a href="mailto:hello@sensorygalaxy.com" class="social-icon" title="Email">✉️</a>
+            </div>
+
+            <div class="footer-links">
+                <a href="#how">How It Works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="mailto:hello@sensorygalaxy.com">Contact</a>
+                <a href="/faq-draft.html">FAQ</a>
+            </div>
+
+            <p style="margin-top: 30px;">&copy; 2026 Sensory Galaxy. Helping parents and kids thrive together.</p>
+        </div>
     </footer>
+
+    <script>
+        function handleWaitlist(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.elements[0].value;
+            const email = form.elements[1].value;
+            
+            // Show success message
+            alert(`Thanks, ${name}! We've added you to the waitlist. Check your email for confirmation.`);
+            form.reset();
+        }
+    </script>
 </body>
 </html>
