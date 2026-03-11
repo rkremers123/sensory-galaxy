@@ -1,0 +1,26 @@
+{
+  "buildCommand": "echo 'Static site - no build needed'",
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/aurora", "destination": "/aurora.html" },
+    { "source": "/consulting", "destination": "/consulting.html" },
+    { "source": "/teslasales", "destination": "/teslasales.html" },
+    { "source": "/tesla", "destination": "/tesla.html" },
+    { "source": "/rork", "destination": "/rork.html" },
+    { "source": "/rork2", "destination": "/rork2.html" },
+    { "source": "/kofi", "destination": "/kofi.html" },
+    { "source": "/dentalapp", "destination": "/dentalapp_webpage.html" },
+    { "source": "/tfd", "destination": "/tfd_page.html" },
+    { "source": "/tfd_app_brief", "destination": "/tfd_app_brief.html" },
+    { "source": "/tfd_consumables", "destination": "/tfd_consumables.html" },
+    { "source": "/dentalresearch", "destination": "/dental_research_strategic_report.html" },
+    { "source": "/marlo-playbook", "destination": "/marlo-playbook.html" },
+    { "source": "/viral", "destination": "/viral.html" },
+    { "source": "/actually", "destination": "/actually.html" },
+    { "source": "/flavorgalaxy", "destination": "/flavorgalaxy/index.html" },
+    { "source": "/flavgalupdates", "destination": "/rob-kremers-portfolio/flavgalupdates/index.html" },
+    { "source": "/projects", "destination": "/index-projects.html" },
+    { "source": "/", "destination": "/index-projects.html" }
+  ],
+  "trailingSlash": false
+}
