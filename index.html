@@ -61,10 +61,23 @@
             color: #00d9ff;
         }
 
+        /* Logo Header */
+        .logo-header {
+            background: #0a0a1e;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .logo-header img {
+            max-height: 120px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(102, 126, 234, 0.1));
-            padding: 100px 40px;
+            padding: 60px 40px 100px;
             text-align: center;
             max-width: 1200px;
             margin: 0 auto;
@@ -143,11 +156,6 @@
             margin: 40px auto 0;
             border-radius: 12px;
             overflow: hidden;
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px dashed rgba(0, 217, 255, 0.3);
-            padding: 40px;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
         }
 
         .hero-image img {
@@ -162,11 +170,13 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Testimonials Section */
-        .testimonials {
+        /* SOS Method Intro */
+        .sos-intro {
             background: #0a0a1e;
             padding: 100px 40px;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .section-title {
@@ -186,6 +196,103 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .sos-phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .phase {
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .phase-number {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d9ff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .phase-label {
+            font-size: 20px;
+            font-weight: 700;
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+
+        .phase-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .sos-explanation {
+            margin-top: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 30px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .sos-explanation h3 {
+            color: #00d9ff;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .sos-explanation p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        /* Explorers Intro Section */
+        .explorers-intro {
+            background: #0a0a1e;
+            padding: 100px 40px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .explorers-intro-image {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .explorers-intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .explorers-intro-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: #0a0a1e;
+            padding: 100px 40px;
+            text-align: center;
         }
 
         .testimonials-grid {
@@ -261,24 +368,17 @@
             transform: scale(1.05);
         }
 
-        .planet-placeholder {
+        .planet img {
             width: 100%;
-            aspect-ratio: 1;
             border-radius: 12px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px dashed rgba(0, 217, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 15px;
-            font-size: 14px;
+            display: block;
         }
 
         .planet h3 {
             font-size: 18px;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.9);
+            margin-top: 15px;
         }
 
         /* Explorers Section */
@@ -290,7 +390,7 @@
 
         .explorers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
@@ -300,8 +400,10 @@
             background: rgba(102, 126, 234, 0.05);
             padding: 20px;
             border-radius: 12px;
-            border: 1px solid rgba(102, 126, 234, 0.3);
+            border: 2px solid rgba(102, 126, 234, 0.3);
             transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
         }
 
         .explorer:hover {
@@ -310,17 +412,19 @@
             transform: translateY(-5px);
         }
 
-        .explorer-placeholder {
+        .explorer-image {
             width: 100%;
             aspect-ratio: 1;
             border-radius: 8px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px dashed rgba(0, 217, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
+            overflow: hidden;
             margin-bottom: 15px;
+        }
+
+        .explorer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .explorer h3 {
@@ -339,6 +443,64 @@
         .explorer-desc {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .explorer-cue {
+            font-size: 12px;
+            color: #00d9ff;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #1a1a2e;
+            margin: 10% auto;
+            padding: 40px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #00d9ff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #ffffff;
+        }
+
+        .modal-video {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
 
         /* How It Works */
@@ -629,15 +791,20 @@
                 flex-direction: column;
                 gap: 15px;
             }
+
+            .explorers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media (max-width: 480px) {
+                .explorers-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Logo Header -->
-    <header style="background: #0a0a1e; padding: 20px 40px; text-align: center; border-bottom: 1px solid rgba(0, 217, 255, 0.2);">
-        <img src="./assets/brand identity/logo_vertical.PNG" alt="Sensory Galaxy Logo" style="max-height: 80px; width: auto;">
-    </header>
-
     <!-- Navigation -->
     <nav>
         <div class="nav-brand">🌌 Sensory Galaxy</div>
@@ -648,6 +815,11 @@
             <li><a href="#waitlist">Waitlist</a></li>
         </ul>
     </nav>
+
+    <!-- Logo Header -->
+    <div class="logo-header">
+        <img src="./assets/brand identity/logo_vertical.PNG" alt="Sensory Galaxy Logo">
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -663,7 +835,60 @@
         <div class="trust-text">✓ No credit card required • Full access for 7 days • See if it works for your family</div>
 
         <div class="hero-image">
-            <img src="./assets/photos/hero.jpg" alt="Parent and child smiling together in a warm kitchen">
+            <img src="./assets/photos/header.png" alt="Parent and child smiling together in a warm kitchen">
+        </div>
+    </section>
+
+    <!-- SOS Method Introduction -->
+    <section class="sos-intro">
+        <h2 class="section-title">The SOS Method: Sequential Oral Sensory</h2>
+        <p class="section-subtitle">How kids explore food without pressure</p>
+        
+        <div class="sos-phases">
+            <div class="phase">
+                <div class="phase-number">1️⃣</div>
+                <div class="phase-label">LOOK</div>
+                <div class="phase-desc">Observe the food without touching</div>
+            </div>
+            <div class="phase">
+                <div class="phase-number">2️⃣</div>
+                <div class="phase-label">TOUCH</div>
+                <div class="phase-desc">Feel the texture with hands</div>
+            </div>
+            <div class="phase">
+                <div class="phase-number">3️⃣</div>
+                <div class="phase-label">SMELL</div>
+                <div class="phase-desc">Explore the aroma</div>
+            </div>
+            <div class="phase">
+                <div class="phase-number">4️⃣</div>
+                <div class="phase-label">LICK</div>
+                <div class="phase-desc">Taste just the tip of the tongue</div>
+            </div>
+            <div class="phase">
+                <div class="phase-number">5️⃣</div>
+                <div class="phase-label">TASTE</div>
+                <div class="phase-desc">Chew and eat</div>
+            </div>
+        </div>
+
+        <div class="sos-explanation">
+            <h3>Why This Works</h3>
+            <p>Kids with sensory sensitivity get overwhelmed by all five senses at once. The SOS method breaks it down into tiny, manageable steps. Your child decides when to move to the next phase—no pressure, no forcing. This removes the anxiety and lets their nervous system gradually accept new foods.</p>
+        </div>
+    </section>
+
+    <!-- Explorers Intro Section -->
+    <section class="explorers-intro">
+        <h2 class="section-title">Meet Your Guides</h2>
+        <p class="section-subtitle">Choose an explorer to guide your child through the sensory adventure</p>
+        
+        <div class="explorers-intro-image">
+            <img src="./assets/explorers/explorers.jpg" alt="All four Sensory Galaxy explorers together: Nova, Cosmo, Star, and Orbit">
+        </div>
+
+        <div class="explorers-intro-text">
+            <p>Each explorer has their own personality and special powers. Nova loves speed, Cosmo is curious about science, Star is brave, and Orbit loves collecting. Your child picks their favorite—and they become the guide through all 8 planets. It's not just a game; it's a companion for real, lasting change.</p>
         </div>
     </section>
 
@@ -732,35 +957,35 @@
         <p class="section-subtitle">Using the science-backed SOS method (Sequential Oral Sensory)</p>
         <div class="planets-grid">
             <div class="planet">
-                <img src="./assets/planets/planet-01-base-camp.png" alt="Base Camp Planet" style="width: 100%; border-radius: 12px;">
+                <img src="./assets/planets/planet-01-base-camp.png" alt="Base Camp Planet">
                 <h3>Base Camp</h3>
             </div>
             <div class="planet">
-                <img src="./assets/planets/planet-02-sensory-grove.png" alt="Sensory Grove Planet" style="width: 100%; border-radius: 12px;">
+                <img src="./assets/planets/planet-02-sensory-grove.png" alt="Sensory Grove Planet">
                 <h3>Sensory Grove</h3>
             </div>
             <div class="planet">
-                <img src="./assets/planets/planet-03-texture-trails.png" alt="Texture Trails Planet" style="width: 100%; border-radius: 12px;">
+                <img src="./assets/planets/planet-03-texture-trails.png" alt="Texture Trails Planet">
                 <h3>Texture Trails</h3>
             </div>
             <div class="planet">
-                <img src="./assets/planets/planet-04-aroma-airship.png" alt="Aroma Airship Planet" style="width: 100%; border-radius: 12px;">
+                <img src="./assets/planets/planet-04-aroma-airship.png" alt="Aroma Airship Planet">
                 <h3>Aroma Airship</h3>
             </div>
             <div class="planet">
-                <img src="./assets/planets/planet-05-flavor-mountains.png" alt="Flavor Mountains Planet" style="width: 100%; border-radius: 12px;">
+                <img src="./assets/planets/planet-05-flavor-mountains.png" alt="Flavor Mountains Planet">
                 <h3>Flavor Mountains</h3>
             </div>
             <div class="planet">
-                <img src="./assets/planets/planet-06-taste-ocean.png" alt="Taste Ocean Planet" style="width: 100%; border-radius: 12px;">
+                <img src="./assets/planets/planet-06-taste-ocean.png" alt="Taste Ocean Planet">
                 <h3>Taste Ocean</h3>
             </div>
             <div class="planet">
-                <img src="./assets/planets/planet-07-taste-jungle.png" alt="Taste Jungle Planet" style="width: 100%; border-radius: 12px;">
+                <img src="./assets/planets/planet-07-taste-jungle.png" alt="Taste Jungle Planet">
                 <h3>Taste Jungle</h3>
             </div>
             <div class="planet">
-                <img src="./assets/planets/planet-08-galaxys-heart.png" alt="Galaxy's Heart Planet" style="width: 100%; border-radius: 12px;">
+                <img src="./assets/planets/planet-08-galaxys-heart.png" alt="Galaxy's Heart Planet">
                 <h3>Galaxy's Heart</h3>
             </div>
         </div>
@@ -769,39 +994,99 @@
 
     <!-- Explorers Section -->
     <section class="explorers">
-        <h2 class="section-title">Make It Fun: Pick Your Explorer</h2>
-        <p class="section-subtitle">Your child's guide through the sensory adventure</p>
+        <h2 class="section-title">Pick Your Explorer</h2>
+        <p class="section-subtitle">Click to learn more and watch their videos</p>
         <div class="explorers-grid">
-            <div class="explorer">
-                <img src="./assets/explorers/nova.jpg" alt="Nova the Speed Explorer" style="width: 100%; border-radius: 8px;">
+            <div class="explorer" onclick="openModal('nova')">
+                <div class="explorer-image">
+                    <img src="./assets/explorers/nova.jpg" alt="Nova the Speed Explorer">
+                </div>
                 <h3>Nova</h3>
                 <p class="explorer-type">Speed Explorer</p>
                 <p class="explorer-desc">Loves discovering fast & trying new things!</p>
+                <p class="explorer-cue">👆 Click to watch videos</p>
             </div>
 
-            <div class="explorer">
-                <img src="./assets/explorers/cosmo.jpg" alt="Cosmo the Science Explorer" style="width: 100%; border-radius: 8px;">
+            <div class="explorer" onclick="openModal('cosmo')">
+                <div class="explorer-image">
+                    <img src="./assets/explorers/cosmo.jpg" alt="Cosmo the Science Explorer">
+                </div>
                 <h3>Cosmo</h3>
                 <p class="explorer-type">Science Explorer</p>
                 <p class="explorer-desc">Curious about flavors & tastes!</p>
+                <p class="explorer-cue">👆 Click to watch videos</p>
             </div>
 
-            <div class="explorer">
-                <img src="./assets/explorers/star.jpg" alt="Star the Brave Explorer" style="width: 100%; border-radius: 8px;">
+            <div class="explorer" onclick="openModal('star')">
+                <div class="explorer-image">
+                    <img src="./assets/explorers/star.jpg" alt="Star the Brave Explorer">
+                </div>
                 <h3>Star</h3>
                 <p class="explorer-type">Brave Explorer</p>
                 <p class="explorer-desc">Not afraid to try new things!</p>
+                <p class="explorer-cue">👆 Click to watch videos</p>
             </div>
 
-            <div class="explorer">
-                <img src="./assets/explorers/orbit.jpg" alt="Orbit the Adventurous Explorer" style="width: 100%; border-radius: 8px;">
+            <div class="explorer" onclick="openModal('orbit')">
+                <div class="explorer-image">
+                    <img src="./assets/explorers/orbit.jpg" alt="Orbit the Adventurous Explorer">
+                </div>
                 <h3>Orbit</h3>
                 <p class="explorer-type">Adventurous Explorer</p>
                 <p class="explorer-desc">Loves collecting & exploring!</p>
+                <p class="explorer-cue">👆 Click to watch videos</p>
             </div>
         </div>
-        <p style="margin-top: 40px; color: rgba(255, 255, 255, 0.6); font-size: 16px;"><strong>For kids:</strong> It's a game with badges, streaks, and cosmetics.<br><strong>For parents:</strong> The game is the vehicle for real, lasting change.</p>
     </section>
+
+    <!-- Modals for Explorer Videos -->
+    <div id="novaModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('nova')">&times;</span>
+            <h2 style="color: #00d9ff; margin-bottom: 20px;">Nova - Speed Explorer</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Loves discovering fast & trying new things!</p>
+            <video class="modal-video" controls muted>
+                <source src="./assets/videos/novamov.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <div id="cosmoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cosmo')">&times;</span>
+            <h2 style="color: #00d9ff; margin-bottom: 20px;">Cosmo - Science Explorer</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Curious about flavors & tastes!</p>
+            <video class="modal-video" controls muted>
+                <source src="./assets/videos/cosmomov.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <div id="starModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('star')">&times;</span>
+            <h2 style="color: #00d9ff; margin-bottom: 20px;">Star - Brave Explorer</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Not afraid to try new things!</p>
+            <video class="modal-video" controls muted>
+                <source src="./assets/videos/starmov.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <div id="orbitModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('orbit')">&times;</span>
+            <h2 style="color: #00d9ff; margin-bottom: 20px;">Orbit - Adventurous Explorer</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Loves collecting & exploring!</p>
+            <video class="modal-video" controls muted>
+                <source src="./assets/videos/orbitmov.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
 
     <!-- Why Parents Love It -->
     <section class="why-parents" id="why">
@@ -921,9 +1206,23 @@
             const name = form.elements[0].value;
             const email = form.elements[1].value;
             
-            // Show success message
             alert(`Thanks, ${name}! We've added you to the waitlist. Check your email for confirmation.`);
             form.reset();
+        }
+
+        function openModal(explorer) {
+            document.getElementById(explorer + 'Modal').style.display = 'block';
+        }
+
+        function closeModal(explorer) {
+            document.getElementById(explorer + 'Modal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
         }
     </script>
 </body>
