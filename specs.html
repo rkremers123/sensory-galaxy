@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sensory Galaxy - Project Status & Specifications">
+    <title>Sensory Galaxy - Project Status</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Menlo', 'Monaco', monospace;
+            background: linear-gradient(135deg, #0a0a1e 0%, #1a0a3e 50%, #0a0a1e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2.5rem; background: linear-gradient(135deg, #00d9ff, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; }
+        .subtitle { color: #999; font-size: 1.1rem; margin-bottom: 40px; }
+        h2 { color: #00d9ff; font-size: 1.8rem; margin-top: 50px; margin-bottom: 20px; border-bottom: 2px solid rgba(0,217,255,0.3); padding-bottom: 10px; }
+        h3 { color: #667eea; font-size: 1.3rem; margin-top: 30px; margin-bottom: 15px; }
+        .section { background: rgba(15, 15, 40, 0.8); border: 1px solid rgba(0, 217, 255, 0.2); border-radius: 12px; padding: 30px; margin-bottom: 30px; }
+        .subsection { background: rgba(20, 20, 50, 0.8); border-left: 3px solid rgba(102, 126, 234, 0.5); padding: 20px; margin: 20px 0; border-radius: 6px; }
+        .status { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; margin-left: 10px; font-weight: bold; }
+        .done { background: rgba(40, 167, 69, 0.3); color: #28a745; }
+        .inprogress { background: rgba(102, 126, 234, 0.3); color: #667eea; }
+        .planned { background: rgba(233, 30, 99, 0.3); color: #e91e63; }
+        .critical { background: rgba(220, 20, 60, 0.3); color: #ff4444; }
+        code { background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; color: #00d9ff; }
+        pre { background: rgba(0,0,0,0.6); padding: 15px; border-radius: 6px; overflow-x: auto; margin: 15px 0; border-left: 3px solid #667eea; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(0, 217, 255, 0.2); }
+        th { background: rgba(102, 126, 234, 0.2); color: #00d9ff; }
+        ul { list-style: none; padding-left: 20px; }
+        li { padding: 8px 0; }
+        li::before { content: '→ '; color: #00d9ff; font-weight: bold; }
+        a { color: #00d9ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Sensory Galaxy</h1>
+        <p class="subtitle">Project Status & Specifications Hub</p>
+        <p style="color: #999; font-size: 0.9rem; margin-bottom: 30px;">Last Updated: March 11, 2026 @ 2:30 PM PST</p>
+
+        <!-- QUICK FACTS -->
+        <div class="section" style="background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; margin-bottom: 40px;">
+            <h3 style="margin-top: 0;">⚡ Quick Facts</h3>
+            <table>
+                <tr>
+                    <td><strong>App Name</strong></td>
+                    <td>Sensory Galaxy</td>
+                </tr>
+                <tr>
+                    <td><strong>Domain</strong></td>
+                    <td><code>sensorygalaxy.com</code> (Live, DNS propagating 24-48h)</td>
+                </tr>
+                <tr>
+                    <td><strong>GitHub Repo</strong></td>
+                    <td><code>rkremers123/sensory-galaxy</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Vercel Project</strong></td>
+                    <td><code>sensory-galaxy</code> (Auto-deploys on git push)</td>
+                </tr>
+                <tr>
+                    <td><strong>Current URL</strong></td>
+                    <td><code>sensory-galaxy-l5up489hl.vercel.app</code> (active now)</td>
+                </tr>
+                <tr>
+                    <td><strong>Email Setup</strong></td>
+                    <td>Next: Google Workspace for <code>hello@sensorygalaxy.com</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Social Handles</strong></td>
+                    <td>Next: <code>@sensorygalaxyapp</code> (Instagram, TikTok)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ARCHITECTURE -->
+        <h2>🏗️ Setup Architecture</h2>
+        <div class="section">
+            <h3>Deployment Pipeline</h3>
+            <pre>Local: /Users/rk/clawd/sensory-galaxy/
+  ↓
+GitHub: rkremers123/sensory-galaxy (push to main)
+  ↓
+Vercel: Auto-deploys (webhook/token-based)
+  ↓
+Live: sensorygalaxy.com (when DNS ready) + sensory-galaxy-*.vercel.app (now)</pre>
+
+            <h3>Key Setup Details</h3>
+            <ul>
+                <li><strong>GitHub Account:</strong> rkremers123 (all projects)</li>
+                <li><strong>Vercel Account:</strong> dupesnacks (connected to rkremers123 GitHub)</li>
+                <li><strong>Domain Registrar:</strong> GoDaddy (or similar)</li>
+                <li><strong>DNS:</strong> Vercel nameservers (set up, propagating)</li>
+                <li><strong>Auto-Deploy Token:</strong> Stored securely (CLI deploys via: <code>vercel deploy --prod --token [TOKEN]</code>)</li>
+                <li><strong>Git Scope:</strong> rkremers123 (in Vercel project settings)</li>
+            </ul>
+
+            <h3>Why This Setup</h3>
+            <ul>
+                <li><strong>New repo = fresh start:</strong> sensory-galaxy is separate from old portfolio projects</li>
+                <li><strong>New domain = brand clarity:</strong> sensorygalaxy.com (not robkremers.com)</li>
+                <li><strong>Auto-deploy = zero manual work:</strong> Push to GitHub → instantly live</li>
+                <li><strong>One knowledge base:</strong> ByteRover .brv/ shared across all Discord channels + main session</li>
+            </ul>
+        </div>
+
+        <!-- PHASE STATUS -->
+        <h2>📊 Phase Status</h2>
+        <div class="section">
+            <h3>Phase 1: Foundation (COMPLETE) ✅</h3>
+            <ul>
+                <li><span class="status done">Done</span> Domain purchased: sensorygalaxy.com</li>
+                <li><span class="status done">Done</span> GitHub repo created & initialized</li>
+                <li><span class="status done">Done</span> Vercel project deployed (auto-deploying)</li>
+                <li><span class="status done">Done</span> Landing page live (all 8 planets, 4 explorers)</li>
+                <li><span class="status done">Done</span> Emotional-first onboarding copy (9 cards, Card+Modal)</li>
+                <li><span class="status done">Done</span> Food database (100+ foods with sensory attributes)</li>
+                <li><span class="status done">Done</span> LLM guardrails documented (10 validation rules)</li>
+                <li><span class="status done">Done</span> Badge system designed (20 badges)</li>
+                <li><span class="status done">Done</span> Points/rewards economy designed</li>
+                <li><span class="status done">Done</span> "Suggest a Food" feature spec</li>
+            </ul>
+
+            <h3>Phase 2: Email & Social (IN PROGRESS) 🔄</h3>
+            <ul>
+                <li><span class="status inprogress">In Progress</span> Google Workspace email setup (next)</li>
+                <li><span class="status inprogress">In Progress</span> Instagram handle: @sensorygalaxyapp (reserve)</li>
+                <li><span class="status inprogress">In Progress</span> TikTok handle: @sensorygalaxyapp (reserve)</li>
+            </ul>
+
+            <h3>Phase 3: Site Rebuild (READY TO START) 📋</h3>
+            <ul>
+                <li><span class="status planned">TODO</span> Port specs page to new domain (flavgalupdates → specs.html)</li>
+                <li><span class="status planned">TODO</span> Update landing page copy (shift to "sensory feeding intelligence")</li>
+                <li><span class="status planned">TODO</span> Create FAQ page</li>
+                <li><span class="status planned">TODO</span> Create sign-up page (7-day trial, no credit card)</li>
+                <li><span class="status planned">TODO</span> Create pricing page</li>
+            </ul>
+
+            <h3>Phase 4: App Development (BLOCKED PENDING SITE) 🚫</h3>
+            <ul>
+                <li><span class="status planned">Blocked</span> Phase 2-5 UI sprint (Food Logging, Analytics, Suggest, Bug Fixes)</li>
+                <li><span class="status planned">Blocked</span> Rork integration briefs (waiting for finalized site messaging)</li>
+                <li><span class="status planned">Blocked</span> Marketing materials (screenshots, videos, testimonials)</li>
+            </ul>
+
+            <h3>Phase 5: Launch (PLANNED) 🎯</h3>
+            <ul>
+                <li><span class="status planned">Planned</span> Beta launch (5 Portland families, week of March 12)</li>
+                <li><span class="status planned">Planned</span> App Store & Google Play setup</li>
+                <li><span class="status planned">Planned</span> Full public launch (Q2 2026)</li>
+            </ul>
+        </div>
+
+        <!-- KEY DECISIONS -->
+        <h2>🎯 Key Decisions</h2>
+        <div class="section">
+            <h3>Product</h3>
+            <ul>
+                <li><strong>App Name:</strong> "Sensory Galaxy" (2 words, punchy, accurate)</li>
+                <li><strong>Pricing Model:</strong> $3.99/month OR $24.99/year (all-paid, no free tier, 7-day trial)</li>
+                <li><strong>Target Audience:</strong> Parents of 3-10 year olds with sensory-sensitive eating</li>
+                <li><strong>LLM:</strong> Qwen 3.5 Plus ($2,150/year vs Claude $62K/year — 96% cheaper)</li>
+                <li><strong>Bridge Food Threshold:</strong> 3-5 foods logged before AI recommendations</li>
+                <li><strong>Planet Progression:</strong> Phase-based (LOOK→TOUCH→SMELL→LICK→TASTE), not food-count based</li>
+            </ul>
+
+            <h3>Marketing</h3>
+            <ul>
+                <li><strong>Messaging Shift:</strong> From "space adventure" to "sensory feeding intelligence"</li>
+                <li><strong>Onboarding Approach:</strong> Emotional-first (recognition → validation → proof → partnership)</li>
+                <li><strong>Conversion Target:</strong> 40-50% trial-to-paid (13% → 23% potential via emotional hooks)</li>
+                <li><strong>Social Strategy:</strong> Build audience during beta (behind-the-scenes, testimonials, education)</li>
+            </ul>
+
+            <h3>Operations</h3>
+            <ul>
+                <li><strong>Auto-Deploy:</strong> All pushes to GitHub main auto-deploy to Vercel (zero manual work)</li>
+                <li><strong>Memory Protocol:</strong> Discord-me proactively curates to ByteRover .brv/ (shared across all channels + main)</li>
+                <li><strong>Project Visibility:</strong> All specs/status live on web (HTML) for easy PC access</li>
+            </ul>
+        </div>
+
+        <!-- FILES & REFERENCES -->
+        <h2>📚 Documentation & Files</h2>
+        <div class="section">
+            <h3>Workspace Files (Local)</h3>
+            <ul>
+                <li><code>/Users/rk/clawd/sensory-galaxy/</code> — GitHub repo (landing page + assets)</li>
+                <li><code>/Users/rk/clawd/FOOD-DATABASE-EXPANDED-WITH-LLM-GUARDRAILS.md</code> — 100+ foods + validation rules</li>
+                <li><code>/Users/rk/clawd/BADGE-DESIGN-SPEC.md</code> — 20 badges with unlock conditions</li>
+                <li><code>/Users/rk/clawd/POINTS-REWARDS-ECONOMY-BRIEF.md</code> — Economy system</li>
+                <li><code>/Users/rk/clawd/ONBOARDING-CARDS-REVISED-COPY.md</code> — 9-card journey with emotional-first copy</li>
+                <li><code>/Users/rk/clawd/RORK-PHASE2-5-REMAINING-SPRINT.md</code> — App UI implementation briefs</li>
+                <li><code>/Users/rk/clawd/memory/2026-03-10.md</code> — Daily notes (food database, LLM guardrails, emotional onboarding)</li>
+            </ul>
+
+            <h3>Live Specs Pages</h3>
+            <ul>
+                <li><strong>Old:</strong> https://www.robkremers.com/flavgalupdates (comprehensive, but on old domain)</li>
+                <li><strong>New:</strong> specs.html (this page, for easy PC access anytime)</li>
+            </ul>
+        </div>
+
+        <!-- NEXT STEPS -->
+        <h2>🔜 Next Steps</h2>
+        <div class="section">
+            <h3>Immediate (Today/Tomorrow)</h3>
+            <ol>
+                <li><strong>Email Setup:</strong> Google Workspace → <code>hello@sensorygalaxy.com</code></li>
+                <li><strong>Social Handles:</strong> Instagram + TikTok → <code>@sensorygalaxyapp</code></li>
+                <li><strong>Site Rebuild:</strong> Port specs + create FAQ, sign-up, pricing pages</li>
+            </ol>
+
+            <h3>This Week</h3>
+            <ol>
+                <li><strong>DNS Verification:</strong> Wait for <code>sensorygalaxy.com</code> to go live (24-48h after nameserver setup)</li>
+                <li><strong>Marketing Copy:</strong> Shift all landing page messaging to "sensory feeding" focus</li>
+                <li><strong>Social Launch:</strong> Start posting behind-the-scenes content</li>
+            </ol>
+
+            <h3>Next 2 Weeks</h3>
+            <ol>
+                <li><strong>Phase 2-5 UI Sprint:</strong> Send briefs to Rork, start app implementation (5-6 hours total)</li>
+                <li><strong>Beta Prep:</strong> TestFlight setup, Google Play beta, family outreach (5 Portland families)</li>
+                <li><strong>Marketing Assets:</strong> Food icons, five senses icons, screenshot captures</li>
+            </ol>
+        </div>
+
+        <div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(0, 217, 255, 0.1); color: #666; text-align: center; font-size: 0.9rem;">
+            <p>🌐 Sensory Galaxy Project Status & Specifications</p>
+            <p style="margin-top: 10px;">Access this page anytime from your PC: specs.html (or https://sensory-galaxy-l5up489hl.vercel.app/specs.html)</p>
+        </div>
+    </div>
+</body>
+</html>
