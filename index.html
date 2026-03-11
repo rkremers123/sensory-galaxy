@@ -64,20 +64,22 @@
         /* Logo Header */
         .logo-header {
             background: #0a0a1e;
-            padding: 40px 20px;
+            padding: 30px 40px;
             text-align: center;
         }
 
         .logo-header img {
-            max-height: 120px;
-            width: auto;
-            margin-bottom: 20px;
+            max-width: 90%;
+            height: auto;
+            max-height: 100px;
+            display: block;
+            margin: 0 auto;
         }
 
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(102, 126, 234, 0.1));
-            padding: 60px 40px 100px;
+            padding: 40px 40px 60px;
             text-align: center;
             max-width: 1200px;
             margin: 0 auto;
@@ -103,7 +105,7 @@
             font-size: 18px;
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 40px;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.7;
@@ -152,7 +154,7 @@
 
         .hero-image {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto 0;
             border-radius: 12px;
             overflow: hidden;
@@ -164,16 +166,14 @@
             display: block;
         }
 
-        .trust-text {
-            margin-top: 20px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
+        /* Section Spacing */
+        section {
+            padding: 60px 40px;
         }
 
-        /* SOS Method Intro */
-        .sos-intro {
+        /* How It Works */
+        .how-it-works {
             background: #0a0a1e;
-            padding: 100px 40px;
             text-align: center;
             max-width: 1200px;
             margin: 0 auto;
@@ -192,10 +192,118 @@
         .section-subtitle {
             font-size: 18px;
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 60px;
-            max-width: 600px;
+            margin-bottom: 50px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            background: rgba(102, 126, 234, 0.05);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            text-align: left;
+        }
+
+        .feature h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00d9ff;
+            margin-bottom: 15px;
+        }
+
+        .feature p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        /* Parent Dashboard Section */
+        .dashboard-section {
+            background: #0a0a1e;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard-text {
+            text-align: left;
+        }
+
+        .dashboard-text h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #00d9ff;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-text p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-features {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .dashboard-features li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .dashboard-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00d9ff;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .dashboard-image {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .dashboard-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* SOS Method Intro */
+        .sos-intro {
+            background: #0a0a1e;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .sos-phases {
@@ -203,7 +311,7 @@
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 30px;
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 0 auto 50px;
         }
 
         .phase {
@@ -237,10 +345,8 @@
         }
 
         .sos-explanation {
-            margin-top: 60px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 30px;
             background: rgba(102, 126, 234, 0.05);
             border-radius: 12px;
@@ -250,7 +356,7 @@
         .sos-explanation h3 {
             color: #00d9ff;
             margin-bottom: 15px;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .sos-explanation p {
@@ -258,26 +364,26 @@
             line-height: 1.8;
         }
 
-        /* Explorers Intro Section */
-        .explorers-intro {
-            background: #0a0a1e;
-            padding: 100px 40px;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .explorers-intro-image {
-            max-width: 600px;
-            margin: 0 auto 40px;
+        .sos-image {
+            max-width: 900px;
+            margin: 40px auto 0;
             border-radius: 12px;
             overflow: hidden;
         }
 
-        .explorers-intro-image img {
+        .sos-image img {
             width: 100%;
             height: auto;
             display: block;
+        }
+
+        /* Explorers Intro Section */
+        .explorers-intro {
+            background: #0a0a1e;
+            padding: 40px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .explorers-intro-text {
@@ -291,8 +397,9 @@
         /* Testimonials Section */
         .testimonials {
             background: #0a0a1e;
-            padding: 100px 40px;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .testimonials-grid {
@@ -346,8 +453,9 @@
         /* Planets Section */
         .planets {
             background: #0a0a1e;
-            padding: 100px 40px;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .planets-grid {
@@ -384,8 +492,9 @@
         /* Explorers Section */
         .explorers {
             background: #0a0a1e;
-            padding: 100px 40px;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .explorers-grid {
@@ -503,46 +612,12 @@
             margin-bottom: 20px;
         }
 
-        /* How It Works */
-        .how-it-works {
-            background: #0a0a1e;
-            padding: 100px 40px;
-            text-align: center;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature {
-            background: rgba(102, 126, 234, 0.05);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            text-align: left;
-        }
-
-        .feature h3 {
-            font-size: 20px;
-            font-weight: 600;
-            color: #00d9ff;
-            margin-bottom: 15px;
-        }
-
-        .feature p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-        }
-
         /* Why Parents Love */
         .why-parents {
             background: #0a0a1e;
-            padding: 100px 40px;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .benefits-grid {
@@ -573,8 +648,9 @@
         /* Pricing */
         .pricing {
             background: #0a0a1e;
-            padding: 100px 40px;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .pricing-intro {
@@ -656,7 +732,6 @@
         /* Waitlist Section */
         .waitlist {
             background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(102, 126, 234, 0.1));
-            padding: 80px 40px;
             text-align: center;
         }
 
@@ -728,22 +803,26 @@
         .social-icon {
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            background: rgba(0, 217, 255, 0.1);
-            border: 2px solid rgba(0, 217, 255, 0.3);
+            border-radius: 4px;
+            background: #000000;
+            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #00d9ff;
-            font-size: 24px;
             text-decoration: none;
             transition: all 0.3s;
+            padding: 8px;
+        }
+
+        .social-icon img {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) invert(1);
         }
 
         .social-icon:hover {
             background: rgba(0, 217, 255, 0.2);
-            border-color: #00d9ff;
-            transform: translateY(-3px);
+            border: 1px solid rgba(0, 217, 255, 0.5);
         }
 
         footer p {
@@ -823,50 +902,93 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>You've Tried Everything.<br>They Still Eat 5 Foods.</h1>
-        <div class="subtitle">Mealtimes are a battle. You wonder if you're failing.<br>You're not. There's a method for this. It works.</div>
+        <h1>You've Tried Everything. They Still Eat 5 Foods.</h1>
+        <div class="subtitle">Mealtimes are a battle. You wonder if you're failing. You're not. Sensory Galaxy uses the science-backed Sequential Oral Sensory (SOS) method to help your child explore at their own pace.</div>
         <div class="subtext">
-            Your child's nervous system processes food differently. Sensory Galaxy uses the science-backed SOS method to help them explore at their own pace—without pressure, without guilt.
+            Your child's nervous system processes food differently. There's a method for this. Sensory Galaxy is the method.
         </div>
         <div class="cta-buttons">
-            <a href="#waitlist" class="btn btn-primary">Start 7-Day Free Trial</a>
+            <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
             <a href="#how" class="btn btn-secondary">See How It Works</a>
         </div>
-        <div class="trust-text">✓ No credit card required • Full access for 7 days • See if it works for your family</div>
 
         <div class="hero-image">
-            <img src="./assets/photos/header.png" alt="Parent and child smiling together in a warm kitchen">
+            <img src="./assets/explorers/explorers.jpg" alt="Sensory Galaxy explorers: Nova, Cosmo, Star, and Orbit">
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Three things the app does to help your family solve selective eating</p>
+        <div class="features-grid">
+            <div class="feature">
+                <h3>1. Identify Patterns</h3>
+                <p>Log what your child explores. The app analyzes textures, flavors, temperatures, and colors they gravitate toward. You see which sensory patterns are holding them back.</p>
+            </div>
+
+            <div class="feature">
+                <h3>2. Bridge Foods</h3>
+                <p>The app finds bridge foods: foods they already enjoy, plus one new sensory element. If they like crunchy salty crackers, try crunchy salty pretzels. Every suggestion is doable.</p>
+            </div>
+
+            <div class="feature">
+                <h3>3. Celebrate Progress</h3>
+                <p>Your child earns badges and streaks. You see the data. Mealtimes shift from battles to celebrating how brave they're being. The guilt is gone.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parent Dashboard Section -->
+    <section class="dashboard-section">
+        <h2 class="section-title">The Parent Dashboard</h2>
+        <p class="section-subtitle">Real tools to see patterns and guide progress</p>
+        <div class="dashboard-content">
+            <div class="dashboard-text">
+                <h3>Everything You Need in One Place</h3>
+                <p>Every time your child logs a food, you see what happened. The dashboard shows you exactly which sensory attributes they're expanding into. No guesswork.</p>
+                <ul class="dashboard-features">
+                    <li>Pattern identification (textures, flavors, temperatures they prefer)</li>
+                    <li>Bridge food suggestions (next logical foods to try)</li>
+                    <li>Progress tracking (how many sensory types they've explored)</li>
+                    <li>Weekly insights (what changed, what to try next)</li>
+                    <li>Export reports (share progress with therapists or pediatricians)</li>
+                </ul>
+            </div>
+            <div class="dashboard-image">
+                <img src="./assets/photos/header.png" alt="Parent reviewing progress on Sensory Galaxy dashboard">
+            </div>
         </div>
     </section>
 
     <!-- SOS Method Introduction -->
     <section class="sos-intro">
-        <h2 class="section-title">The SOS Method: Sequential Oral Sensory</h2>
+        <h2 class="section-title">The SOS Method: Sequential Oral Sensory (SOS)</h2>
         <p class="section-subtitle">How kids explore food without pressure</p>
         
         <div class="sos-phases">
             <div class="phase">
-                <div class="phase-number">1️⃣</div>
+                <div class="phase-number">1</div>
                 <div class="phase-label">LOOK</div>
-                <div class="phase-desc">Observe the food without touching</div>
+                <div class="phase-desc">Observe without touching</div>
             </div>
             <div class="phase">
-                <div class="phase-number">2️⃣</div>
+                <div class="phase-number">2</div>
                 <div class="phase-label">TOUCH</div>
-                <div class="phase-desc">Feel the texture with hands</div>
+                <div class="phase-desc">Feel the texture</div>
             </div>
             <div class="phase">
-                <div class="phase-number">3️⃣</div>
+                <div class="phase-number">3</div>
                 <div class="phase-label">SMELL</div>
                 <div class="phase-desc">Explore the aroma</div>
             </div>
             <div class="phase">
-                <div class="phase-number">4️⃣</div>
+                <div class="phase-number">4</div>
                 <div class="phase-label">LICK</div>
-                <div class="phase-desc">Taste just the tip of the tongue</div>
+                <div class="phase-desc">Taste with tip of tongue</div>
             </div>
             <div class="phase">
-                <div class="phase-number">5️⃣</div>
+                <div class="phase-number">5</div>
                 <div class="phase-label">TASTE</div>
                 <div class="phase-desc">Chew and eat</div>
             </div>
@@ -874,7 +996,7 @@
 
         <div class="sos-explanation">
             <h3>Why This Works</h3>
-            <p>Kids with sensory sensitivity get overwhelmed by all five senses at once. The SOS method breaks it down into tiny, manageable steps. Your child decides when to move to the next phase—no pressure, no forcing. This removes the anxiety and lets their nervous system gradually accept new foods.</p>
+            <p>Kids with sensory sensitivity get overwhelmed by all five senses at once. SOS breaks it into tiny, manageable steps. Your child decides when to move to the next phase. No pressure. No forcing. This removes the anxiety and lets their nervous system gradually accept new foods.</p>
         </div>
     </section>
 
@@ -882,13 +1004,9 @@
     <section class="explorers-intro">
         <h2 class="section-title">Meet Your Guides</h2>
         <p class="section-subtitle">Choose an explorer to guide your child through the sensory adventure</p>
-        
-        <div class="explorers-intro-image">
-            <img src="./assets/explorers/explorers.jpg" alt="All four Sensory Galaxy explorers together: Nova, Cosmo, Star, and Orbit">
-        </div>
 
         <div class="explorers-intro-text">
-            <p>Each explorer has their own personality and special powers. Nova loves speed, Cosmo is curious about science, Star is brave, and Orbit loves collecting. Your child picks their favorite—and they become the guide through all 8 planets. It's not just a game; it's a companion for real, lasting change.</p>
+            <p>Each explorer has their own personality and special powers. Nova loves speed, Cosmo is curious about science, Star is brave, and Orbit loves collecting. Your child picks their favorite, and that explorer becomes their guide through all 8 planets and the SOS journey. It's not just a game; it's a companion for real, lasting change.</p>
         </div>
     </section>
 
@@ -926,35 +1044,10 @@
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works" id="how">
-        <h2 class="section-title">How It Works</h2>
-        <p class="section-subtitle">Three things the app does to help your family</p>
-        <div class="features-grid">
-            <div class="feature">
-                <h3>1️⃣ Understand the Pattern</h3>
-                <p>You log what your child explores. The app finds patterns: which textures do they gravitate toward? What flavors are they comfortable with? Are they progressing, or stuck? What should you try next?</p>
-                <p style="margin-top: 15px; color: rgba(255, 255, 255, 0.6); font-size: 14px;"><strong>Parent benefit:</strong> Removes guesswork. Real proof they're getting braver.</p>
-            </div>
-
-            <div class="feature">
-                <h3>2️⃣ Get Smart Suggestions</h3>
-                <p>After 3-5 foods logged, our AI recommends bridge foods—foods that match what they like, but introduce something new. If they like crunchy + salty crackers, try crunchy + salty pretzels. Every suggestion is doable.</p>
-                <p style="margin-top: 15px; color: rgba(255, 255, 255, 0.6); font-size: 14px;"><strong>Parent benefit:</strong> Less rejection. More progress.</p>
-            </div>
-
-            <div class="feature">
-                <h3>3️⃣ Celebrate Progress</h3>
-                <p>Your child earns streaks, badges, and cosmetics for exploring. You see the data. Mealtimes shift from battles to "look how brave they're being." The guilt? It's gone.</p>
-                <p style="margin-top: 15px; color: rgba(255, 255, 255, 0.6); font-size: 14px;"><strong>Parent benefit:</strong> Hope. Proof. Celebration.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Planets Section -->
     <section class="planets">
-        <h2 class="section-title">The 8-Planet Journey</h2>
-        <p class="section-subtitle">Using the science-backed SOS method (Sequential Oral Sensory)</p>
+        <h2 class="section-title">The 8 Planet Journey</h2>
+        <p class="section-subtitle">Each planet represents a new sensory challenge</p>
         <div class="planets-grid">
             <div class="planet">
                 <img src="./assets/planets/planet-01-base-camp.png" alt="Base Camp Planet">
@@ -989,7 +1082,7 @@
                 <h3>Galaxy's Heart</h3>
             </div>
         </div>
-        <p style="margin-top: 40px; color: rgba(255, 255, 255, 0.6); font-size: 16px;">Each planet has 5 sensory phases: LOOK → TOUCH → SMELL → LICK → TASTE. Your child progresses at their own pace. No rushing.</p>
+        <p style="margin-top: 40px; color: rgba(255, 255, 255, 0.6); font-size: 16px;">Each planet has 5 sensory phases (LOOK, TOUCH, SMELL, LICK, TASTE). Your child progresses at their own pace. No rushing.</p>
     </section>
 
     <!-- Explorers Section -->
@@ -1003,7 +1096,7 @@
                 </div>
                 <h3>Nova</h3>
                 <p class="explorer-type">Speed Explorer</p>
-                <p class="explorer-desc">Loves discovering fast & trying new things!</p>
+                <p class="explorer-desc">Loves discovering fast & trying new things</p>
                 <p class="explorer-cue">👆 Click to watch videos</p>
             </div>
 
@@ -1013,7 +1106,7 @@
                 </div>
                 <h3>Cosmo</h3>
                 <p class="explorer-type">Science Explorer</p>
-                <p class="explorer-desc">Curious about flavors & tastes!</p>
+                <p class="explorer-desc">Curious about flavors & tastes</p>
                 <p class="explorer-cue">👆 Click to watch videos</p>
             </div>
 
@@ -1023,7 +1116,7 @@
                 </div>
                 <h3>Star</h3>
                 <p class="explorer-type">Brave Explorer</p>
-                <p class="explorer-desc">Not afraid to try new things!</p>
+                <p class="explorer-desc">Not afraid to try new things</p>
                 <p class="explorer-cue">👆 Click to watch videos</p>
             </div>
 
@@ -1033,7 +1126,7 @@
                 </div>
                 <h3>Orbit</h3>
                 <p class="explorer-type">Adventurous Explorer</p>
-                <p class="explorer-desc">Loves collecting & exploring!</p>
+                <p class="explorer-desc">Loves collecting & exploring</p>
                 <p class="explorer-cue">👆 Click to watch videos</p>
             </div>
         </div>
@@ -1043,8 +1136,8 @@
     <div id="novaModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('nova')">&times;</span>
-            <h2 style="color: #00d9ff; margin-bottom: 20px;">Nova - Speed Explorer</h2>
-            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Loves discovering fast & trying new things!</p>
+            <h2 style="color: #00d9ff; margin-bottom: 20px;">Nova: Speed Explorer</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Loves discovering fast & trying new things</p>
             <video class="modal-video" controls muted>
                 <source src="./assets/videos/novamov.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -1055,8 +1148,8 @@
     <div id="cosmoModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('cosmo')">&times;</span>
-            <h2 style="color: #00d9ff; margin-bottom: 20px;">Cosmo - Science Explorer</h2>
-            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Curious about flavors & tastes!</p>
+            <h2 style="color: #00d9ff; margin-bottom: 20px;">Cosmo: Science Explorer</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Curious about flavors & tastes</p>
             <video class="modal-video" controls muted>
                 <source src="./assets/videos/cosmomov.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -1067,8 +1160,8 @@
     <div id="starModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('star')">&times;</span>
-            <h2 style="color: #00d9ff; margin-bottom: 20px;">Star - Brave Explorer</h2>
-            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Not afraid to try new things!</p>
+            <h2 style="color: #00d9ff; margin-bottom: 20px;">Star: Brave Explorer</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Not afraid to try new things</p>
             <video class="modal-video" controls muted>
                 <source src="./assets/videos/starmov.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -1079,8 +1172,8 @@
     <div id="orbitModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('orbit')">&times;</span>
-            <h2 style="color: #00d9ff; margin-bottom: 20px;">Orbit - Adventurous Explorer</h2>
-            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Loves collecting & exploring!</p>
+            <h2 style="color: #00d9ff; margin-bottom: 20px;">Orbit: Adventurous Explorer</h2>
+            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Loves collecting & exploring</p>
             <video class="modal-video" controls muted>
                 <source src="./assets/videos/orbitmov.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -1093,33 +1186,33 @@
         <h2 class="section-title">Why Parents Choose Sensory Galaxy</h2>
         <div class="benefits-grid">
             <div class="benefit">
-                <h3>✓ Solves Real Mealtimes</h3>
+                <h3>Solves Real Mealtimes</h3>
                 <p>No more battles. No more guilt. Just progress at your child's pace.</p>
             </div>
 
             <div class="benefit">
-                <h3>✓ Science-Backed</h3>
+                <h3>Science-Backed</h3>
                 <p>Built on the SOS approach (30+ years of research). Used by occupational and speech therapists worldwide.</p>
             </div>
 
             <div class="benefit">
-                <h3>✓ Works Fast</h3>
-                <p>Most parents see real progress in 4-8 weeks. Not years of struggling.</p>
+                <h3>Works Fast</h3>
+                <p>Most parents see real progress in 4 to 8 weeks. Not years of struggling.</p>
             </div>
 
             <div class="benefit">
-                <h3>✓ You're Not Alone</h3>
-                <p>1 in 3 kids experience sensory-sensitive eating. Connect with a community of parents who get it.</p>
+                <h3>You're Not Alone</h3>
+                <p>1 in 3 kids experience sensory sensitive eating. Connect with parents who get it.</p>
             </div>
 
             <div class="benefit">
-                <h3>✓ Private & Secure</h3>
+                <h3>Private & Secure</h3>
                 <p>Your family's data is yours. Export reports to share with therapists or your pediatrician.</p>
             </div>
 
             <div class="benefit">
-                <h3>✓ Built for Partnership</h3>
-                <p>Designed to complement—not replace—professional help. Many parents use it alongside therapy or nutritionist guidance.</p>
+                <h3>Built for Partnership</h3>
+                <p>Designed to complement, not replace professional help. Many parents use it alongside therapy.</p>
             </div>
         </div>
     </section>
@@ -1134,12 +1227,12 @@
                 <h3>Monthly</h3>
                 <div class="price">$3.99<span>/month</span></div>
                 <p>Full access to all features</p>
-                <a href="#waitlist" class="btn btn-primary">Start Free Trial</a>
+                <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
                 <ul>
                     <li>Track unlimited foods</li>
                     <li>AI recommendations</li>
                     <li>Parent analytics</li>
-                    <li>Daily streaks & badges</li>
+                    <li>Daily streaks and badges</li>
                     <li>Cancel anytime</li>
                 </ul>
             </div>
@@ -1148,7 +1241,7 @@
                 <h3>Annual <span style="font-size: 14px; color: #fbbf24;">Best Value</span></h3>
                 <div class="price">$24.99<span>/year</span></div>
                 <p style="color: #00d9ff; font-weight: 600;">Save 48% vs monthly</p>
-                <a href="#waitlist" class="btn btn-primary">Start Free Trial</a>
+                <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
                 <ul>
                     <li>All monthly features</li>
                     <li>Annual savings</li>
@@ -1160,19 +1253,18 @@
         </div>
 
         <div class="pricing-note">
-            <p style="margin-top: 30px; color: rgba(255, 255, 255, 0.6);">✓ 7-day free trial • No credit card required • Full access • Cancel anytime<br>Most parents see real progress by week 3 of their subscription.</p>
+            <p style="margin-top: 30px; color: rgba(255, 255, 255, 0.6);">7 day free trial with full access. Cancel anytime. Most parents see real progress by week 3 of their subscription.</p>
         </div>
     </section>
 
     <!-- Waitlist Section -->
     <section class="waitlist" id="waitlist">
         <h2>Ready to Transform Your Mealtimes?</h2>
-        <p>Join the waitlist. We're launching soon. Get 7 days free when you sign up.</p>
+        <p>Join the waitlist. We're launching soon.</p>
         
         <form class="waitlist-form" onsubmit="handleWaitlist(event)">
             <input type="text" placeholder="Your name" required>
             <input type="email" placeholder="Your email" required>
-            <input type="tel" placeholder="Phone number (optional)">
             <button type="submit" class="btn btn-primary">Join the Waitlist</button>
         </form>
         
@@ -1183,9 +1275,15 @@
     <footer>
         <div class="footer-content">
             <div class="social-icons">
-                <a href="https://www.instagram.com/sensorygalaxyapp/" class="social-icon" target="_blank" title="Instagram">📱</a>
-                <a href="https://www.tiktok.com/@sensorygalaxyapp" class="social-icon" target="_blank" title="TikTok">🎬</a>
-                <a href="mailto:hello@sensorygalaxy.com" class="social-icon" title="Email">✉️</a>
+                <a href="https://www.instagram.com/sensorygalaxyapp/" class="social-icon" target="_blank" title="Instagram">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.646.069 4.85 0 3.204-.012 3.584-.07 4.85-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@sensorygalaxyapp" class="social-icon" target="_blank" title="TikTok">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.86 2.86 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-.54-.05z"/></svg>
+                </a>
+                <a href="https://x.com/sensorygalaxyapp" class="social-icon" target="_blank" title="X (Twitter)">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M23.953 4.57a10 10 0 002.856-3.515v-.34c-1.269.585-2.634 1.001-4.077 1.192 1.469-1.34 2.585-3.265 3.117-5.329-1.379.82-2.921 1.415-4.59 1.74-1.3-1.48-3.17-2.406-5.241-2.406-3.97 0-7.229 3.173-7.229 7.073 0 .55.063 1.09.188 1.614C7.551 11.635 4.767 9.9 2.896 7.35.393 10.154-1.278 15.592 3.744 19.129c-.79-.215-1.53-.562-2.175-1.046v.09c0 3.44 2.442 6.322 5.694 6.98-.595.162-1.22.25-1.855.25-.452 0-.895-.036-1.325-.118 1.327 4.435 5.857 7.627 11.015 7.718-2.426 1.9-5.476 3.032-8.794 3.032-.571 0-1.131-.034-1.68-.102 3.168 2.032 6.937 3.21 10.964 3.21 13.216 0 20.383-10.984 20.383-20.523 0-.313-.009-.623-.029-.933 1.399-1.003 2.647-2.26 3.623-3.738z"/></svg>
+                </a>
             </div>
 
             <div class="footer-links">
@@ -1204,7 +1302,6 @@
             event.preventDefault();
             const form = event.target;
             const name = form.elements[0].value;
-            const email = form.elements[1].value;
             
             alert(`Thanks, ${name}! We've added you to the waitlist. Check your email for confirmation.`);
             form.reset();
@@ -1218,7 +1315,6 @@
             document.getElementById(explorer + 'Modal').style.display = 'none';
         }
 
-        // Close modal when clicking outside of it
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';
