@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sensory Galaxy - Project Status & Specifications">
-    <title>Sensory Galaxy - Project Status</title>
+    <meta name="description" content="Sensory Galaxy - Complete Project Status & Specifications">
+    <title>Sensory Galaxy - Project Status & Specs</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -15,18 +15,24 @@
         }
         .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
         h1 { font-size: 2.5rem; background: linear-gradient(135deg, #00d9ff, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; }
-        .subtitle { color: #999; font-size: 1.1rem; margin-bottom: 40px; }
-        h2 { color: #00d9ff; font-size: 1.8rem; margin-top: 50px; margin-bottom: 20px; border-bottom: 2px solid rgba(0,217,255,0.3); padding-bottom: 10px; }
+        .subtitle { color: #999; font-size: 1.1rem; margin-bottom: 10px; }
+        .timestamp { color: #666; font-size: 0.85rem; margin-bottom: 40px; }
+        h2 { color: #00d9ff; font-size: 1.8rem; margin-top: 60px; margin-bottom: 20px; border-bottom: 2px solid rgba(0,217,255,0.3); padding-bottom: 10px; }
         h3 { color: #667eea; font-size: 1.3rem; margin-top: 30px; margin-bottom: 15px; }
+        h4 { color: #d4af37; font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px; }
         .section { background: rgba(15, 15, 40, 0.8); border: 1px solid rgba(0, 217, 255, 0.2); border-radius: 12px; padding: 30px; margin-bottom: 30px; }
         .subsection { background: rgba(20, 20, 50, 0.8); border-left: 3px solid rgba(102, 126, 234, 0.5); padding: 20px; margin: 20px 0; border-radius: 6px; }
+        .toc { background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; border-radius: 8px; padding: 30px; margin-bottom: 40px; columns: 2; column-gap: 40px; }
+        .toc h3 { margin-top: 0; color: #00d9ff; }
+        .toc-item { margin-bottom: 12px; }
+        .toc-item a { color: #00d9ff; text-decoration: none; }
+        .toc-item a:hover { text-decoration: underline; }
         .status { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; margin-left: 10px; font-weight: bold; }
         .done { background: rgba(40, 167, 69, 0.3); color: #28a745; }
         .inprogress { background: rgba(102, 126, 234, 0.3); color: #667eea; }
         .planned { background: rgba(233, 30, 99, 0.3); color: #e91e63; }
-        .critical { background: rgba(220, 20, 60, 0.3); color: #ff4444; }
         code { background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; color: #00d9ff; }
-        pre { background: rgba(0,0,0,0.6); padding: 15px; border-radius: 6px; overflow-x: auto; margin: 15px 0; border-left: 3px solid #667eea; }
+        pre { background: rgba(0,0,0,0.6); padding: 15px; border-radius: 6px; overflow-x: auto; margin: 15px 0; border-left: 3px solid #667eea; font-size: 0.9rem; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(0, 217, 255, 0.2); }
         th { background: rgba(102, 126, 234, 0.2); color: #00d9ff; }
@@ -35,206 +41,486 @@
         li::before { content: '→ '; color: #00d9ff; font-weight: bold; }
         a { color: #00d9ff; text-decoration: none; }
         a:hover { text-decoration: underline; }
+        .card-sample { background: rgba(25, 25, 60, 0.7); border: 1px solid rgba(0, 217, 255, 0.15); padding: 15px; margin: 15px 0; border-radius: 6px; }
+        .card-headline { color: #00d9ff; font-weight: bold; margin-bottom: 5px; }
+        .card-subtext { color: #999; font-size: 0.9rem; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🚀 Sensory Galaxy</h1>
-        <p class="subtitle">Project Status & Specifications Hub</p>
-        <p style="color: #999; font-size: 0.9rem; margin-bottom: 30px;">Last Updated: March 11, 2026 @ 2:30 PM PST</p>
+        <p class="subtitle">Complete Project Status & Comprehensive Specifications</p>
+        <p class="timestamp">Last Updated: March 11, 2026 @ 2:45 PM PST | Access: sensorygalaxy.com/status.html</p>
 
         <!-- QUICK FACTS -->
         <div class="section" style="background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; margin-bottom: 40px;">
             <h3 style="margin-top: 0;">⚡ Quick Facts</h3>
-            <table>
+            <table style="font-size: 0.95rem;">
                 <tr>
                     <td><strong>App Name</strong></td>
-                    <td>Sensory Galaxy</td>
+                    <td><span style="color: #00d9ff; font-weight: bold;">Sensory Galaxy</span> (officially locked in)</td>
                 </tr>
                 <tr>
                     <td><strong>Domain</strong></td>
-                    <td><code>sensorygalaxy.com</code> (Live, DNS propagating 24-48h)</td>
+                    <td><code>sensorygalaxy.com</code> (registered, nameservers → Vercel, DNS propagating 24-48h)</td>
                 </tr>
                 <tr>
                     <td><strong>GitHub Repo</strong></td>
-                    <td><code>rkremers123/sensory-galaxy</code></td>
+                    <td><code>rkremers123/sensory-galaxy</code> (auto-deploying on push)</td>
                 </tr>
                 <tr>
                     <td><strong>Vercel Project</strong></td>
-                    <td><code>sensory-galaxy</code> (Auto-deploys on git push)</td>
+                    <td><code>sensory-galaxy</code> (live now, auto-builds)</td>
                 </tr>
                 <tr>
                     <td><strong>Current URL</strong></td>
-                    <td><code>sensory-galaxy-l5up489hl.vercel.app</code> (active now)</td>
+                    <td><code>sensory-galaxy-l5up489hl.vercel.app</code> (live immediately)</td>
                 </tr>
                 <tr>
-                    <td><strong>Email Setup</strong></td>
-                    <td>Next: Google Workspace for <code>hello@sensorygalaxy.com</code></td>
+                    <td><strong>Email</strong></td>
+                    <td>Next: <code>hello@sensorygalaxy.com</code> (Google Workspace setup)</td>
                 </tr>
                 <tr>
                     <td><strong>Social Handles</strong></td>
                     <td>Next: <code>@sensorygalaxyapp</code> (Instagram, TikTok)</td>
                 </tr>
+                <tr>
+                    <td><strong>Target Price</strong></td>
+                    <td>$3.99/month OR $24.99/year (7-day free trial, no credit card)</td>
+                </tr>
+                <tr>
+                    <td><strong>Target Audience</strong></td>
+                    <td>Parents of 3-10 year olds with sensory-sensitive eating (1 in 3 kids)</td>
+                </tr>
             </table>
         </div>
 
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc">
+            <h3>📑 Quick Navigation</h3>
+            <div class="toc-item"><a href="#architecture">🏗️ Setup Architecture</a></div>
+            <div class="toc-item"><a href="#phases">📊 Phase Status</a></div>
+            <div class="toc-item"><a href="#onboarding">📱 Onboarding (9 Cards)</a></div>
+            <div class="toc-item"><a href="#badges">🏆 Badge System (20)</a></div>
+            <div class="toc-item"><a href="#ai">🧠 AI Intelligence</a></div>
+            <div class="toc-item"><a href="#food">🍽️ Food Database (100+)</a></div>
+            <div class="toc-item"><a href="#guardrails">🛡️ LLM Guardrails</a></div>
+            <div class="toc-item"><a href="#rewards">⭐ Points & Rewards</a></div>
+            <div class="toc-item"><a href="#features">⚙️ User Features</a></div>
+            <div class="toc-item"><a href="#status">✅ Implementation Status</a></div>
+            <div class="toc-item"><a href="#decisions">🎯 Key Decisions</a></div>
+            <div class="toc-item"><a href="#docs">📚 Documentation</a></div>
+        </div>
+
         <!-- ARCHITECTURE -->
-        <h2>🏗️ Setup Architecture</h2>
+        <h2 id="architecture">🏗️ Setup Architecture</h2>
         <div class="section">
             <h3>Deployment Pipeline</h3>
             <pre>Local: /Users/rk/clawd/sensory-galaxy/
   ↓
-GitHub: rkremers123/sensory-galaxy (push to main)
+GitHub: rkremers123/sensory-galaxy (git push main)
   ↓
-Vercel: Auto-deploys (webhook/token-based)
+Vercel: Auto-deploys (instant on push)
   ↓
-Live: sensorygalaxy.com (when DNS ready) + sensory-galaxy-*.vercel.app (now)</pre>
-
-            <h3>Key Setup Details</h3>
-            <ul>
-                <li><strong>GitHub Account:</strong> rkremers123 (all projects)</li>
-                <li><strong>Vercel Account:</strong> dupesnacks (connected to rkremers123 GitHub)</li>
-                <li><strong>Domain Registrar:</strong> GoDaddy (or similar)</li>
-                <li><strong>DNS:</strong> Vercel nameservers (set up, propagating)</li>
-                <li><strong>Auto-Deploy Token:</strong> Stored securely (CLI deploys via: <code>vercel deploy --prod --token [TOKEN]</code>)</li>
-                <li><strong>Git Scope:</strong> rkremers123 (in Vercel project settings)</li>
-            </ul>
+Live: sensorygalaxy.com/status.html + sensory-galaxy-*.vercel.app</pre>
 
             <h3>Why This Setup</h3>
             <ul>
-                <li><strong>New repo = fresh start:</strong> sensory-galaxy is separate from old portfolio projects</li>
-                <li><strong>New domain = brand clarity:</strong> sensorygalaxy.com (not robkremers.com)</li>
-                <li><strong>Auto-deploy = zero manual work:</strong> Push to GitHub → instantly live</li>
-                <li><strong>One knowledge base:</strong> ByteRover .brv/ shared across all Discord channels + main session</li>
+                <li><strong>New repo = clean slate:</strong> sensory-galaxy separate from old portfolio</li>
+                <li><strong>New domain = brand focus:</strong> sensorygalaxy.com (not robkremers.com)</li>
+                <li><strong>Auto-deploy = zero work:</strong> Push to GitHub → instantly live</li>
+                <li><strong>Unified memory:</strong> ByteRover .brv/ shared across all Discord channels</li>
+            </ul>
+
+            <h3>Account Structure</h3>
+            <ul>
+                <li><strong>GitHub:</strong> rkremers123 (primary account, all projects)</li>
+                <li><strong>Vercel:</strong> dupesnacks (connected to rkremers123 GitHub)</li>
+                <li><strong>Domain:</strong> sensorygalaxy.com (GoDaddy or similar)</li>
+                <li><strong>DNS:</strong> Vercel nameservers (auto-configured, propagating)</li>
+                <li><strong>Auto-deploy token:</strong> Stored securely, all pushes auto-deploy</li>
             </ul>
         </div>
 
         <!-- PHASE STATUS -->
-        <h2>📊 Phase Status</h2>
+        <h2 id="phases">📊 Phase Status</h2>
         <div class="section">
-            <h3>Phase 1: Foundation (COMPLETE) ✅</h3>
+            <h3>Phase 1: Foundation — COMPLETE ✅</h3>
             <ul>
-                <li><span class="status done">Done</span> Domain purchased: sensorygalaxy.com</li>
+                <li><span class="status done">Done</span> Domain purchased & configured</li>
                 <li><span class="status done">Done</span> GitHub repo created & initialized</li>
                 <li><span class="status done">Done</span> Vercel project deployed (auto-deploying)</li>
-                <li><span class="status done">Done</span> Landing page live (all 8 planets, 4 explorers)</li>
-                <li><span class="status done">Done</span> Emotional-first onboarding copy (9 cards, Card+Modal)</li>
-                <li><span class="status done">Done</span> Food database (100+ foods with sensory attributes)</li>
-                <li><span class="status done">Done</span> LLM guardrails documented (10 validation rules)</li>
-                <li><span class="status done">Done</span> Badge system designed (20 badges)</li>
+                <li><span class="status done">Done</span> Landing page live (8 planets, 4 explorers)</li>
+                <li><span class="status done">Done</span> Emotional-first onboarding (9 cards, Card+Modal)</li>
+                <li><span class="status done">Done</span> Food database (100+ foods with attributes)</li>
+                <li><span class="status done">Done</span> LLM guardrails (10 validation rules)</li>
+                <li><span class="status done">Done</span> Badge system (20 badges designed)</li>
                 <li><span class="status done">Done</span> Points/rewards economy designed</li>
-                <li><span class="status done">Done</span> "Suggest a Food" feature spec</li>
             </ul>
 
-            <h3>Phase 2: Email & Social (IN PROGRESS) 🔄</h3>
+            <h3>Phase 2: Email & Social — READY TO START 🔄</h3>
             <ul>
-                <li><span class="status inprogress">In Progress</span> Google Workspace email setup (next)</li>
-                <li><span class="status inprogress">In Progress</span> Instagram handle: @sensorygalaxyapp (reserve)</li>
-                <li><span class="status inprogress">In Progress</span> TikTok handle: @sensorygalaxyapp (reserve)</li>
+                <li><span class="status planned">TODO</span> Google Workspace → hello@sensorygalaxy.com</li>
+                <li><span class="status planned">TODO</span> Instagram: @sensorygalaxyapp (reserve)</li>
+                <li><span class="status planned">TODO</span> TikTok: @sensorygalaxyapp (reserve)</li>
             </ul>
 
-            <h3>Phase 3: Site Rebuild (READY TO START) 📋</h3>
+            <h3>Phase 3: Site Rebuild — READY TO START 🚀</h3>
             <ul>
-                <li><span class="status planned">TODO</span> Port specs page to new domain (flavgalupdates → specs.html)</li>
-                <li><span class="status planned">TODO</span> Update landing page copy (shift to "sensory feeding intelligence")</li>
                 <li><span class="status planned">TODO</span> Create FAQ page</li>
-                <li><span class="status planned">TODO</span> Create sign-up page (7-day trial, no credit card)</li>
+                <li><span class="status planned">TODO</span> Create sign-up page (7-day trial UX)</li>
+                <li><span class="status planned">TODO</span> Create pricing page</li>
+                <li><span class="status planned">TODO</span> Update landing copy (shift to "sensory intelligence")</li>
+            </ul>
+
+            <h3>Phase 4: App Development — AWAITING SITE ⏳</h3>
+            <ul>
+                <li><span class="status planned">Planned</span> Phase 2-5 UI sprint (5-6 hours total)</li>
+                <li><span class="status planned">Planned</span> Rork implementation briefs sent</li>
+                <li><span class="status planned">Planned</span> Marketing materials (icons, videos, screenshots)</li>
+            </ul>
+
+            <h3>Phase 5: Launch — PLANNED 🎯</h3>
+            <ul>
+                <li><span class="status planned">Planned</span> Beta: 5 Portland families (week of March 12)</li>
+                <li><span class="status planned">Planned</span> App Store & Google Play setup</li>
+                <li><span class="status planned">Planned</span> Public launch Q2 2026</li>
+            </ul>
+        </div>
+
+        <!-- ONBOARDING -->
+        <h2 id="onboarding">📱 Onboarding Redesign (9 Cards, Emotional-First)</h2>
+        <div class="section">
+            <h3>Why Emotional-First?</h3>
+            <p>Inspired by <strong>Arise case study: 13% → 23% conversion</strong> by designing for emotional recognition, not features. Our onboarding targets actual parent pain points.</p>
+
+            <h3>The 9-Card Journey</h3>
+            <div class="card-sample">
+                <div class="card-headline">CARD 1: Recognition</div>
+                <div class="card-subtext">"You've Tried Everything. They Still Eat 5 Foods."</div>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Parent sees their struggle. Validates feelings. Removes guilt.</p>
+            </div>
+
+            <div class="card-sample">
+                <div class="card-headline">CARD 2: Validation</div>
+                <div class="card-subtext">"Stop Blaming Yourself" — It's neurological, not behavioral</div>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Explains SOS method (LOOK→TOUCH→SMELL→LICK→TASTE). Gives permission to stop guilt.</p>
+            </div>
+
+            <div class="card-sample">
+                <div class="card-headline">CARD 3: Proof</div>
+                <div class="card-subtext">"Real Parents. Real Progress." — Testimonials from Portland families</div>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Social proof. Shows others faced exact same struggle. Hope.</p>
+            </div>
+
+            <div class="card-sample">
+                <div class="card-headline">CARD 4: Partnership</div>
+                <div class="card-subtext">"We Do This Together" — You log. We show patterns. They get braver.</div>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Reframes badges/rewards as earned confidence, not bribes.</p>
+            </div>
+
+            <div class="card-sample">
+                <div class="card-headline">CARDS 5-9: Action</div>
+                <div class="card-subtext">Explorer selection → Safe foods collection → Sensory profile → Goal food → First log</div>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Progressive data collection, personal investment.</p>
+            </div>
+
+            <h3>Key Insight</h3>
+            <p><strong>Card+Modal Pattern:</strong> Headlines + images on card (scannable, quick), full copy in modal (optional depth). Respects different learning styles, solves space problem.</p>
+        </div>
+
+        <!-- BADGE SYSTEM -->
+        <h2 id="badges">🏆 Badge System (20 Unique Badges)</h2>
+        <div class="section">
+            <p>Badges track progress, not force behavior. 4 rarity tiers: COMMON → UNCOMMON → RARE → LEGENDARY</p>
+            <table style="font-size: 0.9rem;">
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th style="width: 30%">Badge Name</th>
+                    <th style="width: 15%">Rarity</th>
+                    <th style="width: 50%">Unlock Condition</th>
+                </tr>
+                <tr><td>1</td><td>First Taste Explorer</td><td>COMMON</td><td>Log first food in TASTE phase</td></tr>
+                <tr><td>2</td><td>Sensory Seeker</td><td>COMMON</td><td>Complete LOOK phase with any food</td></tr>
+                <tr><td>3</td><td>Brave Mouth</td><td>COMMON</td><td>Reach LICK or TASTE with 3+ foods</td></tr>
+                <tr><td>4</td><td>Touch Adventurer</td><td>COMMON</td><td>Complete TOUCH phase with 5+ foods</td></tr>
+                <tr><td>5</td><td>Smell Specialist</td><td>COMMON</td><td>Complete SMELL phase with 5+ foods</td></tr>
+                <tr><td>6</td><td>Color Explorer</td><td>UNCOMMON</td><td>Try foods from 5+ different colors</td></tr>
+                <tr><td>7</td><td>Texture Master</td><td>UNCOMMON</td><td>Try 5+ different textures</td></tr>
+                <tr><td>10</td><td>Flavor Frontier</td><td>RARE</td><td>Try 6+ different flavor families</td></tr>
+                <tr><td>14</td><td>Food Group Collector</td><td>RARE</td><td>Try foods from 5+ food groups</td></tr>
+                <tr><td>15</td><td>Rainbow Eater</td><td>RARE</td><td>Try foods in all 9 colors</td></tr>
+                <tr><td>16</td><td>SOS Master</td><td>RARE</td><td>Complete all 5 phases with 10+ foods</td></tr>
+                <tr><td>20</td><td>Galaxy Legend</td><td>LEGENDARY</td><td>Unlock 12+ other badges (mastery)</td></tr>
+            </table>
+            <p style="margin-top: 15px;"><strong>See full list:</strong> <code>BADGE-DESIGN-SPEC.md</code></p>
+        </div>
+
+        <!-- AI INTELLIGENCE -->
+        <h2 id="ai">🧠 AI-Powered Intelligence (Qwen 3.5 Plus)</h2>
+        <div class="section">
+            <h3>4 Key Features</h3>
+            <ul>
+                <li><strong>Bridge Food Recommendations:</strong> AI matches sensory patterns (after 3-5 foods logged)</li>
+                <li><strong>Parent Insights:</strong> Weekly narratives about progress & patterns</li>
+                <li><strong>Regression Alerts:</strong> Detect when child stops trying new foods</li>
+                <li><strong>Analytics Narratives:</strong> Story-based summaries of food diversity</li>
+            </ul>
+
+            <h3>Cost: 96% Cheaper Than Claude</h3>
+            <pre>Claude 3.5 Sonnet:  $62,000/year @ 100K users
+Qwen 3.5 Plus:      $2,150/year @ 100K users
+Savings:            96% ✅</pre>
+
+            <h3>Pricing Breakdown</h3>
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Calls/Year</th>
+                    <th>Cost</th>
+                </tr>
+                <tr>
+                    <td>Bridge foods (on-demand, 3-5 food threshold)</td>
+                    <td>~250K</td>
+                    <td>$600</td>
+                </tr>
+                <tr>
+                    <td>Weekly insights (2x/week batch)</td>
+                    <td>~10.4M</td>
+                    <td>$1,250</td>
+                </tr>
+                <tr>
+                    <td>Regression alerts (weekly)</td>
+                    <td>~52K</td>
+                    <td>$100</td>
+                </tr>
+                <tr>
+                    <td>Analytics narratives (weekly)</td>
+                    <td>~5M</td>
+                    <td>$200</td>
+                </tr>
+                <tr style="background: rgba(0, 217, 255, 0.1);">
+                    <td><strong>TOTAL (100K users)</strong></td>
+                    <td><strong>~15.7M tokens</strong></td>
+                    <td><strong>$2,150/year</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- FOOD DATABASE -->
+        <h2 id="food">🍽️ Expanded Food Database (100+ Foods)</h2>
+        <div class="section">
+            <h3>5 Sensory Attributes Per Food</h3>
+            <ul>
+                <li><strong>Texture:</strong> Crunchy, Soft, Chewy, Liquid, Mushy, Mixed</li>
+                <li><strong>Flavor:</strong> Bland, Sweet, Salty, Savory, Sour, Bitter</li>
+                <li><strong>Temperature:</strong> Cold, Room Temp, Warm, Hot</li>
+                <li><strong>Color:</strong> Red, Orange, Yellow, Green, Blue, Purple, Brown, White, Mixed</li>
+                <li><strong>Food Group:</strong> Fruit, Vegetable, Protein, Grain, Dairy, Mixed, Other</li>
+            </ul>
+
+            <h3>Categories (100+ Foods)</h3>
+            <ul>
+                <li><strong>Proteins (15):</strong> Chicken Nugget, Turkey, Beef, Salmon, Fish Stick, Eggs, Peanut Butter, etc.</li>
+                <li><strong>Grains (12):</strong> White Bread, Pasta, Rice, Crackers, Pretzels, Cereal, Bagel, Tortilla, etc.</li>
+                <li><strong>Fruits (16):</strong> Apple, Banana, Orange, Grapes, Strawberry, Watermelon, Mango, etc.</li>
+                <li><strong>Vegetables (12):</strong> Carrots, Broccoli, Green Beans, Corn, Peas, Sweet Potato, etc.</li>
+                <li><strong>Dairy (8):</strong> Cheese, Yogurt, Milk, Cottage Cheese, Butter, Sour Cream</li>
+                <li><strong>Snacks (20+):</strong> Chips, Granola Bars, String Cheese, Mozzarella Sticks, Popcorn, etc.</li>
+                <li><strong>Composite (7):</strong> PB&J, Grilled Cheese, Taco, Pizza, Mac & Cheese, Quesadilla (tagged "Mixed")</li>
+                <li><strong>Beverages (6):</strong> Water, Milk, OJ, Apple Juice, Smoothie, Hot Chocolate</li>
+            </ul>
+
+            <p style="margin-top: 15px;"><strong>Key:</strong> Users can suggest foods via app. Community-driven database expansion.</p>
+        </div>
+
+        <!-- LLM GUARDRAILS -->
+        <h2 id="guardrails">🛡️ LLM Guardrails (10 Validation Rules)</h2>
+        <div class="section">
+            <p>Prevent nonsensical suggestions (e.g., "salty liquid as a meal"). Hard rules before LLM generates.</p>
+
+            <h3>The 10 Rules</h3>
+            <ol>
+                <li>Never suggest liquid foods as primary (except beverages)</li>
+                <li>Avoid bitter flavors entirely (safety for sensitive kids)</li>
+                <li>Don't combine 3+ bold flavors simultaneously</li>
+                <li>Validate temperature + texture combos</li>
+                <li><strong>ONLY suggest foods in 100+ database</strong></li>
+                <li>Enforce color variety (prevent monochrome diets)</li>
+                <li>Require food group diversity</li>
+                <li>Bridge foods must share ≥1 sensory attribute with safe foods</li>
+                <li>Sensory distance ≤1 step (texture & flavor)</li>
+                <li>Weekly batch processing only (not real-time spam)</li>
+            </ol>
+
+            <h3>Forbidden Combos Blocked</h3>
+            <ul>
+                <li>Salty + Liquid = broth, salted water</li>
+                <li>Bitter + Any = entirely avoided</li>
+                <li>Hot + Crunchy = sensory conflict</li>
+                <li>3+ Bold Flavors = overwhelming</li>
+                <li>Mushy + Sweet = potential gag trigger</li>
+            </ul>
+        </div>
+
+        <!-- POINTS & REWARDS -->
+        <h2 id="rewards">⭐ Points & Rewards Economy</h2>
+        <div class="section">
+            <h3>Points Per Action</h3>
+            <pre>Log any food                 +10
+Complete 1 SOS phase         +5
+Complete TASTE phase         +10
+First log of day             +5
+Try bridge food (accept)     +30
+Try new food                 +25
+Reach TASTE on new food      +50
+7-day streak                 +100
+30-day streak                +500
+60-day streak                +1,000</pre>
+
+            <h3>Planet Progression (Phase-Based, NOT Food-Count)</h3>
+            <p><strong>Key:</strong> Progress tied to completing sensory PHASES, not food quantity. Prevents skipping ahead.</p>
+            <pre>Planet 1: Complete 3+ LOOK phases           → 50 pts
+Planet 2: Complete 5+ TOUCH phases         → 500 pts
+Planet 3: Complete 5+ SMELL phases         → 600 pts
+Planet 4: Complete 5+ LICK phases          → 750 pts
+Planet 5: Complete 10+ TASTE phases        → 1,000 pts
+Planet 6: Try 5+ bridge foods              → 1,200 pts
+Planet 7: All 9 colors + 5 food groups     → 1,500 pts
+Planet 8: Master (50+ foods, goal achieved)→ 2,000 pts</pre>
+        </div>
+
+        <!-- USER FEATURES -->
+        <h2 id="features">⚙️ User Features</h2>
+        <div class="section">
+            <h3>Suggest a Food Feature</h3>
+            <p><strong>Location:</strong> Settings → "Suggest a Food" button</p>
+            <ul>
+                <li><strong>How:</strong> Parents submit food + sensory attributes (5-dropdown form)</li>
+                <li><strong>Validation:</strong> App checks for duplicates, prevents invalid combos</li>
+                <li><strong>Review:</strong> Submitted foods reviewed by team before adding</li>
+                <li><strong>Reward:</strong> Parent notified + badge when food approved ("Your suggestion was added! ✨")</li>
+                <li><strong>Impact:</strong> Crowdsource database 100+ → 150+ → 200+ foods</li>
+            </ul>
+
+            <h3>Why It Works</h3>
+            <p>Builds community ownership. Parents feel heard. Improves app for everyone. Low effort, high engagement.</p>
+        </div>
+
+        <!-- STATUS -->
+        <h2 id="status">✅ Implementation Status</h2>
+        <div class="section">
+            <h3>CRITICAL (Blocking Beta)</h3>
+            <ul>
+                <li><span class="status done">Done</span> App name locked: "Sensory Galaxy"</li>
+                <li><span class="status done">Done</span> Domain purchased + Vercel configured</li>
+                <li><span class="status done">Done</span> GitHub repo created + auto-deploying</li>
+                <li><span class="status done">Done</span> Landing page live (8 planets, 4 explorers)</li>
+                <li><span class="status planned">TODO</span> Google Workspace email setup</li>
+                <li><span class="status planned">TODO</span> Instagram + TikTok handle reservation</li>
+            </ul>
+
+            <h3>Completed (Phase 1: Foundation)</h3>
+            <ul>
+                <li><span class="status done">Done</span> Emotional-first onboarding (9 cards, emotional beats, 13%→23% conversion design)</li>
+                <li><span class="status done">Done</span> Food database (100+ foods, all sensory attributes)</li>
+                <li><span class="status done">Done</span> LLM guardrails (10 rules, forbidden combos)</li>
+                <li><span class="status done">Done</span> Badge system (20 badges, unlock conditions)</li>
+                <li><span class="status done">Done</span> Points/rewards economy (phase-based progression)</li>
+                <li><span class="status done">Done</span> AI strategy (Qwen 3.5 Plus, $2,150/year, 96% cheaper)</li>
+                <li><span class="status done">Done</span> ByteRover memory protocol (unified .brv/ across all channels)</li>
+                <li><span class="status done">Done</span> Project status hub (this page, HTML for PC access)</li>
+            </ul>
+
+            <h3>Ready to Start (Phase 2-3)</h3>
+            <ul>
+                <li><span class="status planned">TODO</span> Google Workspace email</li>
+                <li><span class="status planned">TODO</span> Social handle reservations</li>
+                <li><span class="status planned">TODO</span> Create FAQ page</li>
+                <li><span class="status planned">TODO</span> Create sign-up page (7-day trial UX)</li>
                 <li><span class="status planned">TODO</span> Create pricing page</li>
             </ul>
 
-            <h3>Phase 4: App Development (BLOCKED PENDING SITE) 🚫</h3>
+            <h3>Awaiting Site Finalization (Phase 4)</h3>
             <ul>
-                <li><span class="status planned">Blocked</span> Phase 2-5 UI sprint (Food Logging, Analytics, Suggest, Bug Fixes)</li>
-                <li><span class="status planned">Blocked</span> Rork integration briefs (waiting for finalized site messaging)</li>
-                <li><span class="status planned">Blocked</span> Marketing materials (screenshots, videos, testimonials)</li>
+                <li><span class="status planned">Blocked</span> Phase 2-5 UI sprint (5-6 hours: Food Logging, Analytics, Suggest, Bug Fixes)</li>
+                <li><span class="status planned">Blocked</span> Rork implementation briefs (waiting for finalized site copy)</li>
+                <li><span class="status planned">Blocked</span> Marketing materials (icons, videos, screenshots)</li>
             </ul>
 
-            <h3>Phase 5: Launch (PLANNED) 🎯</h3>
+            <h3>Planned (Phase 5+)</h3>
             <ul>
-                <li><span class="status planned">Planned</span> Beta launch (5 Portland families, week of March 12)</li>
+                <li><span class="status planned">Planned</span> Beta: 5 Portland families (week of March 12)</li>
                 <li><span class="status planned">Planned</span> App Store & Google Play setup</li>
-                <li><span class="status planned">Planned</span> Full public launch (Q2 2026)</li>
+                <li><span class="status planned">Planned</span> Public launch Q2 2026</li>
             </ul>
         </div>
 
         <!-- KEY DECISIONS -->
-        <h2>🎯 Key Decisions</h2>
+        <h2 id="decisions">🎯 Key Decisions Made</h2>
         <div class="section">
             <h3>Product</h3>
             <ul>
-                <li><strong>App Name:</strong> "Sensory Galaxy" (2 words, punchy, accurate)</li>
-                <li><strong>Pricing Model:</strong> $3.99/month OR $24.99/year (all-paid, no free tier, 7-day trial)</li>
+                <li><strong>App Name:</strong> "Sensory Galaxy" (2 words, punchy, clinically accurate)</li>
+                <li><strong>Pricing:</strong> $3.99/month OR $24.99/year (all-paid, 7-day free trial, no CC required)</li>
                 <li><strong>Target Audience:</strong> Parents of 3-10 year olds with sensory-sensitive eating</li>
-                <li><strong>LLM:</strong> Qwen 3.5 Plus ($2,150/year vs Claude $62K/year — 96% cheaper)</li>
-                <li><strong>Bridge Food Threshold:</strong> 3-5 foods logged before AI recommendations</li>
-                <li><strong>Planet Progression:</strong> Phase-based (LOOK→TOUCH→SMELL→LICK→TASTE), not food-count based</li>
+                <li><strong>Progression:</strong> Phase-based planets (not food-count based) to prevent skipping ahead</li>
+                <li><strong>LLM:</strong> Qwen 3.5 Plus ($2,150/year vs Claude $62K — 96% cheaper)</li>
+                <li><strong>Bridge Foods:</strong> Only after 3-5 foods logged (prevents nonsensical suggestions)</li>
             </ul>
 
-            <h3>Marketing</h3>
+            <h3>Marketing & Messaging</h3>
             <ul>
+                <li><strong>Emotional-First Onboarding:</strong> Recognition → Validation → Proof → Partnership (13%→23% conversion target)</li>
                 <li><strong>Messaging Shift:</strong> From "space adventure" to "sensory feeding intelligence"</li>
-                <li><strong>Onboarding Approach:</strong> Emotional-first (recognition → validation → proof → partnership)</li>
-                <li><strong>Conversion Target:</strong> 40-50% trial-to-paid (13% → 23% potential via emotional hooks)</li>
-                <li><strong>Social Strategy:</strong> Build audience during beta (behind-the-scenes, testimonials, education)</li>
+                <li><strong>Social Strategy:</strong> Build audience during beta (testimonials, behind-the-scenes)</li>
+                <li><strong>Domain Strategy:</strong> New domain (sensorygalaxy.com) = fresh brand focus</li>
             </ul>
 
             <h3>Operations</h3>
             <ul>
-                <li><strong>Auto-Deploy:</strong> All pushes to GitHub main auto-deploy to Vercel (zero manual work)</li>
-                <li><strong>Memory Protocol:</strong> Discord-me proactively curates to ByteRover .brv/ (shared across all channels + main)</li>
-                <li><strong>Project Visibility:</strong> All specs/status live on web (HTML) for easy PC access</li>
+                <li><strong>Auto-Deploy:</strong> All GitHub pushes instantly live (zero manual work)</li>
+                <li><strong>Memory Protocol:</strong> Proactive ByteRover curation across all Discord channels</li>
+                <li><strong>Documentation:</strong> HTML specs page (PC-accessible anytime, always updated)</li>
+                <li><strong>GitHub Strategy:</strong> Clean new repo (separate from portfolio)</li>
             </ul>
         </div>
 
-        <!-- FILES & REFERENCES -->
-        <h2>📚 Documentation & Files</h2>
+        <!-- DOCUMENTATION -->
+        <h2 id="docs">📚 Detailed Documentation</h2>
         <div class="section">
-            <h3>Workspace Files (Local)</h3>
+            <h3>Local Files (Workspace: /Users/rk/clawd/)</h3>
             <ul>
-                <li><code>/Users/rk/clawd/sensory-galaxy/</code> — GitHub repo (landing page + assets)</li>
-                <li><code>/Users/rk/clawd/FOOD-DATABASE-EXPANDED-WITH-LLM-GUARDRAILS.md</code> — 100+ foods + validation rules</li>
-                <li><code>/Users/rk/clawd/BADGE-DESIGN-SPEC.md</code> — 20 badges with unlock conditions</li>
-                <li><code>/Users/rk/clawd/POINTS-REWARDS-ECONOMY-BRIEF.md</code> — Economy system</li>
-                <li><code>/Users/rk/clawd/ONBOARDING-CARDS-REVISED-COPY.md</code> — 9-card journey with emotional-first copy</li>
-                <li><code>/Users/rk/clawd/RORK-PHASE2-5-REMAINING-SPRINT.md</code> — App UI implementation briefs</li>
-                <li><code>/Users/rk/clawd/memory/2026-03-10.md</code> — Daily notes (food database, LLM guardrails, emotional onboarding)</li>
+                <li><code>sensory-galaxy/</code> — GitHub repo (landing page, auto-deploys)</li>
+                <li><code>sensory-galaxy/status.html</code> — This page (always current)</li>
+                <li><code>FOOD-DATABASE-EXPANDED-WITH-LLM-GUARDRAILS.md</code> — 100+ foods, validation rules</li>
+                <li><code>BADGE-DESIGN-SPEC.md</code> — All 20 badges with unlock conditions</li>
+                <li><code>POINTS-REWARDS-ECONOMY-BRIEF.md</code> — Economy system, phase progression</li>
+                <li><code>ONBOARDING-CARDS-REVISED-COPY.md</code> — 9-card emotional-first journey</li>
+                <li><code>RORK-PHASE2-5-REMAINING-SPRINT.md</code> — UI implementation briefs</li>
+                <li><code>memory/2026-03-11.md</code> — Daily log with all proactive curations</li>
             </ul>
 
-            <h3>Live Specs Pages</h3>
+            <h3>Access Points</h3>
             <ul>
-                <li><strong>Old:</strong> https://www.robkremers.com/flavgalupdates (comprehensive, but on old domain)</li>
-                <li><strong>New:</strong> specs.html (this page, for easy PC access anytime)</li>
+                <li><strong>Live Status Page:</strong> https://sensorygalaxy.com/status.html</li>
+                <li><strong>Vercel Preview:</strong> sensory-galaxy-l5up489hl.vercel.app/status.html</li>
+                <li><strong>GitHub Repo:</strong> github.com/rkremers123/sensory-galaxy</li>
+                <li><strong>Local Path:</strong> /Users/rk/clawd/sensory-galaxy/</li>
             </ul>
-        </div>
 
-        <!-- NEXT STEPS -->
-        <h2>🔜 Next Steps</h2>
-        <div class="section">
-            <h3>Immediate (Today/Tomorrow)</h3>
+            <h3>Next Steps for You</h3>
             <ol>
-                <li><strong>Email Setup:</strong> Google Workspace → <code>hello@sensorygalaxy.com</code></li>
-                <li><strong>Social Handles:</strong> Instagram + TikTok → <code>@sensorygalaxyapp</code></li>
-                <li><strong>Site Rebuild:</strong> Port specs + create FAQ, sign-up, pricing pages</li>
-            </ol>
-
-            <h3>This Week</h3>
-            <ol>
-                <li><strong>DNS Verification:</strong> Wait for <code>sensorygalaxy.com</code> to go live (24-48h after nameserver setup)</li>
-                <li><strong>Marketing Copy:</strong> Shift all landing page messaging to "sensory feeding" focus</li>
-                <li><strong>Social Launch:</strong> Start posting behind-the-scenes content</li>
-            </ol>
-
-            <h3>Next 2 Weeks</h3>
-            <ol>
-                <li><strong>Phase 2-5 UI Sprint:</strong> Send briefs to Rork, start app implementation (5-6 hours total)</li>
-                <li><strong>Beta Prep:</strong> TestFlight setup, Google Play beta, family outreach (5 Portland families)</li>
-                <li><strong>Marketing Assets:</strong> Food icons, five senses icons, screenshot captures</li>
+                <li>Google Workspace setup (hello@sensorygalaxy.com)</li>
+                <li>Instagram + TikTok handle reservation (@sensorygalaxyapp)</li>
+                <li>Tell me how to rebuild site (FAQ, pricing, sign-up pages)</li>
             </ol>
         </div>
 
-        <div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(0, 217, 255, 0.1); color: #666; text-align: center; font-size: 0.9rem;">
+        <div style="margin-top: 80px; padding-top: 30px; border-top: 2px solid rgba(0, 217, 255, 0.2); color: #666; text-align: center; font-size: 0.85rem;">
             <p>🌐 Sensory Galaxy Project Status & Specifications</p>
-            <p style="margin-top: 10px;">Access this page anytime from your PC: specs.html (or https://sensory-galaxy-l5up489hl.vercel.app/specs.html)</p>
+            <p style="margin-top: 10px;">Accessible anytime from any PC: sensorygalaxy.com/status.html</p>
+            <p style="margin-top: 5px; color: #555;">All documentation synced to Git. All changes auto-deployed. All decisions documented.</p>
         </div>
     </div>
 </body>
