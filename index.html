@@ -240,7 +240,6 @@
             max-width: 323px;
             margin: 0 auto;
             overflow: hidden;
-            cursor: pointer;
         }
 
         .carousel-container {
@@ -264,6 +263,12 @@
             box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
             margin-bottom: 20px;
             display: block;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .carousel-slide img:hover {
+            transform: scale(1.02);
         }
 
         .carousel-caption {
@@ -285,7 +290,7 @@
             border-radius: 8px;
             font-size: 24px;
             transition: all 0.3s;
-            z-index: 10;
+            z-index: 20;
         }
 
         .carousel-prev {
@@ -1657,12 +1662,11 @@
         }
 
         // Carousel fullscreen modal
-        function openCarouselModal() {
+        function openCarouselModal(e) {
             const modal = document.getElementById('carouselModal');
-            const slides = document.querySelectorAll('.carousel-slide');
-            const currentSlide = slides[currentSlideIndex - 1];
-            const img = currentSlide.querySelector('img');
-            const caption = currentSlide.querySelector('.carousel-caption');
+            const img = e.target;
+            const slide = img.closest('.carousel-slide');
+            const caption = slide.querySelector('.carousel-caption');
 
             document.getElementById('modalImage').src = img.src;
             document.getElementById('modalCaption').textContent = caption.textContent;
@@ -1694,11 +1698,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             currentSlide(currentSlideIndex);
 
-            // Add click listener to carousel wrapper
-            const carouselWrapper = document.querySelector('.carousel-wrapper');
-            if (carouselWrapper) {
-                carouselWrapper.addEventListener('click', openCarouselModal);
-            }
+            // Add click listener to carousel images only
+            const carouselImages = document.querySelectorAll('.carousel-slide img');
+            carouselImages.forEach(img => {
+                img.addEventListener('click', openCarouselModal);
+            });
 
             // Close modals on outside click
             const carouselModal = document.getElementById('carouselModal');
