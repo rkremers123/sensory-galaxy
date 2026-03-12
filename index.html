@@ -1392,9 +1392,9 @@
         <h2>Ready to Transform Your Mealtimes?</h2>
         <p>Join the waitlist. We're launching soon.</p>
         
-        <form class="waitlist-form" onsubmit="handleWaitlist(event)">
-            <input type="text" placeholder="Your name" required>
-            <input type="email" placeholder="Your email" required>
+        <form class="waitlist-form" action="https://formspree.io/f/xvzwrbgo" method="POST">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
             <button type="submit" class="btn btn-primary">Join the Waitlist</button>
         </form>
         
@@ -1431,23 +1431,22 @@
     <script>
         let currentSlideIndex = 1;
 
-        function handleWaitlist(event) {
-            event.preventDefault();
-            const form = event.target;
-            const name = form.elements[0].value;
-            const email = form.elements[1].value;
-            
-            // GA4 conversion event
-            gtag('event', 'generate_lead', {
-                'event_category': 'engagement',
-                'event_label': 'waitlist_signup',
-                'user_name': name,
-                'user_email': email
-            });
-            
-            alert(`Thanks, ${name}! We've added you to the waitlist. Check your email for confirmation.`);
-            form.reset();
-        }
+        // Track waitlist signups for GA4
+        document.addEventListener('submit', function(e) {
+            if (e.target.classList.contains('waitlist-form')) {
+                const form = e.target;
+                const name = form.querySelector('input[name="name"]').value;
+                const email = form.querySelector('input[name="email"]').value;
+                
+                // GA4 conversion event
+                gtag('event', 'generate_lead', {
+                    'event_category': 'engagement',
+                    'event_label': 'waitlist_signup',
+                    'user_name': name,
+                    'user_email': email
+                });
+            }
+        });
 
         function openModal(explorer) {
             document.getElementById(explorer + 'Modal').style.display = 'block';
