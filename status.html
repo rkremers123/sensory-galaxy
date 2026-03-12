@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sensory Galaxy - Complete Project Status, Specifications & Daily Progress Log">
-    <title>Sensory Galaxy - Project Status & Daily Log</title>
+    <meta name="description" content="Sensory Galaxy - Complete Project Master Document with All Specifications">
+    <title>Sensory Galaxy - Master Project Status & Specifications</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Menlo', 'Monaco', monospace;
             background: linear-gradient(135deg, #0a0a1e 0%, #1a0a3e 50%, #0a0a1e 100%);
@@ -15,309 +16,617 @@
         }
         .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
         h1 { font-size: 2.5rem; background: linear-gradient(135deg, #00d9ff, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; }
-        .subtitle { color: #999; font-size: 1.1rem; margin-bottom: 10px; }
-        .timestamp { color: #666; font-size: 0.85rem; margin-bottom: 40px; }
         h2 { color: #00d9ff; font-size: 1.8rem; margin-top: 60px; margin-bottom: 20px; border-bottom: 2px solid rgba(0,217,255,0.3); padding-bottom: 10px; }
         h3 { color: #667eea; font-size: 1.3rem; margin-top: 30px; margin-bottom: 15px; }
-        h4 { color: #d4af37; font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px; }
+        h4 { color: #d4af37; font-size: 1.1rem; margin-top: 15px; margin-bottom: 10px; }
+        .subtitle { color: #999; font-size: 1.1rem; margin-bottom: 10px; }
+        .timestamp { color: #666; font-size: 0.85rem; margin-bottom: 30px; }
+        .toc { background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; border-radius: 8px; padding: 30px; margin-bottom: 40px; position: sticky; top: 20px; max-height: 90vh; overflow-y: auto; }
+        .toc h3 { margin-top: 0; color: #00d9ff; }
+        .toc-section { margin-bottom: 20px; }
+        .toc-section-title { color: #667eea; font-weight: bold; margin-bottom: 8px; }
+        .toc-item { margin-bottom: 8px; padding-left: 15px; }
+        .toc-item a { color: #00d9ff; text-decoration: none; font-size: 0.9rem; }
+        .toc-item a:hover { text-decoration: underline; }
+        .toc-indent { padding-left: 30px; font-size: 0.85rem; color: #999; }
         .section { background: rgba(15, 15, 40, 0.8); border: 1px solid rgba(0, 217, 255, 0.2); border-radius: 12px; padding: 30px; margin-bottom: 30px; }
         .subsection { background: rgba(20, 20, 50, 0.8); border-left: 3px solid rgba(102, 126, 234, 0.5); padding: 20px; margin: 20px 0; border-radius: 6px; }
-        .day-log { background: rgba(0, 217, 255, 0.05); border-left: 4px solid #00d9ff; padding: 20px; margin: 15px 0; border-radius: 6px; }
-        .day-header { color: #00d9ff; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; }
-        .day-entry { color: #ccc; padding: 8px 0; }
-        .toc { background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; border-radius: 8px; padding: 30px; margin-bottom: 40px; }
-        .toc h3 { margin-top: 0; color: #00d9ff; }
-        .toc-item { margin-bottom: 12px; }
-        .toc-item a { color: #00d9ff; text-decoration: none; }
-        .toc-item a:hover { text-decoration: underline; }
         .status { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; margin-left: 10px; font-weight: bold; }
         .done { background: rgba(40, 167, 69, 0.3); color: #28a745; }
         .inprogress { background: rgba(102, 126, 234, 0.3); color: #667eea; }
         .planned { background: rgba(233, 30, 99, 0.3); color: #e91e63; }
         code { background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; color: #00d9ff; }
-        pre { background: rgba(0,0,0,0.6); padding: 15px; border-radius: 6px; overflow-x: auto; margin: 15px 0; border-left: 3px solid #667eea; font-size: 0.9rem; }
+        pre { background: rgba(0,0,0,0.6); padding: 15px; border-radius: 6px; overflow-x: auto; margin: 15px 0; border-left: 3px solid #667eea; font-size: 0.85rem; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(0, 217, 255, 0.2); }
-        th { background: rgba(102, 126, 234, 0.2); color: #00d9ff; }
+        th { background: rgba(102, 126, 234, 0.2); color: #00d9ff; font-size: 0.9rem; }
+        td { font-size: 0.9rem; }
         ul { list-style: none; padding-left: 20px; }
-        li { padding: 8px 0; }
+        li { padding: 6px 0; }
         li::before { content: '→ '; color: #00d9ff; font-weight: bold; }
-        a { color: #00d9ff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        .back-to-top { position: fixed; bottom: 20px; right: 20px; padding: 12px 18px; background: #00d9ff; color: #0a0a1e; border-radius: 6px; cursor: pointer; font-weight: bold; display: none; z-index: 100; }
+        .back-to-top.show { display: block; }
+        .badge-list { columns: 2; column-gap: 20px; }
+        .badge-item { background: rgba(102, 126, 234, 0.1); padding: 12px; margin-bottom: 12px; border-radius: 6px; break-inside: avoid; }
+        .food-group { background: rgba(102, 126, 234, 0.05); padding: 15px; margin: 15px 0; border-left: 3px solid #667eea; border-radius: 4px; }
+        @media (max-width: 1200px) {
+            .toc { position: static; max-height: none; margin-bottom: 30px; }
+            .badge-list { columns: 1; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🚀 Sensory Galaxy</h1>
-        <p class="subtitle">Complete Project Status, Specifications & Daily Progress Log</p>
-        <p class="timestamp">Last Updated: March 11, 2026 @ 11:45 PM PST | Single Source of Truth for all project tracking</p>
+        <p class="subtitle">Master Project Document - Complete Specifications & Daily Progress</p>
+        <p class="timestamp">Last Updated: March 11, 2026 @ 11:59 PM PST | Single Source of Truth for All Project Data</p>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc">
+            <h3>📑 Table of Contents</h3>
+            
+            <div class="toc-section">
+                <div class="toc-section-title">🎯 Core Project</div>
+                <div class="toc-item"><a href="#quick-facts">Quick Facts & Overview</a></div>
+                <div class="toc-item"><a href="#landing-page">Landing Page Status</a></div>
+                <div class="toc-item"><a href="#app-architecture">App Architecture</a></div>
+            </div>
+
+            <div class="toc-section">
+                <div class="toc-section-title">📱 Game Design & Features</div>
+                <div class="toc-item"><a href="#planets">8 Planets & SOS Phases</a></div>
+                <div class="toc-item"><a href="#explorers">4 Explorers & Cosmetics</a></div>
+                <div class="toc-item"><a href="#onboarding">9-Card Onboarding</a></div>
+            </div>
+
+            <div class="toc-section">
+                <div class="toc-section-title">🎮 Gamification System</div>
+                <div class="toc-item"><a href="#badges">20 Badges (Complete List)</a></div>
+                <div class="toc-item"><a href="#points-economy">Points & Rewards Economy</a></div>
+            </div>
+
+            <div class="toc-section">
+                <div class="toc-section-title">🍽️ Food & AI</div>
+                <div class="toc-item"><a href="#food-database">Food Database (100+ Foods)</a></div>
+                <div class="toc-item"><a href="#llm-guardrails">LLM Guardrails & Bridge Foods</a></div>
+                <div class="toc-item"><a href="#ai-strategy">AI Model Strategy</a></div>
+            </div>
+
+            <div class="toc-section">
+                <div class="toc-section-title">🌐 Website & Marketing</div>
+                <div class="toc-item"><a href="#blog">Blog (2 Posts)</a></div>
+                <div class="toc-item"><a href="#faq">FAQ (10 Questions)</a></div>
+                <div class="toc-item"><a href="#social-media">Social Media Assets</a></div>
+            </div>
+
+            <div class="toc-section">
+                <div class="toc-section-title">📅 Progress & Operations</div>
+                <div class="toc-item"><a href="#daily-log">Daily Progress Log</a></div>
+                <div class="toc-item"><a href="#blockers">Critical Blockers</a></div>
+                <div class="toc-item"><a href="#deployment">Deployment & Files</a></div>
+            </div>
+        </div>
 
         <!-- QUICK FACTS -->
-        <div class="section" style="background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; margin-bottom: 40px;">
-            <h3 style="margin-top: 0;">⚡ Quick Facts</h3>
-            <table style="font-size: 0.95rem;">
-                <tr>
-                    <td><strong>App Name</strong></td>
-                    <td><span style="color: #00d9ff; font-weight: bold;">Sensory Galaxy</span></td>
-                </tr>
-                <tr>
-                    <td><strong>Domain</strong></td>
-                    <td><code>sensorygalaxy.com</code></td>
-                </tr>
-                <tr>
-                    <td><strong>GitHub Repos</strong></td>
-                    <td><code>rkremers123/sensory-galaxy</code> | <code>rkremers123/sensory-galaxy-screenshots</code></td>
-                </tr>
-                <tr>
-                    <td><strong>Live URLs</strong></td>
-                    <td>sensorygalaxy.com | /blog.html | /faq.html</td>
-                </tr>
-                <tr>
-                    <td><strong>Email</strong></td>
-                    <td><code>hello@sensorygalaxy.com</code> (Google Workspace)</td>
-                </tr>
-                <tr>
-                    <td><strong>Target Users</strong></td>
-                    <td>Parents of 3-10 year olds with sensory-sensitive eating (1 in 3 kids)</td>
-                </tr>
-                <tr>
-                    <td><strong>Pricing</strong></td>
-                    <td>$3.99/month or $24.99/year (7-day free trial)</td>
-                </tr>
-                <tr>
-                    <td><strong>AI Model</strong></td>
-                    <td>Qwen 3.5 Plus ($2,150/year vs Claude $62K/year)</td>
-                </tr>
-                <tr>
-                    <td><strong>Backup Status</strong></td>
-                    <td>✅ Full daily backups (local + Google Drive)</td>
-                </tr>
+        <div class="section" id="quick-facts">
+            <h2>⚡ Quick Facts & Overview</h2>
+            <table>
+                <tr><td><strong>App Name</strong></td><td>Sensory Galaxy</td></tr>
+                <tr><td><strong>Domain</strong></td><td>sensorygalaxy.com</td></tr>
+                <tr><td><strong>Target Audience</strong></td><td>Parents of 3-10 year olds with selective eating (1 in 3 kids)</td></tr>
+                <tr><td><strong>Pricing</strong></td><td>$3.99/month | $24.99/year | 7-day free trial</td></tr>
+                <tr><td><strong>Status</strong></td><td>MVP Launch Ready (Beta: Week of March 12 with 5 Portland families)</td></tr>
+                <tr><td><strong>AI Model</strong></td><td>Qwen 3.5 Plus ($2,150/year vs Claude $62K/year) - 96% cost reduction</td></tr>
+                <tr><td><strong>Email</strong></td><td>hello@sensorygalaxy.com (Google Workspace)</td></tr>
+                <tr><td><strong>GitHub</strong></td><td>rkremers123/sensory-galaxy | rkremers123/sensory-galaxy-screenshots</td></tr>
+                <tr><td><strong>Backup Status</strong></td><td>✅ Daily backups (local + Google Drive)</td></tr>
             </table>
         </div>
 
-        <!-- LANDING PAGE STATUS -->
-        <h2>📄 Landing Page</h2>
-        <div class="section">
+        <!-- LANDING PAGE -->
+        <div class="section" id="landing-page">
+            <h2>📄 Landing Page Status</h2>
+            
             <h3>Hero Section <span class="status done">LIVE</span></h3>
             <p><strong>Headline:</strong> "You've Tried Everything. Your Kid Still Only Eats Chicken Nuggets and Rice. It's Not Stubbornness. It's Sensory."</p>
             <p><strong>Subtitle:</strong> "There's a science-backed method for this. Sensory Galaxy is that method."</p>
             <p><strong>CTA:</strong> "Join Waitlist"</p>
 
-            <h3 style="margin-top: 25px;">Key Sections <span class="status done">LIVE</span></h3>
+            <h3>Sections</h3>
             <ul>
-                <li>How It Works (3 cards: Identify Patterns, Bridge Foods, Celebrate Progress)</li>
-                <li>Sequential Oral Sensory (SOS) Method (5 phases with images: LOOK, TOUCH, SMELL, LICK, TASTE)</li>
-                <li>See It In Action (6-slide carousel with expandable fullscreen)</li>
-                <li>Parent Dashboard (2 dashboard screenshots with click-to-expand)</li>
-                <li>Pick Your Explorer (4 explorers: Nova, Cosmo, Star, Orbit)</li>
+                <li>How It Works (3 feature cards)</li>
+                <li>Sequential Oral Sensory (SOS) Method (5 phases with images)</li>
+                <li>See It In Action (6-slide expandable carousel)</li>
+                <li>Parent Dashboard (2 screenshot examples)</li>
+                <li>Pick Your Explorer (4 explorer profiles)</li>
                 <li>Real Parents. Real Progress. (2 testimonials)</li>
                 <li>Why Parents Choose Us (6 benefit cards)</li>
-                <li>Pricing (Monthly $3.99 | Annual $24.99)</li>
+                <li>Pricing (Monthly/Annual)</li>
                 <li>Waitlist Form</li>
             </ul>
 
-            <h3 style="margin-top: 25px;">Blog <span class="status done">LIVE</span></h3>
+            <h3>Blog <span class="status done">LIVE</span></h3>
             <ul>
-                <li>Feb 18, 2026: "Food Aversion vs. Picky Eating..." (Educational, SEO-focused)</li>
-                <li>March 11, 2026: "We Tried Everything. Then Our 7-Year-Old Asked for Broccoli." (Parent testimonial, Sarah Chen)</li>
+                <li><strong>Feb 18, 2026:</strong> "Food Aversion vs. Picky Eating..." (Educational, SEO-optimized)</li>
+                <li><strong>March 11, 2026:</strong> "We Tried Everything. Then Our 7-Year-Old Asked for Broccoli." (Parent testimonial - Sarah Chen, Portland)</li>
             </ul>
 
-            <h3 style="margin-top: 25px;">FAQ Page <span class="status done">LIVE</span></h3>
-            <ul>
-                <li>10 accordion-style questions (all visible, click to expand)</li>
-                <li>Topics: SOS method, efficacy, timeline, allergies, parent-child partnership, app refusals, privacy, support with therapists</li>
-            </ul>
+            <h3>FAQ <span class="status done">LIVE</span></h3>
+            <p>10 accordion-style questions. Topics: SOS method, efficacy, timeline, allergies, child engagement, privacy, therapy integration.</p>
         </div>
 
-        <!-- APP SPECIFICATIONS -->
-        <h2>📱 App Specifications</h2>
-        <div class="section">
-            <h3>Architecture</h3>
+        <!-- APP ARCHITECTURE -->
+        <div class="section" id="app-architecture">
+            <h2>📱 App Architecture</h2>
+
+            <h3 id="planets">8 Planets & SOS Phases</h3>
             <ul>
-                <li><strong>8 Planets:</strong> Base Camp, Sensory Grove, Texture Trails, Aroma Airship, Flavor Mountains, Taste Ocean, Taste Jungle, Galaxy's Heart</li>
-                <li><strong>4 Explorers:</strong> Nova (Speed), Cosmo (Science), Star (Brave), Orbit (Adventurous)</li>
-                <li><strong>SOS Phases (per planet):</strong> LOOK (day 0) → TOUCH (day 3) → SMELL (day 5) → LICK (day 7) → TASTE (day 10)</li>
+                <li><strong>Base Camp</strong> - Introduction & setup</li>
+                <li><strong>Sensory Grove</strong> - Flavor exploration begins</li>
+                <li><strong>Texture Trails</strong> - Texture-focused foods</li>
+                <li><strong>Aroma Airship</strong> - Smell & aroma phase</li>
+                <li><strong>Flavor Mountains</strong> - Flavor complexity increases</li>
+                <li><strong>Taste Ocean</strong> - Liquid & wet textures</li>
+                <li><strong>Taste Jungle</strong> - Mixed & complex foods</li>
+                <li><strong>Galaxy's Heart</strong> - Final mastery & celebration</li>
             </ul>
 
-            <h3 style="margin-top: 25px;">Food Database</h3>
-            <ul>
-                <li><strong>Coverage:</strong> 100+ foods across 12 categories</li>
-                <li><strong>Sensory Attributes Tracked:</strong> Texture (crunchy, soft, chewy, liquid, mushy, mixed), Flavor (sweet, salty, savory, sour, bitter, bland, spicy), Temperature (cold, room temp, warm, hot), Color (red, orange, yellow, green, blue, purple, brown, white, mixed), Food Group</li>
-                <li><strong>LLM Guardrails:</strong> 10 validation rules + forbidden combos</li>
-            </ul>
+            <p><strong>SOS Phases (per planet):</strong> LOOK (day 0) → TOUCH (day 3) → SMELL (day 5) → LICK (day 7) → TASTE (day 10)</p>
 
-            <h3 style="margin-top: 25px;">Gamification</h3>
-            <ul>
-                <li><strong>20 Badges:</strong> Unlock conditions + rarity tiers</li>
-                <li><strong>Points Economy:</strong> 10+ action types, phase-based planet progression</li>
-                <li><strong>Parent Dashboard:</strong> Pattern analysis, food group distribution, sensory attributes, bridge food recommendations, trend graphs</li>
-            </ul>
-
-            <h3 style="margin-top: 25px;">AI Features</h3>
-            <ul>
-                <li><strong>Bridge Food Matching:</strong> Analyzes logged foods → sensory distance calculation → personalized recommendations</li>
-                <li><strong>Sensory Pattern Recognition:</strong> Texture preferences, flavor tolerances, temperature sensitivity, color aversion</li>
-                <li><strong>Risk Indicators:</strong> Confidence levels on recommendations before presenting to parent</li>
-            </ul>
+            <h3 id="explorers">4 Explorers</h3>
+            <div class="subsection">
+                <strong>Nova - Speed Explorer</strong><br>
+                Personality: Loves discovering fast & trying new things | Color: Blue/Cyan | Special Power: Speed bonus points<br><br>
+                <strong>Cosmo - Science Explorer</strong><br>
+                Personality: Curious about flavors & tastes | Color: Purple/Gold | Special Power: Data insights bonus<br><br>
+                <strong>Star - Brave Explorer</strong><br>
+                Personality: Not afraid to try new things | Color: Gold/Yellow | Special Power: Risk tolerance bonus<br><br>
+                <strong>Orbit - Adventurous Explorer</strong><br>
+                Personality: Loves collecting & exploring | Color: Rainbow/Gradient | Special Power: Collection bonuses
+            </div>
         </div>
 
         <!-- ONBOARDING -->
-        <h2>🎬 Onboarding (9 Cards)</h2>
-        <div class="section">
-            <p>Emotional-first, parent-centered approach (recognition → validation → proof → partnership):</p>
+        <div class="section" id="onboarding">
+            <h2>🎬 9-Card Onboarding Sequence</h2>
+            <p><strong>Emotional-first approach: Recognition → Validation → Proof → Partnership</strong></p>
+            
+            <table>
+                <tr><th>#</th><th>Card</th><th>Copy</th></tr>
+                <tr><td>1</td><td>Recognition</td><td>"You're not alone. 1 in 3 kids experience sensory-sensitive eating."</td></tr>
+                <tr><td>2</td><td>Validation</td><td>"It's sensory, not stubbornness. Your child's nervous system works differently."</td></tr>
+                <tr><td>3</td><td>Understanding</td><td>"The SOS method removes pressure and lets exploration happen naturally. No forcing."</td></tr>
+                <tr><td>4</td><td>Hope</td><td>"Parents see real progress in 4-8 weeks. By week 3, kids are more willing to explore."</td></tr>
+                <tr><td>5</td><td>Partnership</td><td>"We guide your child. You guide the process. It's a journey together."</td></tr>
+                <tr><td>6</td><td>Proof</td><td>"Here's how Sensory Galaxy works: Log foods, track patterns, get smart suggestions."</td></tr>
+                <tr><td>7</td><td>Action</td><td>"Pick your child's explorer & set a goal food. Let's begin."</td></tr>
+                <tr><td>8</td><td>Progress</td><td>"Log what they explore. The app learns their sensory profile in real time."</td></tr>
+                <tr><td>9</td><td>Celebration</td><td>"Every step forward is progress. Every attempt is a win. You've got this."</td></tr>
+            </table>
+        </div>
+
+        <!-- BADGES -->
+        <div class="section" id="badges">
+            <h2>🏆 20 Badges (Complete Design)</h2>
+            
+            <h3>Early Explorer Badges (Tier 1)</h3>
+            <div class="badge-list">
+                <div class="badge-item">
+                    <strong>First Look</strong> - Explore your first food | Bronze | 1 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Brave First Step</strong> - Complete LICK phase on any food | Bronze | 2 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Planet Unlocked</strong> - Unlock your first planet | Silver | 5 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Explorer Chosen</strong> - Select your explorer | Bronze | 1 XP
+                </div>
+            </div>
+
+            <h3>Milestone Badges (Tier 2)</h3>
+            <div class="badge-list">
+                <div class="badge-item">
+                    <strong>10 Foods Conquered</strong> - Log 10 foods | Silver | 10 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Week Warrior</strong> - 7-day logging streak | Gold | 15 XP
+                </div>
+                <div class="badge-item">
+                    <strong>50 Foods Explored</strong> - Log 50 unique foods | Gold | 25 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Phase Master</strong> - Complete all 5 SOS phases on 1 food | Silver | 8 XP
+                </div>
+            </div>
+
+            <h3>Sensory Mastery Badges (Tier 3)</h3>
+            <div class="badge-list">
+                <div class="badge-item">
+                    <strong>Texture Expert</strong> - Master 5 foods across 3+ textures | Platinum | 30 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Flavor Scientist</strong> - Explore 5+ flavor categories | Platinum | 30 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Temperature Traveler</strong> - Try foods in 3+ temperatures | Gold | 20 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Rainbow Palette</strong> - Eat foods of 5+ different colors | Gold | 20 XP
+                </div>
+            </div>
+
+            <h3>Social & Celebration Badges</h3>
+            <div class="badge-list">
+                <div class="badge-item">
+                    <strong>Month Milestone</strong> - 30-day logging streak | Platinum | 40 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Goal Achieved</strong> - Master your goal food | Diamond | 50 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Family Explorer</strong> - Share app with 1 family | Silver | 5 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Sensory Superstar</strong> - Complete 100 food logs | Diamond | 100 XP
+                </div>
+            </div>
+
+            <h3>Special Badges</h3>
+            <div class="badge-list">
+                <div class="badge-item">
+                    <strong>Bridge Food Master</strong> - Accept 5 bridge food recommendations | Gold | 25 XP
+                </div>
+                <div class="badge-item">
+                    <strong>Beta Pioneer</strong> - Launch week participant | Special | 10 XP
+                </div>
+            </div>
+        </div>
+
+        <!-- POINTS & REWARDS ECONOMY -->
+        <div class="section" id="points-economy">
+            <h2>💰 Points & Rewards Economy</h2>
+
+            <h3>Base Points Structure</h3>
+            <table>
+                <tr><th>Action</th><th>Points</th><th>Frequency</th></tr>
+                <tr><td>Log a food</td><td>5 pts</td><td>Per food entry</td></tr>
+                <tr><td>Complete LOOK phase</td><td>2 pts</td><td>Per food</td></tr>
+                <tr><td>Complete TOUCH phase</td><td>3 pts</td><td>Per food</td></tr>
+                <tr><td>Complete SMELL phase</td><td>3 pts</td><td>Per food</td></tr>
+                <tr><td>Complete LICK phase</td><td>5 pts</td><td>Per food</td></tr>
+                <tr><td>Complete TASTE phase</td><td>10 pts</td><td>Per food</td></tr>
+                <tr><td>Unlock badge</td><td>Variable</td><td>Per badge (1-100 XP)</td></tr>
+                <tr><td>7-day streak</td><td>20 bonus pts</td><td>Per week</td></tr>
+                <tr><td>Month milestone</td><td>50 bonus pts</td><td>Monthly</td></tr>
+            </table>
+
+            <h3>Planet Progression (Phase-Based)</h3>
+            <ul>
+                <li>Each planet has 5 SOS phases (LOOK → TOUCH → SMELL → LICK → TASTE)</li>
+                <li>Day thresholds unlock automatically: 0, 3, 5, 7, 10 days</li>
+                <li>NOT food-count driven - time-based progression encourages pacing</li>
+                <li>Parents can manually unlock next phase if child is ready</li>
+            </ul>
+
+            <h3>Rewards Redemption</h3>
+            <ul>
+                <li>100 pts = Unlock 1 explorer cosmetic (outfit, accessory, pet)</li>
+                <li>250 pts = New planet decoration</li>
+                <li>500 pts = Special achievement title</li>
+                <li>1000 pts = "Master Explorer" status (visual badge on profile)</li>
+            </ul>
+        </div>
+
+        <!-- FOOD DATABASE -->
+        <div class="section" id="food-database">
+            <h2>🍽️ Food Database (100+ Foods)</h2>
+
+            <h3>Categories (12 Total)</h3>
+            <ul>
+                <li>Proteins (16 foods)</li>
+                <li>Grains (14 foods)</li>
+                <li>Fruits (18 foods)</li>
+                <li>Vegetables (16 foods)</li>
+                <li>Dairy (12 foods)</li>
+                <li>Snacks (12 foods)</li>
+                <li>Beverages (8 foods)</li>
+                <li>Composites/Mixed (8 foods)</li>
+                <li>Sweets (10 foods)</li>
+                <li>Condiments (6 foods)</li>
+                <li>Prepared Foods (8 foods)</li>
+                <li>Other (6 foods)</li>
+            </ul>
+
+            <h3>Sensory Attributes Tracked (for AI)</h3>
+            <ul>
+                <li><strong>Texture:</strong> Crunchy, Soft, Chewy, Liquid, Mushy, Mixed</li>
+                <li><strong>Flavor:</strong> Sweet, Salty, Savory, Sour, Bitter, Bland, Spicy</li>
+                <li><strong>Temperature:</strong> Cold, Room Temp, Warm, Hot</li>
+                <li><strong>Color:</strong> Red, Orange, Yellow, Green, Blue, Purple, Brown, White, Mixed</li>
+                <li><strong>Food Group:</strong> Fruit, Vegetable, Protein, Grain, Dairy, Mixed, Other</li>
+            </ul>
+
+            <h3>Example Foods (by texture preference)</h3>
+            <div class="food-group">
+                <strong>Crunchy Foods:</strong> Crackers, carrots, apples, chips, toast, granola, almonds, cucumber
+            </div>
+            <div class="food-group">
+                <strong>Soft Foods:</strong> Yogurt, pudding, mashed potatoes, avocado, banana, cheese, bread, pasta
+            </div>
+            <div class="food-group">
+                <strong>Liquid Foods:</strong> Juice, milk, soup, smoothies, broths, applesauce, yogurt drinks
+            </div>
+            <div class="food-group">
+                <strong>Mixed Texture Foods:</strong> Fried chicken, tacos, salads, grain bowls, pizza, sandwiches
+            </div>
+        </div>
+
+        <!-- LLM GUARDRAILS -->
+        <div class="section" id="llm-guardrails">
+            <h2>🛡️ LLM Guardrails & Bridge Foods</h2>
+
+            <h3>10 Core Validation Rules</h3>
             <ol style="padding-left: 30px;">
-                <li><strong>Recognition:</strong> "You're not alone. 1 in 3 kids experience this."</li>
-                <li><strong>Validation:</strong> "It's sensory, not stubbornness. Your child's nervous system works differently."</li>
-                <li><strong>Understanding:</strong> "The SOS method removes pressure and lets exploration happen naturally."</li>
-                <li><strong>Hope:</strong> "Parents see real progress in 4-8 weeks."</li>
-                <li><strong>Partnership:</strong> "We guide your child. You guide the process."</li>
-                <li><strong>Proof:</strong> "Here's how the app works..."</li>
-                <li><strong>Action:</strong> "Set your child's goal food..."</li>
-                <li><strong>Progress:</strong> "Log what they explore. The app learns."</li>
-                <li><strong>Celebration:</strong> "Every step forward is a win."</li>
+                <li>Never recommend foods from allergen list</li>
+                <li>Max 1 sensory difference per bridge food (texture XOR flavor XOR temperature XOR color)</li>
+                <li>Confidence scoring: Only recommend if model confidence > 70%</li>
+                <li>No foods logged <3 times before bridge recommendations activate</li>
+                <li>Sensory distance calculation: Euclidean metric across 5-d sensory space</li>
+                <li>Risk indicators: Flag low-confidence recommendations to parent</li>
+                <li>Frequency caps: Max 2 new foods per week recommended</li>
+                <li>No repetition: Never recommend same food twice within 30 days</li>
+                <li>Age-appropriate: Remove choking hazards for ages <5</li>
+                <li>Diversity enforcement: Ensure recommendations span ≥3 categories</li>
             </ol>
+
+            <h3>Forbidden Combinations</h3>
+            <ul>
+                <li>Never pair sweet + bitter in same recommendation</li>
+                <li>Never recommend spicy to <6 year olds</li>
+                <li>Never suggest raw vegetables if child only eats cooked</li>
+                <li>Never recommend temperature jump >30°F in single bridge</li>
+                <li>Avoid color inversion (e.g., all green → all white in one step)</li>
+            </ul>
+
+            <h3>Bridge Food Activation Threshold</h3>
+            <ul>
+                <li>Requires: ≥3 unique foods logged with complete sensory profiles</li>
+                <li>Triggers: AI begins building sensory preference model after 3rd food</li>
+                <li>First recommendation: After 5 foods logged</li>
+                <li>Thereafter: 1 new recommendation per week (unless parent requests more)</li>
+            </ul>
+        </div>
+
+        <!-- AI STRATEGY -->
+        <div class="section" id="ai-strategy">
+            <h2>🤖 AI Model Strategy</h2>
+
+            <h3>Model Selection: Qwen 3.5 Plus</h3>
+            <table>
+                <tr><th>Metric</th><th>Qwen 3.5</th><th>Claude 3.5</th></tr>
+                <tr><td>Annual Cost</td><td>$2,150</td><td>$62,000</td></tr>
+                <tr><td>Cost Reduction</td><td>—</td><td>96% less than Claude</td></tr>
+                <tr><td>Capability</td><td>Excellent for sensory pattern matching</td><td>Overkill for this task</td></tr>
+                <tr><td>Latency</td><td>< 500ms per request</td><td>< 1000ms per request</td></tr>
+                <tr><td>Accuracy (Sensory)</td><td>92% on food-sensory classification</td><td>95% (not needed)</td></tr>
+            </table>
+
+            <h3>API Usage Estimates (Year 1)</h3>
+            <ul>
+                <li>200 users × 20 logs/month = 4,000 food logs/month</li>
+                <li>Bridge food recommendations: 1 per user/week = 800 recommendations/month</li>
+                <li>Total API calls/month: ~5,000</li>
+                <li>Cost/month: ~$180 (at Qwen pricing)</li>
+                <li>Annual cost: $2,150 (includes 20% buffer)</li>
+            </ul>
+
+            <h3>LLM Prompt Structure</h3>
+            <pre>You are a food expert specializing in sensory-sensitive eating.
+
+Child Profile:
+- Age: [age]
+- Logged foods: [list with sensory attributes]
+- Avoided foods: [list]
+
+Task: Recommend ONE bridge food that:
+1. Adds exactly ONE new sensory dimension
+2. Matches their preferences on other dimensions
+3. Has ≥70% confidence match
+
+Return JSON:
+{
+  "food": "Food Name",
+  "category": "Category",
+  "sensory_profile": {...},
+  "reasoning": "Why this works",
+  "confidence": 0.92,
+  "risk_flags": []
+}</pre>
+        </div>
+
+        <!-- SOCIAL MEDIA ASSETS -->
+        <div class="section" id="social-media">
+            <h2>📱 Social Media Assets</h2>
+
+            <h3>X (Twitter) Bio</h3>
+            <p><strong>"Your kid only eats chicken nuggets and rice. It's sensory, not stubbornness. Sensory Galaxy helps with SOS. Join the waitlist."</strong> (126 characters)</p>
+
+            <h3>TikTok Slideshow (5 slides with captions)</h3>
+            <ul>
+                <li><strong>Slide 1:</strong> "The adventure begins. No pressure, just exploration."</li>
+                <li><strong>Slide 2:</strong> "Pick your guide. They're your kid's companion through this."</li>
+                <li><strong>Slide 3:</strong> "Start with what works. Build from there."</li>
+                <li><strong>Slide 4:</strong> "See the patterns. Understand the progress."</li>
+                <li><strong>Slide 5:</strong> "Bridge foods change everything. As your kid logs foods, the app learns their patterns and suggests the next step. One sensory element at a time."</li>
+            </ul>
+
+            <h3>Hashtags (5 max for TikTok)</h3>
+            <p>#PickyEater #ParentingTips #ChildHealth #SensoryProcessing #SelectiveEating</p>
+
+            <h3>Instagram Strategy</h3>
+            <p>Account: @sensorygalaxyapp | Post schedule: 3x/week | Focus: Parent stories + educational content + app demos</p>
+
+            <h3>Testimonials (Fictional, Deployed)</h3>
+            <ul>
+                <li><strong>Sarah Chen (Portland):</strong> "After 8 weeks, he asked for broccoli. I was in shock."</li>
+                <li><strong>Mike Johnson (Seattle):</strong> "We stopped pushing. Everything changed."</li>
+            </ul>
         </div>
 
         <!-- DAILY PROGRESS LOG -->
-        <h2>📅 Daily Progress Log</h2>
-        <div class="section">
-            <p><strong>This section tracks daily work, decisions, and deployments. Updated every session.</strong></p>
+        <div class="section" id="daily-log">
+            <h2>📅 Daily Progress Log</h2>
 
-            <div class="day-log">
-                <div class="day-header">📌 March 11, 2026 - MAJOR REDESIGN & SOCIAL LAUNCH</div>
-                <div class="day-entry"><strong>Landing Page Redesign (LIVE ✅):</strong></div>
-                <div class="day-entry">• Updated hero headline: "You've Tried Everything. Your Kid Still Only Eats Chicken Nuggets and Rice. It's Not Stubbornness. It's Sensory." (parent exhaustion + reframe)</div>
-                <div class="day-entry">• Simplified SOS Method section title</div>
-                <div class="day-entry">• Fixed mobile headline sizes (responsive: h1 36px→28px, subtitle 18px→16px)</div>
-                <div class="day-entry">• Added explorer caption: "Meet your guides. Nova, Cosmo, Star, and Orbit will lead your child through the sensory journey."</div>
-                <div class="day-entry">• Integrated 5 SOS phase images (1080x1080px) showing visual progression: look.png, touch.png, smell.png, lick.png, taste.png</div>
-                <div class="day-entry">• Removed all em-dashes from entire site (copy compliance)</div>
-                <div class="day-entry">• Streamlined navigation: removed "SOS Method" and "Pricing" links (now 5 links: How It Works, See It In Action, Explorers, Blog, FAQ)</div>
+            <div class="subsection" style="border-left-color: #00d9ff;">
+                <div style="color: #00d9ff; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px;">📌 March 11, 2026 - MAJOR REDESIGN & SOCIAL LAUNCH READY</div>
+                
+                <h4>Landing Page Redesign (LIVE ✅)</h4>
+                <ul>
+                    <li>Updated hero headline: "You've Tried Everything. Your Kid Still Only Eats Chicken Nuggets and Rice. It's Not Stubbornness. It's Sensory." (parent exhaustion + reframe angle)</li>
+                    <li>Simplified SOS Method title</li>
+                    <li>Fixed mobile headline sizes (responsive scaling)</li>
+                    <li>Added explorer caption below hero</li>
+                    <li>Integrated 5 SOS phase images (look, touch, smell, lick, taste) with visual progression</li>
+                    <li>Removed all em-dashes (copy compliance)</li>
+                    <li>Streamlined navigation (5 links)</li>
+                </ul>
 
-                <div class="day-entry"><strong>Social Media Assets Created:</strong></div>
-                <div class="day-entry">• X bio (126 chars): "Your kid only eats chicken nuggets and rice. It's sensory, not stubbornness. Sensory Galaxy helps with SOS. Join the waitlist."</div>
-                <div class="day-entry">• TikTok slideshow (5 slides) with captions describing app user journey</div>
-                <div class="day-entry">• TikTok long description (900+ words) + 5 hashtags (#PickyEater #ParentingTips #ChildHealth #SensoryProcessing #SelectiveEating)</div>
-                <div class="day-entry">• TikTok ad copy options (emotional hook: "Stop blaming yourself. This isn't stubbornness. It's sensory.")</div>
+                <h4>Social Media Assets Created</h4>
+                <ul>
+                    <li>X bio (126 chars) - problem + reframe + CTA</li>
+                    <li>TikTok slideshow (5 slides) - app user journey</li>
+                    <li>TikTok long description (900+ words) + 5 hashtags</li>
+                    <li>TikTok ad copy (emotional hook)</li>
+                </ul>
 
-                <div class="day-entry"><strong>Backup & Security:</strong></div>
-                <div class="day-entry">• Manual backup created: /Users/rk/clawd/_BACKUPS/2026-03-11-sensory-galaxy-manual-backup/ (286 files, 128M)</div>
-                <div class="day-entry">• Verified all critical files backed up + Google Drive synced</div>
+                <h4>Backup & Security</h4>
+                <ul>
+                    <li>Manual backup: 2026-03-11-sensory-galaxy-manual-backup/ (286 files, 128M)</li>
+                    <li>Google Drive synced + verified</li>
+                </ul>
 
-                <div class="day-entry"><strong>Decision Log:</strong></div>
-                <div class="day-entry">• Locked hero headline on parent exhaustion angle (higher conversion than generic "battle" messaging)</div>
-                <div class="day-entry">• Decided pricing is too low ($3.99) - planning price increase after beta validation</div>
-                <div class="day-entry">• Identified blocker: Must add Google Analytics 4 BEFORE running paid ads (Google Ads, TikTok Ads)</div>
+                <h4>Documentation</h4>
+                <ul>
+                    <li>MERGED: flavgalupdates.html content into status.html</li>
+                    <li>Created Daily Progress Log section</li>
+                    <li>status.html now SINGLE SOURCE OF TRUTH</li>
+                </ul>
 
-                <div class="day-entry"><strong>Tomorrow's Critical Tasks:</strong></div>
-                <div class="day-entry">⚠️ Add Google Analytics 4 tracking to all pages (sensorygalaxy.com, /blog.html, /faq.html)</div>
-                <div class="day-entry">⚠️ Set up conversion tracking for "Join Waitlist" form submission</div>
-                <div class="day-entry">⚠️ Verify tracking fires before launching Google Ads campaign</div>
-                <div class="day-entry">⚠️ Set up Google Ads (search + display) targeting selective eating, food aversion, SOS method keywords</div>
-                <div class="day-entry">⚠️ Post TikTok slideshow + set up ad promotion (once platform stability confirmed)</div>
+                <h4>Tomorrow's Critical Blockers</h4>
+                <ul>
+                    <li>⚠️ Google Analytics 4 setup (MUST DO before paid ads)</li>
+                    <li>⚠️ Conversion tracking for "Join Waitlist" form</li>
+                    <li>⚠️ Google Ads campaign setup</li>
+                    <li>⚠️ TikTok slideshow posting + promotion</li>
+                </ul>
             </div>
         </div>
 
-        <!-- PROJECT CONSTRAINTS & DECISIONS -->
-        <h2>🎯 Project Constraints & Key Decisions</h2>
-        <div class="section">
-            <h3>Branding Constraints</h3>
-            <ul>
-                <li>✅ Dark starfield theme (#0a0a1e) with neon accents (cyan #00d9ff, gold #d4af37, pink gradients)</li>
-                <li>✅ No em-dashes in copy (replace with hyphens or commas)</li>
-                <li>✅ SOS terminology: Full name on first mention ("Sequential Oral Sensory (SOS)"), then abbreviated</li>
-                <li>✅ Tone: Warm, honest, parent-first, emotionally-first (contractions acceptable)</li>
-            </ul>
+        <!-- BLOCKERS -->
+        <div class="section" id="blockers">
+            <h2>🚨 Critical Blockers</h2>
 
-            <h3 style="margin-top: 25px;">Website Decisions</h3>
-            <ul>
-                <li>✅ Hero image: Explorers group photo (not mom/daughter)</li>
-                <li>✅ CTA: "Join Waitlist" (not "Free Trial")</li>
-                <li>✅ Section order: How It Works → SOS → See It In Action → Dashboard → Explorers → Testimonials → Why Choose Us</li>
-                <li>✅ Removed: Planets grid (redundant with carousel), excessive copy blocks</li>
-                <li>✅ Two testimonials only (not three) - fictional but emotionally resonant</li>
-            </ul>
-
-            <h3 style="margin-top: 25px;">Pricing & Business</h3>
-            <ul>
-                <li>✅ Launch price: $3.99/month, $24.99/year (7-day trial)</li>
-                <li>🔔 Future: Plan to increase to $9.99-$14.99/month after beta validation</li>
-                <li>✅ No mention of refunds (iOS app, no refund policy needed)</li>
-                <li>✅ LLM selected: Qwen 3.5 Plus ($2,150/year vs Claude $62K/year) = 96% cost reduction</li>
-            </ul>
-
-            <h3 style="margin-top: 25px;">Marketing & Launch</h3>
-            <ul>
-                <li>✅ Beta launch: Week of March 12 with 5 Portland families</li>
-                <li>✅ Social media: X, TikTok, Instagram (@sensorygalaxyapp)</li>
-                <li>✅ SEO strategy: Blog + landing page keyword optimization (selective eating, food aversion, SOS method)</li>
-                <li>🔔 Paid ads next: Google Ads (search + display) + TikTok Ads (after GA4 setup)</li>
-            </ul>
-        </div>
-
-        <!-- CRITICAL BLOCKERS -->
-        <h2>🚨 Critical Path & Blockers</h2>
-        <div class="section">
-            <h3 style="margin-top: 0; color: #e91e63;">BLOCKING PAID ADS</h3>
-            <div class="subsection">
-                <strong>Google Analytics 4 Setup Required</strong>
-                <p>Status: ⏳ PENDING</p>
-                <p>Must complete BEFORE launching Google Ads or TikTok Ads to track conversion data.</p>
+            <div class="subsection" style="border-left-color: #e91e63;">
+                <strong>🚫 BLOCKING PAID ADS - Priority #1</strong><br>
+                <p><strong>Google Analytics 4 Setup Required</strong></p>
                 <ul>
-                    <li>Add GA4 tracking code to index.html, blog.html, faq.html</li>
-                    <li>Set up conversion goal for "Join Waitlist" form submission</li>
+                    <li>Add GA4 tracking to index.html, blog.html, faq.html</li>
+                    <li>Set up conversion goal for "Join Waitlist" form</li>
                     <li>Test tracking fires before any ad spend</li>
+                    <li>Status: ⏳ PENDING (must complete tomorrow morning)</li>
                 </ul>
             </div>
 
-            <h3 style="margin-top: 20px; color: #e91e63;">OTHER BLOCKERS</h3>
+            <h3 style="margin-top: 20px; color: #e91e63;">Other Blockers</h3>
             <ul>
-                <li><strong>Screenshot Tool Phone Rendering:</strong> ✅ RESOLVED (fixed filename mapping)</li>
-                <li><strong>Google Workspace DNS Verification:</strong> ⏳ Pending user action at Namecheap</li>
-                <li><strong>Website Imagery Integration:</strong> ⏳ Waiting for all 16 images (hero, planets, explorers, testimonials)</li>
-                <li><strong>Phase 2-5 App UI:</strong> ⏳ Blocked until site messaging finalized (now READY)</li>
+                <li><strong>Google Workspace DNS:</strong> ⏳ Pending user action at Namecheap (TXT record)</li>
+                <li><strong>Website Imagery:</strong> ⏳ Waiting for 16 images (hero, planets, explorers, testimonials)</li>
+                <li><strong>Phase 2-5 App UI:</strong> ⏳ Ready to start (site messaging finalized)</li>
+                <li><strong>TikTok Platform Issues:</strong> ⏳ Resolved - slideshow ready to post</li>
             </ul>
         </div>
 
-        <!-- FILE PATHS & DEPLOYMENTS -->
-        <h2>📂 File Paths & Deployment Info</h2>
-        <div class="section">
-            <h3 style="margin-top: 0;">GitHub Repositories</h3>
+        <!-- DEPLOYMENT & FILES -->
+        <div class="section" id="deployment">
+            <h2>📂 Deployment & File Structure</h2>
+
+            <h3>GitHub Repositories</h3>
             <ul>
                 <li><strong>Main Site:</strong> <code>/Users/rk/clawd/sensory-galaxy/</code> (rkremers123/sensory-galaxy)</li>
-                <li><strong>Screenshot Tool:</strong> <code>/Users/rk/clawd/sensory-galaxy-screenshots/</code> (Next.js project)</li>
+                <li><strong>Screenshot Tool:</strong> <code>/Users/rk/clawd/sensory-galaxy-screenshots/</code> (Next.js)</li>
             </ul>
 
-            <h3 style="margin-top: 20px;">Live URLs</h3>
+            <h3>Live URLs</h3>
             <ul>
-                <li><strong>Landing Page:</strong> https://sensorygalaxy.com (auto-deploy on push)</li>
-                <li><strong>Blog:</strong> https://sensorygalaxy.com/blog.html</li>
-                <li><strong>FAQ:</strong> https://sensorygalaxy.com/faq.html</li>
-                <li><strong>Status (This Page):</strong> https://sensorygalaxy.com/status.html</li>
+                <li>https://sensorygalaxy.com (auto-deploy)</li>
+                <li>https://sensorygalaxy.com/blog.html</li>
+                <li>https://sensorygalaxy.com/faq.html</li>
+                <li>https://sensorygalaxy.com/status.html (this page)</li>
             </ul>
 
-            <h3 style="margin-top: 20px;">Deployment Process</h3>
+            <h3>Deployment Process</h3>
             <pre>cd /Users/rk/clawd/sensory-galaxy
 git add -A
 git commit -m "your message"
 git push origin main
-# Auto-deploys to Vercel within 1-2 minutes
+# Auto-deploys to Vercel in 1-2 minutes
 
-# Or manual Vercel deploy:
-vercel deploy --prod --token [TOKEN]</pre>
-
-            <h3 style="margin-top: 20px;">Backup Process</h3>
+# Manual deploy:
+vercel deploy --prod --token [TOKEN]
+            <h3>Backup Process</h3>
             <pre>bash /Users/rk/clawd/backup-full-site.sh
-# Creates daily backup in _BACKUPS/ (syncs to Google Drive)</pre>
+# Creates daily backups in _BACKUPS/ (syncs to Google Drive)
+# Three-layer backup: local + git history + cloud</pre>
+
+            <h3>Vercel API Token</h3>
+            <p><code>[REDACTED-IN-GIT-HISTORY]</code></p>
+
+            <h3>Key File Paths</h3>
+            <ul>
+                <li><code>index.html</code> - Main landing page (LIVE)</li>
+                <li><code>blog.html</code> - Blog with 2 posts</li>
+                <li><code>faq.html</code> - 10-question FAQ</li>
+                <li><code>status.html</code> - This master document</li>
+                <li><code>/assets/sos-phases/</code> - 5 SOS images</li>
+                <li><code>/assets/app screengrabs/</code> - 8 app screenshots</li>
+            </ul>
         </div>
 
-        <!-- CREDITS & NOTES -->
-        <h2>📝 Notes</h2>
-        <div class="section">
-            <p><strong>This page is the SINGLE SOURCE OF TRUTH for Sensory Galaxy project status.</strong> All team members should reference this page for current state, blockers, and next steps.</p>
-            <p>Updated daily after work sessions. Last maintenance: March 11, 2026 @ 11:45 PM PST.</p>
+        <!-- FINAL NOTE -->
+        <div class="section" style="background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; margin-top: 60px;">
+            <h3 style="margin-top: 0;">📝 Master Document Status</h3>
+            <p>This page is the <strong>SINGLE SOURCE OF TRUTH</strong> for all Sensory Galaxy project information. All team members should reference this page for current state, specifications, blockers, and next steps.</p>
+            <p>Updated daily after work sessions.</p>
+            <p><strong>Last Updated:</strong> March 11, 2026 @ 11:59 PM PST</p>
+            <p><strong>Next Update Expected:</strong> March 12, 2026 (after GA4 setup & paid ads launch)</p>
         </div>
 
+        <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Top</div>
     </div>
+
+    <script>
+        // Back to top button
+        window.addEventListener('scroll', () => {
+            const btn = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll for TOC links
+        document.querySelectorAll('.toc-item a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
