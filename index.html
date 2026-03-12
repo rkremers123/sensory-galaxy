@@ -418,12 +418,13 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 40px;
-            max-width: 900px;
+            max-width: 520px;
             margin: 0 auto;
         }
 
         .dashboard-image-item {
             text-align: center;
+            cursor: pointer;
         }
 
         .dashboard-image-item img {
@@ -433,6 +434,12 @@
             box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
             display: block;
             margin-bottom: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .dashboard-image-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.4);
         }
 
         .dashboard-image-caption {
@@ -1248,16 +1255,25 @@
         </div>
     </div>
 
+    <!-- Dashboard Image Fullscreen Modal -->
+    <div id="dashboardModal" class="carousel-modal">
+        <div class="carousel-modal-content">
+            <span class="carousel-modal-close" onclick="closeDashboardModal()">&times;</span>
+            <img id="dashboardModalImage" src="" alt="Dashboard">
+            <p class="carousel-modal-caption" id="dashboardModalCaption"></p>
+        </div>
+    </div>
+
     <!-- Dashboard Images Section -->
     <section class="dashboard-images-section">
         <h2 class="section-title">Inside the Parent Dashboard</h2>
         <p class="section-subtitle">See the insights and tools parents use to track progress</p>
         <div class="dashboard-images-grid">
-            <div class="dashboard-image-item">
+            <div class="dashboard-image-item" onclick="openDashboardModal(this)">
                 <img src="./assets/app%20screengrabs/final/7_dashboard1.png" alt="Dashboard Overview">
                 <p class="dashboard-image-caption">Track patterns in real time. See which sensory attributes your child is expanding into.</p>
             </div>
-            <div class="dashboard-image-item">
+            <div class="dashboard-image-item" onclick="openDashboardModal(this)">
                 <img src="./assets/app%20screengrabs/final/8_dashboard2.png" alt="Dashboard Insights">
                 <p class="dashboard-image-caption">Weekly insights and next steps. The app tells you what to try next based on their progress.</p>
             </div>
@@ -1658,6 +1674,22 @@
             modal.classList.remove('active');
         }
 
+        // Dashboard image fullscreen modal
+        function openDashboardModal(element) {
+            const modal = document.getElementById('dashboardModal');
+            const img = element.querySelector('img');
+            const caption = element.querySelector('.dashboard-image-caption');
+
+            document.getElementById('dashboardModalImage').src = img.src;
+            document.getElementById('dashboardModalCaption').textContent = caption.textContent;
+            modal.classList.add('active');
+        }
+
+        function closeDashboardModal() {
+            const modal = document.getElementById('dashboardModal');
+            modal.classList.remove('active');
+        }
+
         // Initialize carousel
         document.addEventListener('DOMContentLoaded', function() {
             currentSlide(currentSlideIndex);
@@ -1668,12 +1700,21 @@
                 carouselWrapper.addEventListener('click', openCarouselModal);
             }
 
-            // Close modal on outside click
-            const modal = document.getElementById('carouselModal');
-            if (modal) {
-                modal.addEventListener('click', function(e) {
+            // Close modals on outside click
+            const carouselModal = document.getElementById('carouselModal');
+            if (carouselModal) {
+                carouselModal.addEventListener('click', function(e) {
                     if (e.target === this) {
                         closeCarouselModal();
+                    }
+                });
+            }
+
+            const dashboardModal = document.getElementById('dashboardModal');
+            if (dashboardModal) {
+                dashboardModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeDashboardModal();
                     }
                 });
             }
