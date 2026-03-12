@@ -120,26 +120,55 @@
             background: rgba(102, 126, 234, 0.05);
             border: 1px solid rgba(102, 126, 234, 0.2);
             border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
+            overflow: hidden;
         }
 
         .faq-item h3 {
             font-size: 18px;
             font-weight: 600;
             color: #00d9ff;
-            margin-bottom: 12px;
+            margin: 0;
+            padding: 20px;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(102, 126, 234, 0.08);
         }
 
         .faq-item h3:hover {
             color: #ffffff;
+            background: rgba(102, 126, 234, 0.15);
         }
 
-        .faq-item p {
+        .faq-toggle {
+            font-size: 20px;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 500px;
+        }
+
+        .faq-content p {
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.8;
+            padding: 0 20px 20px 20px;
+            margin: 0;
         }
 
         footer {
@@ -221,54 +250,74 @@
     <section class="faq-section">
         <h2>Common Questions</h2>
 
-        <div class="faq-item">
-            <h3>What is the Sequential Oral Sensory (SOS) Method?</h3>
-            <p>The SOS method is a research-backed approach developed by occupational and speech therapists to help kids with sensory-sensitive eating. It breaks food exploration into 5 manageable phases: LOOK, TOUCH, SMELL, LICK, and TASTE. Instead of forcing kids to eat, the SOS method lets them explore at their own pace, which removes pressure and anxiety and allows their nervous system to gradually accept new foods.</p>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <h3>What is the Sequential Oral Sensory (SOS) Method? <span class="faq-toggle">▼</span></h3>
+            <div class="faq-content">
+                <p>The SOS method is a research-backed approach developed by occupational and speech therapists to help kids with sensory-sensitive eating. It breaks food exploration into 5 manageable phases: LOOK, TOUCH, SMELL, LICK, and TASTE. Instead of forcing kids to eat, the SOS method lets them explore at their own pace, which removes pressure and anxiety and allows their nervous system to gradually accept new foods.</p>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h3>Is Sensory Galaxy just a game, or does it actually help?</h3>
-            <p>It's both. Sensory Galaxy gamifies the SOS method with badges, points, and an explorer guide, but behind the game is serious data analysis. The app tracks sensory patterns your child gravitates toward and suggests bridge foods based on their actual preferences. Parents see real progress through the dashboard. The fun keeps kids engaged while the science drives real change.</p>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <h3>Is Sensory Galaxy just a game, or does it actually help? <span class="faq-toggle">▼</span></h3>
+            <div class="faq-content">
+                <p>It's both. Sensory Galaxy gamifies the SOS method with badges, points, and an explorer guide, but behind the game is serious data analysis. The app tracks sensory patterns your child gravitates toward and suggests bridge foods based on their actual preferences. Parents see real progress through the dashboard. The fun keeps kids engaged while the science drives real change.</p>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h3>How long before I see progress?</h3>
-            <p>Most parents see real progress within 4 to 8 weeks. Some notice changes faster (2-3 weeks), while others take longer depending on the severity of sensory sensitivity. The key is consistency—logging foods regularly and following the SOS phases without pressure. By week 3, most parents report seeing their child more willing to explore new foods.</p>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <h3>How long before I see progress? <span class="faq-toggle">▼</span></h3>
+            <div class="faq-content">
+                <p>Most parents see real progress within 4 to 8 weeks. Some notice changes faster (2-3 weeks), while others take longer depending on the severity of sensory sensitivity. The key is consistency—logging foods regularly and following the SOS phases without pressure. By week 3, most parents report seeing their child more willing to explore new foods.</p>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h3>Does this work for kids with food allergies or medical restrictions?</h3>
-            <p>Absolutely. Sensory Galaxy's food database includes filters for allergies, preferences, and restrictions. You can mark foods as off-limits, and the app will never suggest them. The method focuses on expanding eating within what's safe and allowed for your child. It's designed to work alongside medical guidance from allergists and pediatricians.</p>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <h3>Does this work for kids with food allergies or medical restrictions? <span class="faq-toggle">▼</span></h3>
+            <div class="faq-content">
+                <p>Absolutely. Sensory Galaxy's food database includes filters for allergies, preferences, and restrictions. You can mark foods as off-limits, and the app will never suggest them. The method focuses on expanding eating within what's safe and allowed for your child. It's designed to work alongside medical guidance from allergists and pediatricians.</p>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h3>Can my child use this without me?</h3>
-            <p>Sensory Galaxy is designed as a partnership between parent and child. Kids use the app to explore and earn badges. Parents use the dashboard to see patterns and guide next steps. Younger kids (3-6) will need parent help logging foods; older kids (7+) can do more independently with parent oversight. The parent dashboard is where the real insights happen.</p>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <h3>Can my child use this without me? <span class="faq-toggle">▼</span></h3>
+            <div class="faq-content">
+                <p>Sensory Galaxy is designed as a partnership between parent and child. Kids use the app to explore and earn badges. Parents use the dashboard to see patterns and guide next steps. Younger kids (3-6) will need parent help logging foods; older kids (7+) can do more independently with parent oversight. The parent dashboard is where the real insights happen.</p>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h3>What if my child refuses to use the app?</h3>
-            <p>The app is designed to feel like an adventure, not homework. Most kids enjoy picking their explorer character and earning badges. If your child isn't interested at first, that's okay. Many parents use the app to guide conversations at mealtimes rather than having the child interact directly. The goal is progress, not perfect app usage.</p>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <h3>What if my child refuses to use the app? <span class="faq-toggle">▼</span></h3>
+            <div class="faq-content">
+                <p>The app is designed to feel like an adventure, not homework. Most kids enjoy picking their explorer character and earning badges. If your child isn't interested at first, that's okay. Many parents use the app to guide conversations at mealtimes rather than having the child interact directly. The goal is progress, not perfect app usage.</p>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h3>Is my family's data private?</h3>
-            <p>Yes. Your family's food logs, patterns, and insights are private to your account. We never sell data. You can export reports to share with therapists or pediatricians if you choose. Privacy and security are core to how we operate.</p>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <h3>Is my family's data private? <span class="faq-toggle">▼</span></h3>
+            <div class="faq-content">
+                <p>Yes. Your family's food logs, patterns, and insights are private to your account. We never sell data. You can export reports to share with therapists or pediatricians if you choose. Privacy and security are core to how we operate.</p>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h3>What if it doesn't work for us?</h3>
-            <p>Fair question. Some families see faster results than others. The SOS method works well for sensory-sensitive eating, but if your child's selective eating stems from other causes (anxiety, control, negative past experiences), you may need a therapist alongside the app. We recommend trying for at least 4-6 weeks consistently before deciding. If it's genuinely not helping, you can cancel anytime.</p>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <h3>What if it doesn't work for us? <span class="faq-toggle">▼</span></h3>
+            <div class="faq-content">
+                <p>Fair question. Some families see faster results than others. The SOS method works well for sensory-sensitive eating, but if your child's selective eating stems from other causes (anxiety, control, negative past experiences), you may need a therapist alongside the app. We recommend trying for at least 4-6 weeks consistently before deciding. If it's genuinely not helping, you can cancel anytime.</p>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h3>How does the AI recommend bridge foods?</h3>
-            <p>Our AI analyzes patterns in your child's food logs: textures they like (crunchy, soft, etc.), flavors they prefer (sweet, salty, bland), temperatures they gravitate toward, and colors they're drawn to. Bridge foods introduce ONE new sensory element at a time. If they like crunchy salty crackers, a bridge food might be crunchy salty pretzels (familiar but different). This makes each step feel doable.</p>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <h3>How does the AI recommend bridge foods? <span class="faq-toggle">▼</span></h3>
+            <div class="faq-content">
+                <p>Our AI analyzes patterns in your child's food logs: textures they like (crunchy, soft, etc.), flavors they prefer (sweet, salty, bland), temperatures they gravitate toward, and colors they're drawn to. Bridge foods introduce ONE new sensory element at a time. If they like crunchy salty crackers, a bridge food might be crunchy salty pretzels (familiar but different). This makes each step feel doable.</p>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h3>Can I use this with a feeding therapist?</h3>
-            <p>Yes, absolutely. Many therapists recommend Sensory Galaxy as a tool to extend progress between sessions. You can export reports from the parent dashboard to share with your child's therapist or occupational specialist. The app is designed to complement professional help, not replace it.</p>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <h3>Can I use this with a feeding therapist? <span class="faq-toggle">▼</span></h3>
+            <div class="faq-content">
+                <p>Yes, absolutely. Many therapists recommend Sensory Galaxy as a tool to extend progress between sessions. You can export reports from the parent dashboard to share with your child's therapist or occupational specialist. The app is designed to complement professional help, not replace it.</p>
+            </div>
         </div>
     </section>
 
@@ -284,5 +333,11 @@
             <p>&copy; 2026 Sensory Galaxy. Helping parents and kids thrive together.</p>
         </div>
     </footer>
+
+    <script>
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
