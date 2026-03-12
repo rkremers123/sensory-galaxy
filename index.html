@@ -237,9 +237,10 @@
         .carousel-wrapper {
             position: relative;
             width: 100%;
-            max-width: 380px;
+            max-width: 323px;
             margin: 0 auto;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .carousel-container {
@@ -344,6 +345,115 @@
             .carousel-wrapper {
                 max-width: 100%;
                 padding: 0 15px;
+            }
+        }
+
+        /* Carousel Fullscreen Modal */
+        .carousel-modal {
+            display: none;
+            position: fixed;
+            z-index: 300;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s;
+            overflow-y: auto;
+        }
+
+        .carousel-modal.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .carousel-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .carousel-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: #00d9ff;
+            font-size: 36px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .carousel-modal-close:hover {
+            color: #ffffff;
+        }
+
+        .carousel-modal img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.4);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .carousel-modal-caption {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            text-align: center;
+            max-width: 100%;
+            line-height: 1.6;
+        }
+
+        /* Dashboard Images Section */
+        .dashboard-images-section {
+            background: #0a0a1e;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard-images-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .dashboard-image-item {
+            text-align: center;
+        }
+
+        .dashboard-image-item img {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-image-caption {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-images-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .carousel-modal.active {
+                padding: 20px 10px;
+            }
+
+            .carousel-modal-close {
+                top: -40px;
+                font-size: 28px;
             }
         }
 
@@ -1129,6 +1239,31 @@
         </div>
     </section>
 
+    <!-- Carousel Fullscreen Modal -->
+    <div id="carouselModal" class="carousel-modal">
+        <div class="carousel-modal-content">
+            <span class="carousel-modal-close" onclick="closeCarouselModal()">&times;</span>
+            <img id="modalImage" src="" alt="Screenshot">
+            <p class="carousel-modal-caption" id="modalCaption"></p>
+        </div>
+    </div>
+
+    <!-- Dashboard Images Section -->
+    <section class="dashboard-images-section">
+        <h2 class="section-title">Inside the Parent Dashboard</h2>
+        <p class="section-subtitle">See the insights and tools parents use to track progress</p>
+        <div class="dashboard-images-grid">
+            <div class="dashboard-image-item">
+                <img src="./assets/app%20screengrabs/final/7_dashboard1.png" alt="Dashboard Overview">
+                <p class="dashboard-image-caption">Track patterns in real time. See which sensory attributes your child is expanding into.</p>
+            </div>
+            <div class="dashboard-image-item">
+                <img src="./assets/app%20screengrabs/final/8_dashboard2.png" alt="Dashboard Insights">
+                <p class="dashboard-image-caption">Weekly insights and next steps. The app tells you what to try next based on their progress.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- SOS Method Introduction -->
     <section class="sos-intro">
         <h2 class="section-title">The SOS Method: Sequential Oral Sensory (SOS)</h2>
@@ -1515,9 +1650,43 @@
             dots[currentSlideIndex - 1].classList.add('active');
         }
 
+        // Carousel fullscreen modal
+        function openCarouselModal() {
+            const modal = document.getElementById('carouselModal');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const currentSlide = slides[currentSlideIndex - 1];
+            const img = currentSlide.querySelector('img');
+            const caption = currentSlide.querySelector('.carousel-caption');
+
+            document.getElementById('modalImage').src = img.src;
+            document.getElementById('modalCaption').textContent = caption.textContent;
+            modal.classList.add('active');
+        }
+
+        function closeCarouselModal() {
+            const modal = document.getElementById('carouselModal');
+            modal.classList.remove('active');
+        }
+
         // Initialize carousel
         document.addEventListener('DOMContentLoaded', function() {
             currentSlide(currentSlideIndex);
+
+            // Add click listener to carousel wrapper
+            const carouselWrapper = document.querySelector('.carousel-wrapper');
+            if (carouselWrapper) {
+                carouselWrapper.addEventListener('click', openCarouselModal);
+            }
+
+            // Close modal on outside click
+            const modal = document.getElementById('carouselModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeCarouselModal();
+                    }
+                });
+            }
         });
 
         // Touch swipe support for mobile
