@@ -226,6 +226,115 @@
             line-height: 1.8;
         }
 
+        /* Screenshots Carousel */
+        .screenshots-carousel {
+            background: #0a0a1e;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .carousel-caption {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 217, 255, 0.3);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 24px;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        .carousel-prev:hover, .carousel-next:hover {
+            background: rgba(0, 217, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 217, 255, 0.4);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 217, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .dot.active {
+            background: #00d9ff;
+            border-color: #00d9ff;
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-prev, .carousel-next {
+                padding: 10px 15px;
+                font-size: 18px;
+            }
+
+            .carousel-slide img {
+                max-width: 100%;
+            }
+        }
+
         /* Parent Dashboard Section */
         .dashboard-section {
             background: #0a0a1e;
@@ -939,6 +1048,53 @@
         </div>
     </section>
 
+    <!-- App Screenshots Carousel -->
+    <section class="screenshots-carousel">
+        <h2 class="section-title">See It In Action</h2>
+        <p class="section-subtitle">Explore the app journey your child will experience</p>
+        
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="./assets/app screengrabs/final/exploreplanets.png" alt="Screenshot 1: Explore Planets">
+                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/app screengrabs/final/explorerselection.png" alt="Screenshot 2: Explorer Selection">
+                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/app screengrabs/final/exploringjourney.png" alt="Screenshot 3: Exploring Journey">
+                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/app screengrabs/final/foodexploration.png" alt="Screenshot 4: Food Exploration">
+                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/app screengrabs/final/goal food.png" alt="Screenshot 5: Goal Food">
+                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/app screengrabs/final/setup foods.png" alt="Screenshot 6: Setup Foods">
+                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                </div>
+            </div>
+
+            <button class="carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <button class="carousel-next" onclick="moveCarousel(1)">&#10095;</button>
+
+            <div class="carousel-dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot" onclick="currentSlide(6)"></span>
+            </div>
+        </div>
+    </section>
+
     <!-- Parent Dashboard Section -->
     <section class="dashboard-section">
         <h2 class="section-title">The Parent Dashboard</h2>
@@ -1298,6 +1454,8 @@
     </footer>
 
     <script>
+        let currentSlideIndex = 1;
+
         function handleWaitlist(event) {
             event.preventDefault();
             const form = event.target;
@@ -1318,6 +1476,60 @@
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';
+            }
+        }
+
+        // Carousel functions
+        function moveCarousel(n) {
+            currentSlide(currentSlideIndex += n);
+        }
+
+        function currentSlide(n) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (n > slides.length) {
+                currentSlideIndex = 1;
+            }
+            if (n < 1) {
+                currentSlideIndex = slides.length;
+            }
+
+            const carousel = document.querySelector('.carousel-container');
+            const offset = -(currentSlideIndex - 1) * 100;
+            carousel.style.transform = `translateX(${offset}%)`;
+
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlideIndex - 1].classList.add('active');
+        }
+
+        // Initialize carousel
+        document.addEventListener('DOMContentLoaded', function() {
+            currentSlide(currentSlideIndex);
+        });
+
+        // Touch swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
+        if (carouselWrapper) {
+            carouselWrapper.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carouselWrapper.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+        }
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                moveCarousel(1);
+            }
+            if (touchEndX > touchStartX + 50) {
+                moveCarousel(-1);
             }
         }
     </script>
