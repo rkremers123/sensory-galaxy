@@ -237,7 +237,7 @@
         .carousel-wrapper {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 380px;
             margin: 0 auto;
             overflow: hidden;
         }
@@ -258,7 +258,7 @@
 
         .carousel-slide img {
             width: 100%;
-            max-width: 500px;
+            max-width: 100%;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
             margin-bottom: 20px;
@@ -325,6 +325,11 @@
         }
 
         @media (max-width: 768px) {
+            .carousel-wrapper {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+
             .carousel-prev, .carousel-next {
                 padding: 10px 15px;
                 font-size: 18px;
@@ -332,6 +337,13 @@
 
             .carousel-slide img {
                 max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-wrapper {
+                max-width: 100%;
+                padding: 0 15px;
             }
         }
 
