@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Sensory Galaxy | SOS Method & Selective Eating Resources</title>
+    <meta name="description" content="Expert insights on selective eating, sensory processing, food aversion, and the Sequential Oral Sensory (SOS) method. Resources for parents helping kids with sensory-sensitive eating.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #0a0a1e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='20' cy='20' r='1' fill='%2300d9ff' opacity='0.3'/%3E%3Ccircle cx='80' cy='80' r='1' fill='%2300d9ff' opacity='0.2'/%3E%3C/svg%3E");
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+        }
+
+        .logo-header {
+            background: #0a0a1e;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .logo-header img {
+            max-width: 90%;
+            height: auto;
+            max-height: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(102, 126, 234, 0.1));
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .blog-post {
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .blog-meta {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            padding-bottom: 20px;
+        }
+
+        .blog-post h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .blog-post p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .blog-post h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #00d9ff;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        .blog-post ul, .blog-post ol {
+            margin: 20px 0 20px 40px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .blog-post li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: rgba(10, 10, 30, 0.8);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: #00d9ff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .blog-post {
+                padding: 25px;
+            }
+
+            .blog-post h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#how">How It Works</a></li>
+            <li><a href="/#pricing">Pricing</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Logo Header -->
+    <div class="logo-header">
+        <img src="./assets/brand identity/logo_vertical.PNG" alt="Sensory Galaxy Logo">
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Sensory Galaxy Blog</h1>
+        <p>Expert insights on selective eating, food aversion, sensory processing, and the Sequential Oral Sensory (SOS) method.</p>
+    </section>
+
+    <!-- Blog Content -->
+    <div class="blog-container">
+        <article class="blog-post">
+            <div class="blog-meta">March 11, 2026 | By Sensory Galaxy</div>
+            <h2>Food Aversion vs. Picky Eating: Why Understanding the Difference Changes Everything</h2>
+
+            <p>Your child refuses vegetables. Your friend's child is "picky" and will eat broccoli if it's covered in cheese. You assume they're the same thing. They're not. And if you're trying to help a child with <strong>selective eating</strong> or <strong>food aversion</strong>, understanding the difference is crucial.</p>
+
+            <h3>Picky Eating Is a Choice. Food Aversion Is Your Nervous System.</h3>
+
+            <p>A picky eater says "I don't like broccoli." A child with sensory-sensitive eating says "Broccoli feels wrong in my mouth, and I can't make myself swallow it." One is preference. The other is sensory processing.</p>
+
+            <p>Here's the critical part: <strong>Forcing a child with food aversion to eat is like asking someone with motion sickness to spin in a chair.</strong> No amount of willpower fixes a biological response.</p>
+
+            <h3>What Is Sensory-Sensitive Eating?</h3>
+
+            <p>Kids with sensory processing differences experience food differently than other children. A piece of chicken might feel threatening because:</p>
+
+            <ul>
+                <li><strong>Texture is overwhelming.</strong> Soft, mushy foods feel suffocating. Crunchy foods feel threatening.</li>
+                <li><strong>Flavors are too intense.</strong> What tastes like "salt" to you tastes like a chemical attack to them.</li>
+                <li><strong>Temperatures matter.</strong> Cold or hot can trigger a gag reflex.</li>
+                <li><strong>Colors create anxiety.</strong> An unfamiliar color on the plate signals "danger."</li>
+            </ul>
+
+            <p>This isn't picky eating. This is a nervous system that's hypersensitive to sensory input. And it's more common than you think: <strong>1 in 3 kids experience some form of sensory-sensitive eating.</strong></p>
+
+            <h3>The Cost of Treating Food Aversion Like Pickiness</h3>
+
+            <p>When parents treat sensory-sensitive eating like regular picky eating, they typically:</p>
+
+            <ul>
+                <li>Push the child to "just try it"</li>
+                <li>Use reward systems for eating feared foods</li>
+                <li>Create mealtimes that feel like battles</li>
+                <li>Watch anxiety and avoidance get worse, not better</li>
+            </ul>
+
+            <p>The nervous system learns: "This environment is unsafe." Mealtimes become traumatic. And the list of safe foods gets smaller, not larger.</p>
+
+            <h3>What Actually Works: The SOS Method</h3>
+
+            <p>Instead of forcing, the Sequential Oral Sensory (SOS) method removes pressure entirely. It breaks food exploration into 5 manageable phases:</p>
+
+            <ol>
+                <li><strong>LOOK</strong> - Just observe the food. No touching required.</li>
+                <li><strong>TOUCH</strong> - Feel the texture. Get used to how it feels in your hands.</li>
+                <li><strong>SMELL</strong> - Bring it close. Explore the aroma.</li>
+                <li><strong>LICK</strong> - Taste with just the tip of your tongue.</li>
+                <li><strong>TASTE</strong> - Chew and eat.</li>
+            </ol>
+
+            <p>Your child moves through these phases at their own pace. No rushing. No pressure. The nervous system gets time to adjust, and anxiety drops dramatically.</p>
+
+            <p>Most parents using this approach see real progress within 4-8 weeks. By week 3, kids are more willing to try new foods—not because they're being forced, but because the anxiety is gone.</p>
+
+            <h3>The Question to Ask Yourself</h3>
+
+            <p>If your child has selective eating, ask this: "Is this preference, or is this fear?" The answer changes everything about how you help them.</p>
+
+            <p>If it's fear, forcing doesn't work. Compassion does. And that's where the SOS method shines: it acknowledges the fear, removes the pressure, and lets the nervous system gradually accept new foods.</p>
+
+            <p>Your child isn't broken. Their nervous system just needs a different approach.</p>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/#how">How It Works</a>
+                <a href="/#pricing">Pricing</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/faq.html">FAQ</a>
+                <a href="mailto:hello@sensorygalaxy.com">Contact</a>
+            </div>
+            <p>&copy; 2026 Sensory Galaxy. Helping parents and kids thrive together.</p>
+        </div>
+    </footer>
+</body>
+</html>
