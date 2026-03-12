@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OT & Feeding Specialist Outreach List - Sensory Galaxy</title>
+    <meta name="description" content="Verified occupational therapists and feeding specialists trained in SOS method and sensory-sensitive eating. Priority contact list for partnerships and collaboration.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #0a0a1e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='20' cy='20' r='1' fill='%2300d9ff' opacity='0.3'/%3E%3Ccircle cx='80' cy='80' r='1' fill='%2300d9ff' opacity='0.2'/%3E%3C/svg%3E");
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        nav {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+            display: flex;
+            justify-content: center;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #00d9ff;
+        }
+        .logo-header {
+            background: #0a0a1e;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        .logo-header img {
+            max-width: 90%;
+            height: auto;
+            max-height: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(102, 126, 234, 0.1));
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        .hero p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        .tier-section {
+            margin-bottom: 80px;
+        }
+        .tier-header {
+            border-bottom: 2px solid #00d9ff;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .tier-header h2 {
+            font-size: 36px;
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+        .tier-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+        .contact-card {
+            background: rgba(102, 126, 234, 0.05);
+            border-left: 4px solid #00d9ff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .contact-card:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-left-color: #667eea;
+        }
+        .contact-rank {
+            display: inline-block;
+            background: #667eea;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .contact-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .contact-title {
+            font-size: 14px;
+            color: #00d9ff;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .contact-location {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
+        }
+        .contact-details {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .contact-detail-line {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .contact-detail-line:last-child {
+            margin-bottom: 0;
+        }
+        .contact-detail-label {
+            color: #00d9ff;
+            font-weight: 600;
+            margin-right: 10px;
+            min-width: 70px;
+        }
+        .contact-reason {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 15px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .contact-reason-label {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-style: normal;
+        }
+        footer {
+            background: rgba(10, 10, 30, 0.8);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+        }
+        footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .contact-name {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Logo Header -->
+    <div class="logo-header">
+        <img src="./assets/brand identity/logo_vertical.PNG" alt="Sensory Galaxy Logo">
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>OT & Feeding Specialist Directory</h1>
+        <p>Verified occupational therapists and feeding specialists trained in SOS method and sensory-sensitive eating approaches.</p>
+    </section>
+
+    <!-- Content -->
+    <div class="container">
+        <!-- TIER 1 -->
+        <div class="tier-section">
+            <div class="tier-header">
+                <h2>🌟 TIER 1: SOS Founders, Researchers & Master Trainers</h2>
+                <p>World-renowned experts who created, teach, and conduct research on the SOS approach. Highest authority and reach.</p>
+            </div>
+
+            <!-- 1 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #1</div>
+                <div class="contact-name">Dr. Kay Toomey, Ph.D.</div>
+                <div class="contact-title">Pediatric Psychologist | SOS Approach Founder</div>
+                <div class="contact-location">Toomey & Associates, Inc. | Denver, CO</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Email:</span>
+                        <span>info@sosapproach.com</span>
+                    </div>
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Phone:</span>
+                        <span>(720) 672-1143</span>
+                    </div>
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>sosapproachtofeeding.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Founder and creator of Sequential Oral Sensory (SOS) Approach to Feeding. Over 35 years of expertise in pediatric feeding. Leads SOS certification programs and trains therapists worldwide.</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #2</div>
+                <div class="contact-name">Dr. Lucy Jane Miller, Ph.D., OTR/L, FAOTA</div>
+                <div class="contact-title">Founder | Occupational Therapist | SPD Expert</div>
+                <div class="contact-location">STAR Institute for Sensory Processing | Denver, CO</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Phone:</span>
+                        <span>(303) 221-7827</span>
+                    </div>
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>sensoryhealth.org</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Leading expert in sensory processing disorder. Collaborates with Kay Toomey on SOS method. Multidisciplinary feeding clinic at STAR serves autism and sensory-sensitive children.</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #3</div>
+                <div class="contact-name">Laura Cipullo, MS, RD, LDN</div>
+                <div class="contact-title">Registered Dietitian | SOS-Trained Feeding Specialist</div>
+                <div class="contact-location">Laura Cipullo Whole Nutrition | New York, NY</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>lauracipullo.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Nationally recognized feeding disorders specialist trained in SOS approach. Large professional network of therapists and nutritionists. Active content creator and educator.</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #4</div>
+                <div class="contact-name">Chatterboxes Speech & Occupational Therapy</div>
+                <div class="contact-title">SOS-Trained Clinical Team</div>
+                <div class="contact-location">Boston & Lexington, MA</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Phone:</span>
+                        <span>(617) 969-8255</span>
+                    </div>
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>teamchatterboxes.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">SLP and OT team trained in SOS approach. Established feeding clinic serving children with sensory-sensitive eating and autism. Two-location practice with strong reputation.</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #5</div>
+                <div class="contact-name">STAR Institute Feeding Clinic</div>
+                <div class="contact-title">Multidisciplinary Pediatric Feeding Team</div>
+                <div class="contact-location">Denver, CO</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Phone:</span>
+                        <span>(303) 221-7827</span>
+                    </div>
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>sensoryhealth.org/basic/feeding-therapy</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Uses SOS Approach as core methodology. Multidisciplinary team treating autism and sensory processing disorders. Research facility publishing on feeding outcomes.</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #6</div>
+                <div class="contact-name">NAPA Center Denver</div>
+                <div class="contact-title">Pediatric Occupational & Speech Therapy</div>
+                <div class="contact-location">Centennial, CO</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Phone:</span>
+                        <span>(720) 791-2881</span>
+                    </div>
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>napacenter.org</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">NAPA Center offers intensive feeding therapy with multidisciplinary approach for children with autism and sensory processing disorders. Multiple locations nationally.</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #7</div>
+                <div class="contact-name">NAPA Center Chicago</div>
+                <div class="contact-title">Pediatric Occupational & Speech Therapy</div>
+                <div class="contact-location">Niles, IL</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Phone:</span>
+                        <span>(847) 595-1945</span>
+                    </div>
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>napacenter.org/about-chicago</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Midwest hub for intensive pediatric feeding and sensory therapy. Founded on holistic approach to child development. Growing network of franchises.</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #8</div>
+                <div class="contact-name">SOS Approach to Feeding Official</div>
+                <div class="contact-title">SOS Professor Network & Certification</div>
+                <div class="contact-location">Nationwide (Online & In-Person)</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Phone:</span>
+                        <span>(720) 672-1143</span>
+                    </div>
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>sosapproachtofeeding.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Official SOS certification and training organization. Network of SOS Professors across US. Gateway to connecting with 1000+ certified SOS therapists.</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #9</div>
+                <div class="contact-name">New Horizons Wellness Services</div>
+                <div class="contact-title">Pediatric Occupational Therapy | Feeding Specialist</div>
+                <div class="contact-location">Tigard, OR</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>nhws.us</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Multidisciplinary clinic specializing in pediatric feeding disorders. Active content creators on OT and feeding. West Coast presence for partnership expansion.</div>
+            </div>
+
+            <!-- 10 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #10</div>
+                <div class="contact-name">Feeding Matters (Directory & Resources)</div>
+                <div class="contact-title">Nonprofit Provider Network</div>
+                <div class="contact-location">Nationwide</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>feedingmatters.org</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Largest directory of 500+ verified pediatric feeding providers. Gateway to nationwide therapist network. Educational resources and advocacy platform.</div>
+            </div>
+        </div>
+
+        <!-- TIER 2 -->
+        <div class="tier-section">
+            <div class="tier-header">
+                <h2>⭐ TIER 2: Regional Feeding Clinics & Autism-Focused OT Centers</h2>
+                <p>Established multidisciplinary clinics serving neurodivergent and sensory-sensitive children. Strong local/regional reach.</p>
+            </div>
+
+            <!-- 11 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #11</div>
+                <div class="contact-name">CA Therapy Services (Feeding Clinic)</div>
+                <div class="contact-title">Occupational Therapy | Feeding Specialization</div>
+                <div class="contact-location">Ontario, CA</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>catherapyservices.ca</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Specializes in sensory-sensitive eating and mealtime routines. Multi-location practice. Actively treats selective eating with evidence-based approaches.</div>
+            </div>
+
+            <!-- 12 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #12</div>
+                <div class="contact-name">Occupational Therapy Australia (Feeding Program)</div>
+                <div class="contact-title">Pediatric Occupational Therapy</div>
+                <div class="contact-location">Australia (International Reach)</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Phone:</span>
+                        <span>+61 2 9913 3823</span>
+                    </div>
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Email:</span>
+                        <span>hello@occupationaltherapy.com.au</span>
+                    </div>
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>occupationaltherapy.com.au</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">International OT practice with feeding selectivity programs. Global partnership opportunity. Evidence-based approach to pediatric feeding disorders.</div>
+            </div>
+
+            <!-- 13 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #13</div>
+                <div class="contact-name">Playful Eats (App + Therapy Partnerships)</div>
+                <div class="contact-title">Gamified Picky Eating Intervention</div>
+                <div class="contact-location">Nationwide | Google Play & Apple App Store</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Platform:</span>
+                        <span>play.google.com (Playful Eats app)</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Gamified approach to picky eating with therapist partnerships. Potential collaboration opportunity for integration or referral partnerships.</div>
+            </div>
+
+            <!-- 14 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #14</div>
+                <div class="contact-name">Therapy Works (Feeding Education)</div>
+                <div class="contact-title">Therapy & Education Resources</div>
+                <div class="contact-location">Online Platform</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>therapyworks.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Educational platform on SOS approach and feeding disorders. Large therapist audience. Content partnership and educator collaboration opportunity.</div>
+            </div>
+
+            <!-- 15 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #15</div>
+                <div class="contact-name">Autism Center of Excellence (SOS Training)</div>
+                <div class="contact-title">Feeding Therapy & Early Intervention</div>
+                <div class="contact-location">Nationwide Network</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>autismcoe.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Specializes in autism + feeding challenges. Trains therapists in SOS Early Intervention approach. Reaches neurodivergent community directly.</div>
+            </div>
+
+            <!-- 16 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #16</div>
+                <div class="contact-name">Growing Independent Eaters (Resource Hub)</div>
+                <div class="contact-title">Feeding Education & Parent Resources</div>
+                <div class="contact-location">Online | Content Platform</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>growingindependenteaters.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Parent education platform on feeding development. Large audience of parents seeking help. Content collaboration and parental outreach channel.</div>
+            </div>
+
+            <!-- 17 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #17</div>
+                <div class="contact-name">Feeding Littles (Parent App & Community)</div>
+                <div class="contact-title">Feeding Education App</div>
+                <div class="contact-location">Online | Podcast & App</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>feedinglittles.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Parent-focused feeding education platform. Large engaged community. Potential for app partnership, affiliate relationship, or cross-promotion.</div>
+            </div>
+
+            <!-- 18 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #18</div>
+                <div class="contact-name">Feeding Bliss (Therapy & Education)</div>
+                <div class="contact-title">Feeding Specialist Network</div>
+                <div class="contact-location">Online | Regional Partnerships</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>feedingbliss.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Network of feeding specialists across regions. Podcast and educational content reach. Partnership opportunity for therapist referral network.</div>
+            </div>
+
+            <!-- 19 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #19</div>
+                <div class="contact-name">Kids Who Eat (Feeding Experts Community)</div>
+                <div class="contact-title">Feeding Specialist Collective</div>
+                <div class="contact-location">Online | Community Platform</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>kidswhoeat.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Community of feeding specialists and educators. Content collaboration and therapist network expansion opportunity.</div>
+            </div>
+
+            <!-- 20 -->
+            <div class="contact-card">
+                <div class="contact-rank">Priority #20</div>
+                <div class="contact-name">OT Potential (Directory & Resources)</div>
+                <div class="contact-title">Occupational Therapist Directory & Education</div>
+                <div class="contact-location">Online | Nationwide OT Network</div>
+                <div class="contact-details">
+                    <div class="contact-detail-line">
+                        <span class="contact-detail-label">Website:</span>
+                        <span>otpotential.com</span>
+                    </div>
+                </div>
+                <div class="contact-reason-label">Why Contact:</div>
+                <div class="contact-reason">Largest OT practitioner directory and education platform. Gateway to 1000s of OTs nationwide. Educational partnership and visibility opportunity.</div>
+            </div>
+        </div>
+
+        <!-- How to Use This List -->
+        <div style="background: rgba(0, 217, 255, 0.05); border: 1px solid rgba(0, 217, 255, 0.2); padding: 40px; border-radius: 8px; margin-top: 60px;">
+            <h3 style="color: #00d9ff; font-size: 24px; margin-bottom: 20px;">📋 How to Use This List</h3>
+            <ul style="color: rgba(255, 255, 255, 0.85); line-height: 2; margin-left: 20px;">
+                <li><strong>Tier 1 (Priorities 1-10):</strong> Start here for highest-authority partnerships. Founders, trainers, and research leaders. These contacts can amplify your message to 100+ therapists.</li>
+                <li><strong>Tier 2 (Priorities 11-20):</strong> Regional clinics and community platforms. Target for direct therapist partnerships and parent audience reach.</li>
+                <li><strong>Email Strategy:</strong> Personalized pitches highlighting how Sensory Galaxy supports their SOS-based practice and serves their client base.</li>
+                <li><strong>Next Step:</strong> Review priorities, customize email outreach, and track responses with relationship management system.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Sensory Galaxy. Building partnerships with occupational therapists and feeding specialists to support neurodivergent children.</p>
+    </footer>
+</body>
+</html>
