@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6F6SBXY7MQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-6F6SBXY7MQ');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensory Galaxy App - SOS Method for Picky Eating & Sensory Sensitivity</title>
@@ -1407,6 +1415,15 @@
             event.preventDefault();
             const form = event.target;
             const name = form.elements[0].value;
+            const email = form.elements[1].value;
+            
+            // GA4 conversion event
+            gtag('event', 'generate_lead', {
+                'event_category': 'engagement',
+                'event_label': 'waitlist_signup',
+                'user_name': name,
+                'user_email': email
+            });
             
             alert(`Thanks, ${name}! We've added you to the waitlist. Check your email for confirmation.`);
             form.reset();
