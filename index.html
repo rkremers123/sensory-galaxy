@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sensory Galaxy - Help Your Child Thrive With Selective Eating</title>
+    <title>Sensory Galaxy App - SOS Method for Picky Eating & Sensory Sensitivity</title>
+    <meta name="description" content="Help your child overcome selective eating with Sensory Galaxy. Uses the science-backed Sequential Oral Sensory (SOS) method for kids 3-10 with sensory-sensitive eating. AI-powered food suggestions, parent insights, and progress tracking.">
     <style>
         * {
             margin: 0;
@@ -28,7 +29,7 @@
             z-index: 100;
             border-bottom: 1px solid rgba(0, 217, 255, 0.2);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
         }
 
@@ -226,6 +227,72 @@
             line-height: 1.8;
         }
 
+        /* SOS Method Intro */
+        .sos-intro {
+            background: #0a0a1e;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sos-phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 50px;
+        }
+
+        .phase {
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .phase-number {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d9ff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .phase-label {
+            font-size: 20px;
+            font-weight: 700;
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+
+        .phase-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .sos-explanation {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .sos-explanation h3 {
+            color: #00d9ff;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .sos-explanation p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
         /* Screenshots Carousel */
         .screenshots-carousel {
             background: #0a0a1e;
@@ -414,6 +481,11 @@
             line-height: 1.6;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         /* Dashboard Images Section */
         .dashboard-images-section {
             background: #0a0a1e;
@@ -470,269 +542,6 @@
                 top: -40px;
                 font-size: 28px;
             }
-        }
-
-        /* Parent Dashboard Section */
-        .dashboard-section {
-            background: #0a0a1e;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .dashboard-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .dashboard-text {
-            text-align: left;
-        }
-
-        .dashboard-text h3 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #00d9ff;
-            margin-bottom: 20px;
-        }
-
-        .dashboard-text p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .dashboard-features {
-            list-style: none;
-            margin-top: 25px;
-        }
-
-        .dashboard-features li {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 12px;
-            padding-left: 30px;
-            position: relative;
-        }
-
-        .dashboard-features li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #00d9ff;
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .dashboard-image {
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .dashboard-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .dashboard-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* SOS Method Intro */
-        .sos-intro {
-            background: #0a0a1e;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .sos-phases {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto 50px;
-        }
-
-        .phase {
-            background: rgba(102, 126, 234, 0.1);
-            border: 2px solid rgba(0, 217, 255, 0.3);
-            border-radius: 12px;
-            padding: 30px 20px;
-            text-align: center;
-        }
-
-        .phase-number {
-            font-size: 48px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #00d9ff, #667eea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-
-        .phase-label {
-            font-size: 20px;
-            font-weight: 700;
-            color: #00d9ff;
-            margin-bottom: 10px;
-        }
-
-        .phase-desc {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .sos-explanation {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            background: rgba(102, 126, 234, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-        }
-
-        .sos-explanation h3 {
-            color: #00d9ff;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-
-        .sos-explanation p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-        }
-
-        .sos-image {
-            max-width: 900px;
-            margin: 40px auto 0;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .sos-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Explorers Intro Section */
-        .explorers-intro {
-            background: #0a0a1e;
-            padding: 40px;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .explorers-intro-text {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background: #0a0a1e;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonial {
-            background: rgba(102, 126, 234, 0.05);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: left;
-        }
-
-        .testimonial-quote {
-            font-size: 16px;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .testimonial-photo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(0, 217, 255, 0.2);
-            border: 2px solid rgba(0, 217, 255, 0.4);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .testimonial-name {
-            font-size: 16px;
-            font-weight: 600;
-            color: #00d9ff;
-        }
-
-        .testimonial-location {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Planets Section */
-        .planets {
-            background: #0a0a1e;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .planets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .planet {
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .planet:hover {
-            transform: scale(1.05);
-        }
-
-        .planet img {
-            width: 100%;
-            border-radius: 12px;
-            display: block;
-        }
-
-        .planet h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            margin-top: 15px;
         }
 
         /* Explorers Section */
@@ -821,11 +630,6 @@
             animation: fadeIn 0.3s;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
         .modal-content {
             background-color: #1a1a2e;
             margin: 10% auto;
@@ -856,6 +660,62 @@
             max-width: 100%;
             border-radius: 8px;
             margin-bottom: 20px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: #0a0a1e;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: left;
+        }
+
+        .testimonial-quote {
+            font-size: 16px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .testimonial-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 217, 255, 0.2);
+            border: 2px solid rgba(0, 217, 255, 0.4);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .testimonial-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #00d9ff;
+        }
+
+        .testimonial-location {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         /* Why Parents Love */
@@ -1132,28 +992,29 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="nav-brand">🌌 Sensory Galaxy</div>
         <ul>
             <li><a href="#how">How It Works</a></li>
+            <li><a href="#sos">SOS Method</a></li>
             <li><a href="#see-in-action">See It In Action</a></li>
             <li><a href="#explorers">Explorers</a></li>
-            <li><a href="#why">Why Parents Choose Us</a></li>
             <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#waitlist">Waitlist</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
         </ul>
     </nav>
 
     <!-- Logo Header -->
     <div class="logo-header">
         <img src="./assets/brand identity/logo_vertical.PNG" alt="Sensory Galaxy Logo">
+        <p style="margin-top: 15px; font-size: 14px;"><a href="/blog.html" style="color: #00d9ff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#00d9ff'">Read Our Blog</a></p>
     </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>You've Tried Everything. They Still Eat 5 Foods.</h1>
-        <div class="subtitle">Mealtimes are a battle. You wonder if you're failing. You're not. Sensory Galaxy uses the science-backed Sequential Oral Sensory (SOS) method to help your child explore at their own pace.</div>
+        <h1>Mealtimes Are a Battle. Your Child's Nervous System Isn't the Problem.</h1>
+        <div class="subtitle">There's a science-backed method for this. Sensory Galaxy is that method.</div>
         <div class="subtext">
-            Your child's nervous system processes food differently. There's a method for this. Sensory Galaxy is the method.
+            Help your child explore new foods at their own pace using the Sequential Oral Sensory (SOS) approach. Track progress. AI recommends what's next. Watch your kid thrive.
         </div>
         <div class="cta-buttons">
             <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
@@ -1187,111 +1048,8 @@
         </div>
     </section>
 
-    <!-- App Screenshots Carousel -->
-    <section class="screenshots-carousel" id="see-in-action">
-        <h2 class="section-title">See It In Action</h2>
-        <p class="section-subtitle">Explore the app journey your child will experience</p>
-        
-        <div class="carousel-wrapper">
-            <div class="carousel-container">
-                <div class="carousel-slide">
-                    <img src="./assets/app%20screengrabs/final/1_setup_launchmission.png" alt="Screenshot 1: Launch Mission">
-                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-                <div class="carousel-slide">
-                    <img src="./assets/app%20screengrabs/final/2_setup_selectexplorer.png" alt="Screenshot 2: Select Explorer">
-                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-                <div class="carousel-slide">
-                    <img src="./assets/app%20screengrabs/final/3_setup_setgoalfooditem.png" alt="Screenshot 3: Set Goal Food">
-                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-                <div class="carousel-slide">
-                    <img src="./assets/app%20screengrabs/final/4_setup_foodstheylike.png" alt="Screenshot 4: Foods They Like">
-                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-                <div class="carousel-slide">
-                    <img src="./assets/app%20screengrabs/final/5_exploregalaxy.png" alt="Screenshot 5: Explore Galaxy">
-                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-                <div class="carousel-slide">
-                    <img src="./assets/app%20screengrabs/final/6_foodexploration.png" alt="Screenshot 6: Food Exploration">
-                    <p class="carousel-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-            </div>
-
-            <button class="carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>
-            <button class="carousel-next" onclick="moveCarousel(1)">&#10095;</button>
-
-            <div class="carousel-dots">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
-                <span class="dot" onclick="currentSlide(6)"></span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Parent Dashboard Section -->
-    <section class="dashboard-section">
-        <h2 class="section-title">The Parent Dashboard</h2>
-        <p class="section-subtitle">Real tools to see patterns and guide progress</p>
-        <div class="dashboard-content">
-            <div class="dashboard-text">
-                <h3>Everything You Need in One Place</h3>
-                <p>Every time your child logs a food, you see what happened. The dashboard shows you exactly which sensory attributes they're expanding into. No guesswork.</p>
-                <ul class="dashboard-features">
-                    <li>Pattern identification (textures, flavors, temperatures they prefer)</li>
-                    <li>Bridge food suggestions (next logical foods to try)</li>
-                    <li>Progress tracking (how many sensory types they've explored)</li>
-                    <li>Weekly insights (what changed, what to try next)</li>
-                    <li>Export reports (share progress with therapists or pediatricians)</li>
-                </ul>
-            </div>
-            <div class="dashboard-image">
-                <img src="./assets/photos/header.png" alt="Parent reviewing progress on Sensory Galaxy dashboard">
-            </div>
-        </div>
-    </section>
-
-    <!-- Carousel Fullscreen Modal -->
-    <div id="carouselModal" class="carousel-modal">
-        <div class="carousel-modal-content">
-            <span class="carousel-modal-close" onclick="closeCarouselModal()">&times;</span>
-            <img id="modalImage" src="" alt="Screenshot">
-            <p class="carousel-modal-caption" id="modalCaption"></p>
-        </div>
-    </div>
-
-    <!-- Dashboard Image Fullscreen Modal -->
-    <div id="dashboardModal" class="carousel-modal">
-        <div class="carousel-modal-content">
-            <span class="carousel-modal-close" onclick="closeDashboardModal()">&times;</span>
-            <img id="dashboardModalImage" src="" alt="Dashboard">
-            <p class="carousel-modal-caption" id="dashboardModalCaption"></p>
-        </div>
-    </div>
-
-    <!-- Dashboard Images Section -->
-    <section class="dashboard-images-section">
-        <h2 class="section-title">Inside the Parent Dashboard</h2>
-        <p class="section-subtitle">See the insights and tools parents use to track progress</p>
-        <div class="dashboard-images-grid">
-            <div class="dashboard-image-item" onclick="openDashboardModal(this)">
-                <img src="./assets/app%20screengrabs/final/7_dashboard1.png" alt="Dashboard Overview">
-                <p class="dashboard-image-caption">Track patterns in real time. See which sensory attributes your child is expanding into.</p>
-            </div>
-            <div class="dashboard-image-item" onclick="openDashboardModal(this)">
-                <img src="./assets/app%20screengrabs/final/8_dashboard2.png" alt="Dashboard Insights">
-                <p class="dashboard-image-caption">Weekly insights and next steps. The app tells you what to try next based on their progress.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- SOS Method Introduction -->
-    <section class="sos-intro">
+    <section class="sos-intro" id="sos">
         <h2 class="section-title">The SOS Method: Sequential Oral Sensory (SOS)</h2>
         <p class="section-subtitle">How kids explore food without pressure</p>
         
@@ -1329,84 +1087,85 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <h2 class="section-title">Real Parents. Real Progress.</h2>
-        <p class="section-subtitle">See what changed for families like yours</p>
-        <div class="testimonials-grid">
-            <div class="testimonial">
-                <div class="testimonial-photo">👩</div>
-                <div class="testimonial-quote">
-                    "My son ate chicken nuggets, rice, and applesauce. That was it. After 8 weeks with Sensory Galaxy, he asked for broccoli. I was standing in the kitchen in shock. This actually works."
+    <!-- App Screenshots Carousel -->
+    <section class="screenshots-carousel" id="see-in-action">
+        <h2 class="section-title">See It In Action</h2>
+        <p class="section-subtitle">Explore the app journey your child will experience</p>
+        
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="./assets/app%20screengrabs/final/1_setup_launchmission.png" alt="Screenshot 1: Launch Mission">
                 </div>
-                <div class="testimonial-name">Sarah Chen</div>
-                <div class="testimonial-location">Portland, OR</div>
+                <div class="carousel-slide">
+                    <img src="./assets/app%20screengrabs/final/2_setup_selectexplorer.png" alt="Screenshot 2: Select Explorer">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/app%20screengrabs/final/3_setup_setgoalfooditem.png" alt="Screenshot 3: Set Goal Food">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/app%20screengrabs/final/4_setup_foodstheylike.png" alt="Screenshot 4: Foods They Like">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/app%20screengrabs/final/5_exploregalaxy.png" alt="Screenshot 5: Explore Galaxy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./assets/app%20screengrabs/final/6_foodexploration.png" alt="Screenshot 6: Food Exploration">
+                </div>
             </div>
 
-            <div class="testimonial">
-                <div class="testimonial-photo">👨</div>
-                <div class="testimonial-quote">
-                    "We were forcing mealtimes. Everyone was stressed. Then we learned about the SOS phases. We stopped pushing. Everything changed. She's trying new things because she WANTS to, not because we're making her."
-                </div>
-                <div class="testimonial-name">Mike Johnson</div>
-                <div class="testimonial-location">Seattle, WA</div>
-            </div>
+            <button class="carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <button class="carousel-next" onclick="moveCarousel(1)">&#10095;</button>
 
-            <div class="testimonial">
-                <div class="testimonial-photo">👩‍🦱</div>
-                <div class="testimonial-quote">
-                    "I thought my kid would eat the same 4 foods forever. Sensory Galaxy showed me he WAS getting braver. I just couldn't see it until the data proved it. The guilt finally lifted."
-                </div>
-                <div class="testimonial-name">Jessica Rodriguez</div>
-                <div class="testimonial-location">Eugene, OR</div>
+            <div class="carousel-dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot" onclick="currentSlide(6)"></span>
             </div>
         </div>
     </section>
 
-    <!-- Planets Section -->
-    <section class="planets">
-        <h2 class="section-title">The 8 Planet Journey</h2>
-        <p class="section-subtitle">Each planet represents a new sensory challenge</p>
-        <div class="planets-grid">
-            <div class="planet">
-                <img src="./assets/planets/planet-01-base-camp.png" alt="Base Camp Planet">
-                <h3>Base Camp</h3>
+    <!-- Dashboard Images Section -->
+    <section class="dashboard-images-section">
+        <h2 class="section-title">See Patterns. Guide Next Steps.</h2>
+        <p class="section-subtitle">Real-time insights show you exactly what your child is expanding into</p>
+        <div class="dashboard-images-grid">
+            <div class="dashboard-image-item" onclick="openDashboardModal(this)">
+                <img src="./assets/app%20screengrabs/final/7_dashboard1.png" alt="Dashboard Overview">
+                <p class="dashboard-image-caption">Track patterns in real time. See which sensory attributes your child is expanding into.</p>
             </div>
-            <div class="planet">
-                <img src="./assets/planets/planet-02-sensory-grove.png" alt="Sensory Grove Planet">
-                <h3>Sensory Grove</h3>
-            </div>
-            <div class="planet">
-                <img src="./assets/planets/planet-03-texture-trails.png" alt="Texture Trails Planet">
-                <h3>Texture Trails</h3>
-            </div>
-            <div class="planet">
-                <img src="./assets/planets/planet-04-aroma-airship.png" alt="Aroma Airship Planet">
-                <h3>Aroma Airship</h3>
-            </div>
-            <div class="planet">
-                <img src="./assets/planets/planet-05-flavor-mountains.png" alt="Flavor Mountains Planet">
-                <h3>Flavor Mountains</h3>
-            </div>
-            <div class="planet">
-                <img src="./assets/planets/planet-06-taste-ocean.png" alt="Taste Ocean Planet">
-                <h3>Taste Ocean</h3>
-            </div>
-            <div class="planet">
-                <img src="./assets/planets/planet-07-taste-jungle.png" alt="Taste Jungle Planet">
-                <h3>Taste Jungle</h3>
-            </div>
-            <div class="planet">
-                <img src="./assets/planets/planet-08-galaxys-heart.png" alt="Galaxy's Heart Planet">
-                <h3>Galaxy's Heart</h3>
+            <div class="dashboard-image-item" onclick="openDashboardModal(this)">
+                <img src="./assets/app%20screengrabs/final/8_dashboard2.png" alt="Dashboard Insights">
+                <p class="dashboard-image-caption">Weekly insights and next steps. The app tells you what to try next based on their progress.</p>
             </div>
         </div>
     </section>
+
+    <!-- Carousel Fullscreen Modal -->
+    <div id="carouselModal" class="carousel-modal">
+        <div class="carousel-modal-content">
+            <span class="carousel-modal-close" onclick="closeCarouselModal()">&times;</span>
+            <img id="modalImage" src="" alt="Screenshot">
+            <p class="carousel-modal-caption" id="modalCaption"></p>
+        </div>
+    </div>
+
+    <!-- Dashboard Image Fullscreen Modal -->
+    <div id="dashboardModal" class="carousel-modal">
+        <div class="carousel-modal-content">
+            <span class="carousel-modal-close" onclick="closeDashboardModal()">&times;</span>
+            <img id="dashboardModalImage" src="" alt="Dashboard">
+            <p class="carousel-modal-caption" id="dashboardModalCaption"></p>
+        </div>
+    </div>
 
     <!-- Explorers Section -->
     <section class="explorers" id="explorers">
         <h2 class="section-title">Pick Your Explorer</h2>
-        <p class="section-subtitle">Each explorer has their own personality and special powers. Nova loves speed, Cosmo is curious about science, Star is brave, and Orbit loves collecting. Your child picks their favorite, and that explorer becomes their guide through all 8 planets and the SOS journey. It's not just a game; it's a companion for real, lasting change.</p>
+        <p class="section-subtitle">Each explorer has their own personality and special powers. Nova loves speed, Cosmo is curious about science, Star is brave, and Orbit loves collecting. Your child picks their favorite, and that explorer becomes their guide through the sensory journey. It's not just a game; it's a companion for real, lasting change.</p>
         <div class="explorers-grid">
             <div class="explorer" onclick="openModal('nova')">
                 <div class="explorer-image">
@@ -1499,6 +1258,31 @@
         </div>
     </div>
 
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2 class="section-title">Real Parents. Real Progress.</h2>
+        <p class="section-subtitle">See what changed for families like yours</p>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <div class="testimonial-photo">👩</div>
+                <div class="testimonial-quote">
+                    "After 8 weeks, he asked for broccoli. I was in shock."
+                </div>
+                <div class="testimonial-name">Sarah Chen</div>
+                <div class="testimonial-location">Portland, OR</div>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-photo">👨</div>
+                <div class="testimonial-quote">
+                    "We stopped pushing. Everything changed. She's trying new things because she wants to."
+                </div>
+                <div class="testimonial-name">Mike Johnson</div>
+                <div class="testimonial-location">Seattle, WA</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Why Parents Love It -->
     <section class="why-parents" id="why">
         <h2 class="section-title">Why Parents Choose Sensory Galaxy</h2>
@@ -1520,7 +1304,7 @@
 
             <div class="benefit">
                 <h3>You're Not Alone</h3>
-                <p>1 in 3 kids experience sensory sensitive eating. Connect with parents who get it.</p>
+                <p>1 in 3 kids experience sensory-sensitive eating. You're not failing. Neither is your child.</p>
             </div>
 
             <div class="benefit">
@@ -1530,15 +1314,15 @@
 
             <div class="benefit">
                 <h3>Built for Partnership</h3>
-                <p>Designed to complement, not replace professional help. Many parents use it alongside therapy.</p>
+                <p>Designed to complement professional help. Use it alongside therapy for even better results.</p>
             </div>
         </div>
     </section>
 
     <!-- Pricing -->
     <section class="pricing" id="pricing">
-        <h2 class="section-title">Try It Risk-Free</h2>
-        <p class="pricing-intro">You've tried other things. You're skeptical. That's smart. Give Sensory Galaxy 7 days. Full access. No credit card. See if it works for your family.</p>
+        <h2 class="section-title">Simple Pricing. Real Results.</h2>
+        <p class="pricing-intro">7 days. Full access. See if Sensory Galaxy works for your family.</p>
 
         <div class="pricing-grid">
             <div class="pricing-card">
@@ -1607,8 +1391,9 @@
             <div class="footer-links">
                 <a href="#how">How It Works</a>
                 <a href="#pricing">Pricing</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/faq.html">FAQ</a>
                 <a href="mailto:hello@sensorygalaxy.com">Contact</a>
-                <a href="/faq-draft.html">FAQ</a>
             </div>
 
             <p style="margin-top: 30px;">&copy; 2026 Sensory Galaxy. Helping parents and kids thrive together.</p>
