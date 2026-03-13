@@ -259,10 +259,14 @@ def calculate_weighted_baseline(
     regular_safe_foods: Set[str],
     food_db: Dict[str, SensoryProfile],
     today: datetime,
+    num_truly_explored: int = 0,
 ) -> SensoryProfile:
     """
     Calculate weighted baseline from all foods.
     Weights: state × recency × scaling × regression
+    
+    num_truly_explored: count of foods with confirmed exposure states
+    (used for scaling cap — doesn't include safe foods at onboarding)
     """
     total_weight = 0.0
     weighted_vector = [0.0] * 7  # 7 dimensions in to_vector()
@@ -273,7 +277,7 @@ def calculate_weighted_baseline(
         if profile and food_id in food_db:
             weight = profile.get_weight(
                 today,
-                len(food_profiles),
+                num_truly_explored,
                 is_super_safe=True,
             )
             vector = food_db[food_id].to_vector()
@@ -287,7 +291,7 @@ def calculate_weighted_baseline(
         if profile and food_id in food_db:
             weight = profile.get_weight(
                 today,
-                len(food_profiles),
+                num_truly_explored,
                 is_regular_safe=True,
             )
             vector = food_db[food_id].to_vector()
@@ -300,7 +304,7 @@ def calculate_weighted_baseline(
         if food_id in super_safe_foods or food_id in regular_safe_foods:
             continue
         if food_id in food_db:
-            weight = profile.get_weight(today, len(food_profiles))
+            weight = profile.get_weight(today, num_truly_explored)
             vector = food_db[food_id].to_vector()
             for i, v in enumerate(vector):
                 weighted_vector[i] += v * weight
@@ -476,6 +480,16 @@ def generate_recommendations(
     # Aggregate logs
     food_profiles = aggregate_food_logs(all_logs)
 
+    # Count TRULY explored foods (not safe foods) for scaling cap.
+    # At onboarding with 20 safe foods + 0 explored: num_truly_explored = 0,
+    # so safe food weight stays at full 0.60. As kid explores, it scales down.
+    num_truly_explored = sum(
+        1 for fid, fp in food_profiles.items()
+        if fid not in super_safe_foods
+        and fid not in regular_safe_foods
+        and fp.highest_state in ("touched", "smelled", "tasted", "ate")
+    )
+
     # Calculate baseline
     baseline = calculate_weighted_baseline(
         food_profiles,
@@ -483,6 +497,7 @@ def generate_recommendations(
         regular_safe_foods,
         food_db,
         today,
+        num_truly_explored,
     )
 
     # Detect trend
