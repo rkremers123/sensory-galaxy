@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridge Food Recommendation Algorithm v2</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a1e 0%, #1a0a3e 50%, #0a0a1e 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .badge-v2 { 
+            display: inline-block; 
+            background: #ff6b6b; 
+            color: white; 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            font-size: 0.9rem; 
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        h1 { color: #00d9ff; font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { color: #999; font-size: 1.1rem; margin-bottom: 30px; }
+        h2 { color: #667eea; font-size: 2rem; margin-top: 40px; margin-bottom: 20px; border-bottom: 2px solid rgba(0,217,255,0.3); padding-bottom: 10px; }
+        h3 { color: #00d9ff; font-size: 1.4rem; margin-top: 30px; margin-bottom: 15px; }
+        p { margin-bottom: 15px; font-size: 1.05rem; }
+        ul, ol { margin-left: 30px; margin-bottom: 15px; }
+        li { margin-bottom: 10px; }
+        code { background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 3px; color: #00d9ff; }
+        pre { 
+            background: rgba(0,0,0,0.6); 
+            padding: 20px; 
+            border-radius: 6px; 
+            overflow-x: auto; 
+            margin: 20px 0; 
+            border-left: 3px solid #667eea;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0;
+            background: rgba(15, 15, 40, 0.8);
+        }
+        th, td { 
+            padding: 12px; 
+            text-align: left; 
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+        th { 
+            background: rgba(102, 126, 234, 0.2); 
+            color: #00d9ff; 
+            font-weight: bold;
+        }
+        .subsection { 
+            background: rgba(20, 20, 50, 0.8); 
+            border-left: 3px solid rgba(102, 126, 234, 0.5); 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 6px; 
+        }
+        .highlight { background: rgba(0, 217, 255, 0.1); padding: 15px; border-left: 3px solid #00d9ff; margin: 20px 0; border-radius: 6px; }
+        .toc { background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; padding: 20px; margin-bottom: 40px; border-radius: 8px; }
+        .toc h3 { margin-top: 0; color: #00d9ff; }
+        .toc ul { list-style-position: inside; }
+        .toc a { color: #00d9ff; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .change { background: rgba(255, 107, 107, 0.1); padding: 15px; border-left: 3px solid #ff6b6b; margin: 15px 0; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bridge Food Recommendation Algorithm <span class="badge-v2">v2 - DYNAMIC</span></h1>
+        <p class="subtitle">Updated: Dynamic Weighted Baseline + Recency Weighting + Trend Detection</p>
+
+        <div class="highlight">
+            <h3>What Changed from v1?</h3>
+            <ul>
+                <li><strong>v1 was static:</strong> Baseline calculated once at onboarding, never changed</li>
+                <li><strong>v2 is dynamic:</strong> Baseline recalculates continuously as kid logs foods</li>
+                <li><strong>Added recency weighting:</strong> Recent logs matter more than old logs</li>
+                <li><strong>Added trend detection:</strong> Detect what kid is gravitating toward (last 7 logs)</li>
+                <li><strong>Smarter recommendations:</strong> Respect baseline + momentum toward trends</li>
+            </ul>
+        </div>
+
+        <div class="toc">
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#how-it-works">How It Works (Overview)</a></li>
+                <li><a href="#weighted-baseline">Multi-Weighted Baseline</a></li>
+                <li><a href="#recency">Recency Weighting</a></li>
+                <li><a href="#trend">Trend Detection</a></li>
+                <li><a href="#distance">Distance Calculation</a></li>
+                <li><a href="#recommendations">Daily Recommendations</a></li>
+                <li><a href="#example">Real Example</a></li>
+                <li><a href="#pseudo-code">Pseudo-Code</a></li>
+            </ul>
+        </div>
+
+        <h2 id="how-it-works">How It Works (Overview)</h2>
+        <p>Every time the app generates recommendations:</p>
+        <ol>
+            <li>Load kid's entire food log (all foods ever explored)</li>
+            <li>Weight each food by <strong>safety level + recency</strong></li>
+            <li>Calculate sensory baseline from weighted foods</li>
+            <li>Detect trend in last 7 foods logged</li>
+            <li>Generate 3 recommendations that respect baseline + trend</li>
+            <li>Explain why (reference recent foods + detected trend)</li>
+        </ol>
+
+        <h2 id="weighted-baseline">Multi-Weighted Baseline</h2>
+        <p>Each food in the kid's history gets a composite weight:</p>
+
+        <div class="subsection">
+            <h3>Weight Formula</h3>
+            <pre>
+weight = safety_level × recency_weight
+
+safety_level:
+  - Super Safe (nuggets, toast): 0.60 (always highest)
+  - Regular Safe (rice, cheese): 0.40 (always high)
+  - Explored (logged, ever): varies by recency (see below)
+
+recency_weight:
+  - Logged last 3 days: 1.00 (100%)
+  - Logged 4-7 days ago: 0.75 (75%)
+  - Logged 8-14 days ago: 0.50 (50%)
+  - Logged 15-30 days ago: 0.25 (25%)
+  - Logged 30+ days ago: 0.10 (10%)
+            </pre>
+        </div>
+
+        <h3>Example: Calculate Baseline for Kid</h3>
+        <p><strong>Kid's Food History:</strong></p>
+        <pre>
+Super Safe (always 0.60):
+  - Chicken Nuggets
+  - Toast
+
+Regular Safe (always 0.40):
+  - Rice
+  - Cheese
+
+Explored (weighted by recency):
+  - Seaweed (logged 2 days ago): weight = 1.00 (very recent, high confidence)
+  - Sweet Potato Fries (logged 5 days ago): weight = 0.75
+  - Shrimp (logged 10 days ago): weight = 0.50
+  - Broccoli (logged 25 days ago): weight = 0.25
+  - Carrots (logged 45 days ago): weight = 0.10
+        </pre>
+
+        <p><strong>Baseline Calculation:</strong></p>
+        <pre>
+For each sensory dimension (texture, flavor, temperature, etc.):
+
+Baseline = (nuggets × 0.60) + (toast × 0.60) + (rice × 0.40) + (cheese × 0.40)
+         + (seaweed × 1.00) + (sweet_potato × 0.75) + (shrimp × 0.50) 
+         + (broccoli × 0.25) + (carrots × 0.10)
+
+Result: A sensory profile that heavily emphasizes:
+  - What they always eat (super safe)
+  - What they recently tried (recency boost)
+  - What they tried long ago (low weight, fading influence)
+
+Key insight: Baseline shifts every day as kid logs new foods.
+        </pre>
+
+        <h2 id="recency">Recency Weighting Details</h2>
+        <p><strong>Why recency matters:</strong></p>
+        <ul>
+            <li>Kid tried carrots once 2 months ago = low confidence they'd eat it again</li>
+            <li>Kid tried seaweed 3 days ago = high confidence in that sensory profile</li>
+            <li>Recent exploration shows what kid is <strong>currently open to</strong></li>
+        </ul>
+
+        <p><strong>Practical example:</strong></p>
+        <pre>
+Week 1: Kid tries [apple, banana, sweet potato, honey crackers]
+  Baseline at end of Week 1: Strong sweet flavor, room temp bias
+
+Week 2: Kid tries [broccoli, spinach, green beans] (parent nudge)
+  Baseline Week 2: Now includes 50% bitter/veggie, but still 60-70% weighted to Week 1
+  → Recommendations won't jump to all vegetables (respects recent sweet exploration)
+
+Week 3: Kid tries [mango, peach, vanilla pudding, yogurt]
+  Baseline Week 3: Very strong sweet + creamy profile now
+  → Recommendations lean into sweet + creamy variants
+        </pre>
+
+        <h2 id="trend">Trend Detection (Last 7 Foods)</h2>
+        <p>Detect what sensory dimensions the kid is <strong>gravitating toward</strong>:</p>
+
+        <div class="subsection">
+            <h3>Trend Analysis</h3>
+            <pre>
+Last 7 foods logged: [seaweed, sweet potato fries, apple, banana, mango, yogurt, crackers]
+
+Analyze each dimension:
+  - Texture: crunchy (5/7), soft (2/7) → TREND: CRUNCHY (71%)
+  - Flavor: sweet (6/7), salty (2/7), savory (1/7) → TREND: SWEET (86%)
+  - Temperature: room temp (4/7), warm (3/7) → WEAK (57% room temp, not strong)
+  - Color: natural colors (7/7) → NOT DISTINCTIVE
+  
+Trend Strength Threshold:
+  - 6/7 or higher = STRONG trend
+  - 5/7 = MODERATE trend
+  - 4/7 or lower = WEAK (don't override baseline)
+
+In this case:
+  STRONG trend: Sweet + Crunchy
+  → Recommendations should honor this (lean into sweet crunchy options)
+  → But still respect baseline (don't ignore safe foods)
+            </pre>
+        </div>
+
+        <h2 id="distance">Distance Calculation</h2>
+        <p>Same 6-dimensional model as v1, but applied to dynamic baseline:</p>
+
+        <pre>
+Distance² = w_texture × (texture_diff)² 
+          + w_flavor_sweet × (sweet_diff)²
+          + w_flavor_salty × (salty_diff)²
+          + w_flavor_savory × (savory_diff)²
+          + w_flavor_sour × (sour_diff)²
+          + w_flavor_bitter × (bitter_diff)²
+          + w_temp × (temp_diff)²
+          + w_color × (color_diff)²
+          + w_mouthfeel × (mouthfeel_diff)²
+          + w_prep × (prep_diff)²
+
+Distance = √(Distance²)
+
+Distance Interpretation (same as v1):
+  0-2.5: Super Close
+  2.5-4.5: Stretch Pick
+  4.5-6.5: Difficult
+  6.5+: Too Far
+        </pre>
+
+        <h2 id="recommendations">Daily Recommendation Strategy</h2>
+
+        <div class="subsection">
+            <h3>Safe Pick (Distance < 2.5)</h3>
+            <ul>
+                <li>Closest to current weighted baseline</li>
+                <li>Low risk, high success</li>
+                <li>Should align with trend if possible</li>
+                <li>Explanation: Reference recent foods ("like seaweed you tried last week")</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Stretch Pick (Distance 2.5-4.5)</h3>
+            <ul>
+                <li>Moderate challenge</li>
+                <li>Respects trend (if sweet trend, don't suggest bitter vegetables)</li>
+                <li>Explanation: "You've been exploring sweet foods. Try raisins (sweet + chewy, new texture)"</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Variety Pick (Nutritional Gap)</h3>
+            <ul>
+                <li>Identifies what kid hasn't explored (vegetables, proteins, grains)</li>
+                <li>If strong trend present, tries to slide variety into trend</li>
+                <li>Example: Kid trending sweet → suggest sweet potato (sweet + vegetable)</li>
+                <li>Explanation: "You've been exploring sweet foods. Let's add a vegetable. Sweet potato is sweet AND a vegetable."</li>
+            </ul>
+        </div>
+
+        <h2 id="example">Real Example (Complete Flow)</h2>
+
+        <p><strong>Week 1:</strong></p>
+        <pre>
+Super Safe: [chicken nuggets, toast]
+Regular Safe: [rice, cheese]
+Explored: [] (empty)
+
+Baseline: 100% from super safe + regular safe
+Trend: None (not enough data)
+
+Recommendation 1: Crispy bacon (very similar to nuggets)
+Recommendation 2: Soft cheese pasta (soft like toast, familiar)
+Recommendation 3: Sweet potato fries (new texture, warm like baseline)
+        </pre>
+
+        <p><strong>Week 2 (after 7 logs of [apple, banana, sweet potato, seaweed, crackers, yogurt, mango]):</strong></p>
+        <pre>
+Super Safe: [chicken nuggets, toast] (weight 0.60)
+Regular Safe: [rice, cheese] (weight 0.40)
+Explored: [apple (1.00), banana (1.00), sweet potato (0.75), seaweed (1.00), 
+           crackers (1.00), yogurt (1.00), mango (1.00)]
+
+Baseline: Now includes 70% sweet flavor, 50% crunchy texture
+Trend Detected: STRONG sweet (6/7), MODERATE crunchy (5/7)
+
+Recommendation 1: Honey crackers (sweet + crunchy, very close to recent trend)
+  Explanation: "Like the seaweed and crackers you tried, but sweet!"
+
+Recommendation 2: Dried mango (sweet + chewy, honors trend, new texture)
+  Explanation: "You love sweet foods this week. Let's try a new texture (chewy)."
+
+Recommendation 3: Broccoli with honey drizzle (variety + trend bridge)
+  Explanation: "You've been exploring sweet foods. Let's add a green vegetable with a bit of sweetness."
+        </pre>
+
+        <p><strong>Week 3 (after 14 more logs, trend shifts to salty/savory):</strong></p>
+        <pre>
+Baseline recalculates: Sweet foods from Week 2 now weight 0.25-0.50 (aging out)
+New logs: [shrimp, seaweed, cheese crackers, bacon, chips, pretzels, pizza]
+
+Trend Detected: STRONG salty/savory (6/7), MODERATE crunchy (5/7)
+
+Recommendations shift to salty/savory + crunchy variants
+  (Algorithm naturally follows kid's exploration momentum)
+
+Explanation to parent: "Your child has shifted toward salty and savory foods this week.
+We're building on that momentum with new options in that sensory space."
+        </pre>
+
+        <h2 id="pseudo-code">Pseudo-Code Implementation</h2>
+
+        <pre>
+def generate_recommendations(kid_id: string) -> List[Recommendation]:
+    """Generate 3 daily recommendations using dynamic weighted baseline."""
+    
+    # Load all food history
+    super_safe = load_super_safe(kid_id)
+    regular_safe = load_regular_safe(kid_id)
+    all_explored = load_all_explored_foods(kid_id)
+    
+    # Calculate weights for each food
+    weights = {}
+    for food in super_safe:
+        weights[food] = 0.60  # Always 60%
+    for food in regular_safe:
+        weights[food] = 0.40  # Always 40%
+    for food in all_explored:
+        days_ago = days_since_logged(food, kid_id)
+        recency = calculate_recency_weight(days_ago)
+        weights[food] = recency  # Varies by recency
+    
+    # Calculate dynamic baseline
+    baseline_profile = calculate_weighted_baseline(
+        super_safe, regular_safe, all_explored, weights
+    )
+    
+    # Detect trend in last 7 logs
+    recent_7 = get_last_7_foods_logged(kid_id)
+    trend = detect_trend(recent_7)  # Returns {dimension: strength}
+    trend_strength = max(trend.values())
+    
+    # Calculate distances for all foods
+    all_foods = load_food_database()
+    distances = {}
+    for food in all_foods:
+        if is_blacklisted(food, kid_id):
+            distances[food] = infinity
+        else:
+            base_distance = calculate_distance(food, baseline_profile)
+            # Adjust distance if food aligns with trend
+            if trend_strength > 0.7 and food_matches_trend(food, trend):
+                base_distance *= 0.8  # 20% bonus for trend-aligned
+            distances[food] = base_distance
+    
+    # Generate 3 recommendations
+    safe_pick = find_closest_food(distances, max_distance=2.5, recent_7)
+    stretch_pick = find_closest_food(distances, 2.5, 4.5, recent_7, trend)
+    variety_pick = find_nutritional_gap(distances, baseline, trend, recent_7)
+    
+    # Generate explanations
+    return [
+        Recommendation(safe_pick, "Safe Pick", explain_safe(safe_pick, recent_7)),
+        Recommendation(stretch_pick, "Stretch Pick", explain_stretch(stretch_pick, trend)),
+        Recommendation(variety_pick, "Variety Pick", explain_variety(variety_pick, trend, nutritional_gap))
+    ]
+
+def calculate_recency_weight(days_ago: int) -> float:
+    """Return weight based on how long ago food was logged."""
+    if days_ago <= 3:
+        return 1.00
+    elif days_ago <= 7:
+        return 0.75
+    elif days_ago <= 14:
+        return 0.50
+    elif days_ago <= 30:
+        return 0.25
+    else:
+        return 0.10
+
+def explain_safe(food, recent_7):
+    """Generate explanation for Safe Pick."""
+    similar_recent = find_similar_foods(food, recent_7)
+    if similar_recent:
+        return f"Like the {similar_recent[0].name} you tried recently, but with a fun new flavor!"
+    else:
+        return f"Very similar to your favorite foods. You'll probably love this."
+
+def explain_stretch(food, trend):
+    """Generate explanation for Stretch Pick."""
+    if trend:
+        return f"You've been exploring {trend['dominant_flavor']} foods. {food.name} is similar, but with a new texture."
+    else:
+        return "A small challenge, but based on what you've been trying, we think you're ready."
+
+def explain_variety(food, trend, gap):
+    """Generate explanation for Variety Pick."""
+    if trend and food_bridges_trend_to_gap(food, trend, gap):
+        return f"You love {trend['dominant_flavor']} foods. {food.name} is {trend['dominant_flavor']} AND includes {gap} (which you haven't explored much)."
+    else:
+        return f"You've explored mostly {trend['dominant']} foods. Let's add some {gap} variety."
+        </pre>
+
+        <h2>Implementation Checklist</h2>
+        <ul>
+            <li>[ ] Data model: Food log with timestamps</li>
+            <li>[ ] Recency weight calculator</li>
+            <li>[ ] Multi-weighted baseline calculator</li>
+            <li>[ ] Trend detector (analyze last 7 foods)</li>
+            <li>[ ] Distance calculator (with trend bonus)</li>
+            <li>[ ] Recommendation generator (3 picks)</li>
+            <li>[ ] Explanation templates (safe/stretch/variety)</li>
+            <li>[ ] Test cases with real progression (Week 1-3)</li>
+            <li>[ ] Parent visibility (surface trends in dashboard)</li>
+        </ul>
+
+        <div class="change">
+            <h3>Key Differences from v1</h3>
+            <ul>
+                <li>✅ Baseline recalculates continuously (v1: static)</li>
+                <li>✅ Recency weighting (v1: equal weights)</li>
+                <li>✅ Trend detection (v1: none)</li>
+                <li>✅ Trend-aligned recommendations (v1: generic)</li>
+                <li>✅ Explanations reference recent foods + trends (v1: simple explanations)</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
