@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensory Galaxy LinkedIn Content Calendar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a1e 0%, #1a0a2e 100%);
+            color: #e0e0e0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            border-bottom: 2px solid #00d9ff;
+        }
+        
+        h1 {
+            font-size: 32px;
+            background: linear-gradient(135deg, #00d9ff, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .posting-note {
+            background: rgba(0, 217, 255, 0.1);
+            border-left: 3px solid #00d9ff;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .week {
+            margin-bottom: 50px;
+            background: rgba(15, 15, 30, 0.6);
+            border: 1px solid #00d9ff;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .week-title {
+            font-size: 24px;
+            color: #00d9ff;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.3);
+        }
+        
+        .post {
+            margin-bottom: 35px;
+            background: rgba(255, 0, 110, 0.05);
+            border: 1px solid rgba(255, 0, 110, 0.2);
+            border-radius: 6px;
+            padding: 20px;
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+        
+        .post-date {
+            background: linear-gradient(135deg, #ff006e, #ff3c87);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .post-time {
+            background: rgba(0, 217, 255, 0.2);
+            color: #00d9ff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .post-title {
+            font-size: 18px;
+            color: #ff006e;
+            margin-bottom: 12px;
+            margin-top: 10px;
+        }
+        
+        .post-copy {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-size: 14px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .post-image-placeholder {
+            background: rgba(0, 217, 255, 0.1);
+            border: 2px dashed #00d9ff;
+            border-radius: 4px;
+            padding: 30px;
+            text-align: center;
+            color: #00d9ff;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        
+        .post-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        
+        .copy-button {
+            background: linear-gradient(135deg, #ff006e, #ff3c87);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+        
+        .copy-button:hover {
+            transform: scale(1.05);
+        }
+        
+        .copy-button:active {
+            background: linear-gradient(135deg, #ff3c87, #ff006e);
+        }
+        
+        .hashtags {
+            color: #00d9ff;
+            font-size: 12px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+        }
+        
+        .posting-guide {
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid #00d9ff;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 40px 0;
+        }
+        
+        .posting-guide h2 {
+            color: #00d9ff;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .posting-guide ul {
+            margin-left: 20px;
+        }
+        
+        .posting-guide li {
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        
+        .posting-guide strong {
+            color: #ff006e;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 12px;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 600px) {
+            .post-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .week {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sensory Galaxy LinkedIn Content Calendar</h1>
+            <p class="subtitle">6-Week Algorithm Education Series</p>
+            <div class="posting-note">
+                <strong>📅 Optimal Posting Times:</strong> LinkedIn engagement peaks Tuesday-Thursday, 8 AM & 12-1 PM PT.
+                <br><strong>📸 Images:</strong> Placeholder locations marked below. Replace with extracted PDF slides (1200×627px recommended).
+            </div>
+        </header>
+        
+        <div class="posting-guide">
+            <h2>📋 Posting Strategy</h2>
+            <ul>
+                <li><strong>Frequency:</strong> 2 posts per week (Tuesday + Thursday)</li>
+                <li><strong>Tuesday 8 AM PT:</strong> Problem/insight posts (higher cognitive engagement)</li>
+                <li><strong>Thursday 1 PM PT:</strong> Education/product/story posts (lighter, more visual)</li>
+                <li><strong>Hashtags:</strong> #PickyEating #SelectiveEating #ParentingHacks #FoodTherapy #SOS #Algorithm #FeedingTherapy</li>
+                <li><strong>Engagement Hook:</strong> Ask a question in the last line to boost comments</li>
+                <li><strong>Image Specs:</strong> 1200×627 px (LinkedIn standard), remove Notebook LLM watermark</li>
+            </ul>
+        </div>
+
+        <!-- WEEK 1 -->
+        <div class="week">
+            <h2 class="week-title">WEEK 1: Set the Stage</h2>
+            
+            <!-- POST 1.1 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">TUESDAY, Week 1</div>
+                        <div class="post-time">⏰ 8:00 AM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 1.1: Problem/Vision Post</h3>
+                
+                <div class="post-copy">Most picky eating apps are checklist apps.
+
+Your kid eats these five foods ✓. Doesn't eat these six ✗.
+
+The problem: that checklist is static. But kids aren't.
+
+A child's palate isn't binary. They're not "trying foods" and "refusing foods." They're on a spectrum. Some foods are loved. Others are occasional. Some they're curious about but not ready for.
+
+We built Sensory Galaxy to treat eating the way it actually works: as a *living map*, not a to-do list.
+
+When a parent logs the foods their child eats, we don't just add them to a checklist. We build a detailed sensory profile. Then we use that to recommend the *next* foods most likely to succeed.
+
+Not guessing. Not generic lists. Specific to that child's sensory system.
+
+This is what changed for us. Curious to see if it changes things for your family too?</div>
+                
+                <img src="./slide-02.jpg" alt="Slide 2 - Checklist vs Network Graph" class="post-image">
+                
+                <div class="hashtags">
+                    #PickyEating #SelectiveEating #Algorithm #Parenting
+                </div>
+            </div>
+            
+            <!-- POST 1.2 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">THURSDAY, Week 1</div>
+                        <div class="post-time">⏰ 1:00 PM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 1.2: Education Post — Sensory Fingerprint</h3>
+                
+                <div class="post-copy">What is a sensory fingerprint?
+
+Your child doesn't refuse foods randomly. Their nervous system is reading every food along seven dimensions:
+
+• Texture (liquid → hard)
+• Sweetness
+• Saltiness
+• Bitterness
+• Sourness
+• Savouriness
+• Temperature
+
+A child comfortable with soft, sweet, warm foods will struggle with hard, bitter, cold ones. Not stubbornness. Sensory mismatch.
+
+When you log foods in Sensory Galaxy, the app builds their unique sensory fingerprint. Every recommendation bridges one dimension at a time. Not all seven at once.
+
+That's what makes it work.
+
+Does this match what you've observed with your own picky eater?</div>
+                
+                <img src="./slide-03.jpg" alt="Slide 3 - Sensory Fingerprint Radar Chart" class="post-image">
+                
+                <div class="hashtags">
+                    #SensoryProcessing #FoodTherapy #PickyEating #ParentingTips
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 2 -->
+        <div class="week">
+            <h2 class="week-title">WEEK 2: Clinical Credibility</h2>
+            
+            <!-- POST 2.1 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">TUESDAY, Week 2</div>
+                        <div class="post-time">⏰ 8:00 AM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 2.1: Framework Post — SOS Approach</h3>
+                
+                <div class="post-copy">A sniff is not a failure.
+
+In the Sequential Oral Sensory (SOS) approach to feeding therapy, eating a food is just the final step. Not the only milestone.
+
+Here's the progression:
+
+👀 Looked (0.3x weight) — Just seeing the food without distress
+👆 Touched (0.5x weight) — Making physical contact
+👃 Smelled (0.7x weight) — Engaging the aroma
+😋 Tasted (0.9x weight) — In the mouth, even if spit out
+🍴 Ate (1.0x weight) — Swallowed and incorporated
+
+Every step is real progress. A child who touches a food they've never touched before has overcome something. That should be celebrated and counted, not dismissed as "still not eating it."
+
+Sensory Galaxy tracks all five. Because progress isn't binary.
+
+How many of these steps has your kid reached with their most-challenged foods?</div>
+                
+                <img src="./slide-04.jpg" alt="Slide 4 - SOS Exposure States Staircase" class="post-image">
+                
+                <div class="hashtags">
+                    #SOS #FeedingTherapy #SelectiveEating #TherapyBacked
+                </div>
+            </div>
+            
+            <!-- POST 2.2 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">THURSDAY, Week 2</div>
+                        <div class="post-time">⏰ 1:00 PM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 2.2: Trust/Authority Post</h3>
+                
+                <div class="post-copy">What Sensory Galaxy is not.
+
+It's not a replacement for feeding therapy. If your child has significant feeding challenges, working with an SOS-trained therapist is important.
+
+What it *is*: a daily companion alongside professional therapy. A way to track progress, celebrate small wins, and get personalized recommendations that respect the SOS methodology.
+
+We built this *for* therapists and their families. Not to replace them.
+
+If you're working with a feeding therapist, Sensory Galaxy can amplify what you're already doing. If you're just starting, it's a foundation—but a clinical partner is essential.
+
+That's the line we draw. It matters.</div>
+                
+                <div class="hashtags">
+                    #TransparencyMatters #ClinicallyBacked #FeedingTherapy
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 3 -->
+        <div class="week">
+            <h2 class="week-title">WEEK 3: The Intelligence Layer</h2>
+            
+            <!-- POST 3.1 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">TUESDAY, Week 3</div>
+                        <div class="post-time">⏰ 8:00 AM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 3.1: Technical Insight — Recency Weighting</h3>
+                
+                <div class="post-copy">Your kid is different this week than last week.
+
+Last month, your child ate pasta every single day. Today, they're refusing it.
+
+Most apps would anchor their recommendations to "pasta is a safe food" and keep suggesting pasta-adjacent foods.
+
+But that misses what's actually happening: your child has changed.
+
+Sensory Galaxy weights *recent* food logs much more heavily than old ones. A food your child ate last week carries full weight. A food from three weeks ago? Down to 25%. A month ago? 10%.
+
+This means our algorithm is always reflecting *this week's child*, not last month's version.
+
+It's a small technical decision with a big human impact: we're not locked into yesterday's preferences.
+
+Has your kid's preferences shifted dramatically over the past month?</div>
+                
+                <img src="./slide-05.jpg" alt="Slide 5 - Recency Weighting Decay Curve" class="post-image">
+                
+                <div class="hashtags">
+                    #Algorithm #TechForGood #PickyEating
+                </div>
+            </div>
+            
+            <!-- POST 3.2 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">THURSDAY, Week 3</div>
+                        <div class="post-time">⏰ 1:00 PM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 3.2: Pattern Recognition — Trend Detection</h3>
+                
+                <div class="post-copy">The algorithm is reading a pattern you might have missed.
+
+Over the last week, your child logged five foods:
+• Apple slices
+• Honey crackers
+• Banana
+• Sweet potato
+• Mango
+
+Four of those five are sweet.
+
+Most parents would miss this. But Sensory Galaxy reads it. The algorithm says: "Your kid is on a sweet streak." And it leans into it.
+
+The next recommendation isn't broccoli. It's another fruit or grain with a new texture, but still in the sweet range. Because that's the momentum they're in right now.
+
+We meet kids where they are, not where we think they should be.
+
+Have you noticed your kid gravitating toward certain flavors or textures lately?</div>
+                
+                <img src="./slide-06.jpg" alt="Slide 6 - Trend Detection Sweet Foods" class="post-image">
+                
+                <div class="hashtags">
+                    #ParentingWin #PickyEatingHelp #Algorithm
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 4 -->
+        <div class="week">
+            <h2 class="week-title">WEEK 4: How Recommendations Work</h2>
+            
+            <!-- POST 4.1 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">TUESDAY, Week 4</div>
+                        <div class="post-time">⏰ 8:00 AM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 4.1: Deep Dive — Sensory Distance</h3>
+                
+                <div class="post-copy">Why texture matters more than color.
+
+When we calculate the sensory distance between two foods, not all dimensions are equal.
+
+A child won't refuse broccoli because it's green. They'll refuse it because it's crunchy, or bitter, or both. Texture and temperature are the *real* barriers for selective eaters.
+
+In our distance calculation, texture mismatches count for 2.0x more than color mismatches. Why? Because that's what the data shows. That's what SOS-trained therapists see in practice.
+
+Every weight in the algorithm is intentional. Built on real observation, not guessing.
+
+That's what makes a recommendation actually land.
+
+What sensory property does your child struggle with most—texture, temperature, or taste?</div>
+                
+                <img src="./slide-07.jpg" alt="Slide 7 - Sensory Distance Calculation" class="post-image">
+                
+                <div class="hashtags">
+                    #SensoryProcessing #AlgorithmDesign #FoodTherapy
+                </div>
+            </div>
+            
+            <!-- POST 4.2 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">THURSDAY, Week 4</div>
+                        <div class="post-time">⏰ 1:00 PM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 4.2: Product Feature — Three Recommendations</h3>
+                
+                <div class="post-copy">Three recommendations. Three jobs.
+
+Every day, Sensory Galaxy suggests three foods. But they're not three random options.
+
+**Safe Pick** — Something very close to what your kid already loves. The goal here is *reinforcement*. Another win. Confidence building.
+
+**Stretch Pick** — A genuine challenge, but built on familiar ground. This is where real growth happens. Texture changes, flavor shifts, but nothing is a complete shock.
+
+**Variety Pick** — Addressing nutritional gaps. Maybe your kid hasn't eaten any vegetables that are cooked. This recommendation finds the cooked vegetable closest to their current baseline.
+
+Each pick is doing something different. Each one has a fallback if nothing in that category is suitable.
+
+That structure is why recommendations actually work instead of feeling random.
+
+Which of these three would you expect your kid to respond to best?</div>
+                
+                <img src="./slide-08.jpg" alt="Slide 8 - Three Recommendations Safe Stretch Variety" class="post-image">
+                
+                <div class="hashtags">
+                    #PickyEating #ProductDesign #ParentingTools
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 5 -->
+        <div class="week">
+            <h2 class="week-title">WEEK 5: Growth & Full Picture</h2>
+            
+            <!-- POST 5.1 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">TUESDAY, Week 5</div>
+                        <div class="post-time">⏰ 8:00 AM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 5.1: Progress Narrative — Growth Over Time</h3>
+                
+                <div class="post-copy">Day 1 vs. Month 6.
+
+When your kid starts, they eat five foods. The app builds a baseline around those five. Recommendations are close to that tight cluster.
+
+But something happens over time. They try new things. The sensory map *expands*.
+
+By month six, that tight cluster has opened up. New foods added. Different textures, flavors, temperatures all represented.
+
+Here's the important part: as the map expands, the algorithm doesn't lock into "those original five are forever the baseline." It scales back their influence. The new foods start shaping recommendations.
+
+Your kid isn't caged by where they started. The algorithm grows with them.
+
+Imagine 6 months of this trajectory. How many more foods do you think your kid could be eating?</div>
+                
+                <img src="./slide-09.jpg" alt="Slide 9 - Growth Trajectory Day 1 vs Month 6" class="post-image">
+                
+                <div class="hashtags">
+                    #Progress #ParentingJourney #SelectiveEating
+                </div>
+            </div>
+            
+            <!-- POST 5.2 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">THURSDAY, Week 5</div>
+                        <div class="post-time">⏰ 1:00 PM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 5.2: System Overview — Full Pipeline</h3>
+                
+                <div class="post-copy">From raw data to the perfect next bite.
+
+Here's everything that happens between the moment a parent logs a food and the moment the app shows three personalized recommendations:
+
+Raw food log → SOS exposure state weighting → Recency filtering → Trend detection → Sensory distance calculation → Safe/Stretch/Variety picking → Explanation generation → Three recommendations → The outcome.
+
+It's a lot. But from your side, it should just feel like the app knows your kid.
+
+Because the system is designed to understand them at a very granular level.
+
+Every step is documented. Every choice is intentional. Every recommendation has a reason.
+
+Want to see how this actually plays out in real time?</div>
+                
+                <img src="./slide-10.jpg" alt="Slide 10 - Full Pipeline Flowchart" class="post-image">
+                
+                <div class="hashtags">
+                    #Algorithm #Transparency #FoodTech
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 6 -->
+        <div class="week">
+            <h2 class="week-title">WEEK 6 (OPTIONAL): Remix & Engage</h2>
+            
+            <!-- POST 6.1 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">TUESDAY, Week 6</div>
+                        <div class="post-time">⏰ 8:00 AM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 6.1: Carousel — Old Way vs. New Way</h3>
+                
+                <div class="post-copy">THE OLD WAY:
+
+Your kid eats these foods ✓
+Your kid doesn't eat these foods ✗
+
+Recommendations:
+"Try this. Try that. Here's a list of healthy foods."
+
+The logic: more exposure = more acceptance.
+The reality: most parents already know this. They've tried it. It doesn't work.
+
+---
+
+THE NEW WAY:
+
+Your kid's sensory fingerprint:
+Texture, Sweetness, Saltiness, Bitterness, Sourness, Savouriness, Temperature
+
+Recommendations:
+Three personalized picks based on their exact sensory profile.
+
+The logic: meet them where they are. Bridge one dimension at a time.
+The reality: movement happens. Real movement.
+
+Which approach resonates more with your experience?</div>
+                
+                <p style="font-size: 12px; color: #888; margin: 10px 0;">CAROUSEL (swipe left/right)</p>
+                <img src="./slide-02.jpg" alt="Slide 2 - Checklist vs Network Graph" class="post-image">
+                <p style="text-align: center; color: #00d9ff; font-size: 12px; margin: 10px 0;">↕️ SWIPE ↕️</p>
+                <img src="./slide-08.jpg" alt="Slide 8 - Three Recommendations" class="post-image">
+                
+                <div class="hashtags">
+                    #PickyEating #Comparison #BetterWay
+                </div>
+            </div>
+            
+            <!-- POST 6.2 -->
+            <div class="post">
+                <div class="post-header">
+                    <div>
+                        <div class="post-date">THURSDAY, Week 6</div>
+                        <div class="post-time">⏰ 1:00 PM PT</div>
+                    </div>
+                </div>
+                
+                <h3 class="post-title">POST 6.2: Case Study — Real Parent Journey</h3>
+                
+                <div class="post-copy">Walk me through a real progression.
+
+**Week 1:**
+Sarah logs that her 6-year-old eats chicken nuggets, white rice, cheese, toast, and plain pasta. The app builds a baseline: crunchy, salty, not-too-sweet.
+
+**Week 2:**
+Stretch Pick recommendation: honey crackers. Similar to what he knows (crunchy), but a new flavor (sweet). He tries them. Success.
+
+**Week 3:**
+Trend detected: He's been exploring crunchy foods. New Stretch Pick: seaweed snacks. Crunchy (familiar), salty (familiar), but a totally new food category.
+
+**Week 4:**
+Variety Pick: broccoli, lightly roasted with a little salt. Still crunchy, still salty (the baseline), but a completely new food group.
+
+**Month 2:**
+He's eaten 12 foods now. The baseline has shifted. New recommendations are expanding him further without jumping categories.
+
+That's not luck. That's the algorithm reading his real progress and building on it.
+
+Does this progression feel like something your family could experience?</div>
+                
+                <div class="hashtags">
+                    #RealStory #ParentingWins #SelectiveEating
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Sensory Galaxy LinkedIn Content Calendar | 6-Week Algorithm Education Series</p>
+            <p>Mobile-optimized. Copy each post, paste into LinkedIn, add corresponding image.</p>
+        </footer>
+    </div>
+</body>
+</html>
