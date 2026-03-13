@@ -107,6 +107,11 @@
                 <div class="toc-item"><a href="#daily-log">Daily Progress Log</a></div>
                 <div class="toc-item"><a href="#blockers">Critical Blockers</a></div>
                 <div class="toc-item"><a href="#deployment">Deployment & Files</a></div>
+            </div>
+
+            <div class="toc-section">
+                <div class="toc-section-title">🔬 Algorithm & Architecture</div>
+                <div class="toc-item"><a href="#algorithm">Bridge Food Algorithm</a></div>
                 <div class="toc-item"><a href="#roadmap">Long-Term Roadmap</a></div>
             </div>
         </div>
@@ -550,6 +555,7 @@ Return JSON:
                 <ul>
                     <li><strong>HeyGen / Synthesia:</strong> AI avatars + voice cloning. Best for scripted, authentic-feeling UGC. $20-40/video.</li>
                     <li><strong>Descript + ElevenLabs:</strong> Script → video with natural voice. Great for testimonial-style content. $50/month combined.</li>
+                    <li><strong>Bluma:</strong> AI short-form content engine (YC-backed). Automates TikTok/Reels/Shorts production from templates + scripts. Faceless content, UGC videos at scale. <strong style="color: #ff006e;">Testing later</strong>.</li>
                     <li><strong>Runway / Leonardo:</strong> AI video editing & generation. Custom backgrounds, effects.</li>
                 </ul>
             </div>
@@ -727,6 +733,117 @@ vercel deploy --prod --token [TOKEN]
                 <li><code>/Users/rk/clawd/EXPLORER-COSMETICS-SPECIFICATION.md</code> - 26 cosmetic items with unlock conditions per explorer</li>
                 <li><code>/Users/rk/clawd/ASSET_MANIFEST.md</code> - All visual assets (images, videos, specs, URLs)</li>
             </ul>
+        </div>
+
+        <!-- BRIDGE FOOD ALGORITHM -->
+        <div class="section" id="algorithm">
+            <h2>🧠 Bridge Food Recommendation Algorithm (Phase 2-5 Core)</h2>
+            <p style="padding: 15px; background: rgba(0, 217, 255, 0.1); border-left: 3px solid #00d9ff; margin: 20px 0; border-radius: 6px;"><strong>📖 COMPLETE ARCHITECTURE:</strong> See <strong><a href="bridge-food-algorithm-v3.html" style="color: #00d9ff; text-decoration: underline;">Bridge Food Algorithm v3</a></strong> for the full specification with SOS exposure states, regression tracking, weight formulas, pseudo-code, and all Claude-validated fixes. This page shows the summary.</p>
+
+            <div class="subsection">
+                <h3>Why Rules-Based (Not LLM)</h3>
+                <ul>
+                    <li><strong>Transparency:</strong> Parents see exactly WHY we recommend each food (e.g., "same texture, similar flavor, warm temperature")</li>
+                    <li><strong>Cost:</strong> $0/month vs. $2,150/year for LLM. Phase 1 focus: prove product-market fit, not premium features</li>
+                    <li><strong>App Store Safety:</strong> Health apps must have explainability. Rules = defensible. LLM = "why did it suggest sushi to a kid with 4 foods?"</li>
+                    <li><strong>Control:</strong> Zero hallucinations. You own every recommendation. No surprises.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3>The Multi-Dimensional Sensory Model</h3>
+                <p>Every food is rated on 6 sensory dimensions (0-10 scale):</p>
+                <ul>
+                    <li><strong>Texture:</strong> liquid (0) → crunchy (8) → hard/brittle (10)</li>
+                    <li><strong>Flavor:</strong> 5 sub-dimensions (sweet, salty, savory, sour, bitter)</li>
+                    <li><strong>Temperature:</strong> cold (0) → hot (100°C)</li>
+                    <li><strong>Color:</strong> red, orange, yellow, green, brown, white, mixed</li>
+                    <li><strong>Mouthfeel:</strong> juicy, dry, creamy, crispy, tender, chewy</li>
+                    <li><strong>Preparation:</strong> raw, boiled, baked, fried, steamed</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3>The Algorithm: From Safe Foods → Bridge Recommendations</h3>
+                <ol>
+                    <li><strong>Onboarding Collects Safe Foods</strong>
+                        <ul>
+                            <li>Card #2: "What does your child eat?" (multi-select)</li>
+                            <li>Card #2b: "Which 2-3 are they obsessed with?" (tag as Super Safe)</li>
+                            <li>Weights: Super Safe 60% + Regular Safe 40% = baseline sensory profile</li>
+                        </ul>
+                    </li>
+                    <li><strong>Distance Calculation</strong>
+                        <ul>
+                            <li>For each of 100+ foods, calculate multi-dimensional distance from baseline</li>
+                            <li>Formula: √[(texture_diff)² + (flavor_diff)² + (temp_diff)² + ... ] with weighted coefficients</li>
+                            <li>Distance 0-2.5 = "Super Close", 2.5-4.5 = "Stretch", 4.5-6.5 = "Difficult", 6.5+ = "Too Far"</li>
+                        </ul>
+                    </li>
+                    <li><strong>Daily Recommendation Strategy (3 picks per day)</strong>
+                        <ul>
+                            <li><strong>Safe Pick:</strong> Distance &lt; 2.5. Role: "This is VERY close to what you like." High success.</li>
+                            <li><strong>Stretch Pick:</strong> Distance 2.5-4.5. Role: "Try this tiny challenge." One sensory dimension different.</li>
+                            <li><strong>Variety Pick:</strong> Targets nutritional gaps (needs more veggies? recommend colors/textures kid is avoiding)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Novelty Control & Weekly Progression</strong>
+                        <ul>
+                            <li>Don't recommend same food twice in 7 days (prevent boredom)</li>
+                            <li>Track weekly texture/color diversity, auto-shift recommendations (60% crunchy → 40% next week = gradual expansion)</li>
+                            <li>Week 1: Safe picks. Week 2: Introduce stretch picks. Week 3+: Gradual sensory expansion</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="subsection">
+                <h3>Handles Infinite Food Possibilities</h3>
+                <ul>
+                    <li><strong>Dimensionality:</strong> Kid with only 4 safe foods → algorithm calculates sensory baseline from those 4 → ranks all 100+ foods by similarity</li>
+                    <li><strong>Progressive Steps:</strong> Algorithm never jumps sensory distance. If kid likes warm salty crunchy, it recommends warm salty soft BEFORE jumping to cool bitter vegetables</li>
+                    <li><strong>Diversity Weighting:</strong> If kid has eaten crunchy foods 5x this week, algorithm weights soft/mixed textures higher next recommendations</li>
+                    <li><strong>Personalization:</strong> Each kid gets a unique recommendation order based on THEIR baseline, not generic "picky eaters eat these foods"</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3>Example Recommendation Flow</h3>
+                <pre>
+Day 1 - Safe Pick: Seaweed snacks
+"We picked this because: Crunchy like chicken nuggets, salty like you like it, but something new to try!"
+
+Day 1 - Stretch Pick: Soft sweet potato fries
+"Still warm like you like it, a little softer than usual, but pretty similar. Maybe try just one bite?"
+
+Day 1 - Variety Pick: Yellow bell pepper slices  
+"Your week has been brown & white foods. Let's add some color! This is sweet & crunchy like things you like."
+
+Day 2 - Safe Pick: Crispy bacon
+Distance: 1.8 (very close to baseline)
+"Crunchy, salty, warm - all your favorite things with a fun new flavor!"
+
+Week 2 - Shift Detected
+Kid logged: mostly crunchy foods (7 of last 10 foods)
+→ Algorithm increases soft texture weight by 30% for next week's recommendations
+→ Still respects baseline (won't jump to something that's 90% different)
+</pre>
+            </div>
+
+            <div class="subsection">
+                <h3>Implementation & Tuning</h3>
+                <ul>
+                    <li><strong>Phase 1:</strong> Build algorithm with default weights, test with beta families (week 1-2)</li>
+                    <li><strong>Phase 1 Results:</strong> Track which recommendations kids actually try (Safe vs. Stretch vs. Variety success rates)</li>
+                    <li><strong>Phase 1 Tuning:</strong> Adjust weights based on real data (e.g., if Stretch picks fail 80% of the time, widen distance gap)</li>
+                    <li><strong>Phase 2:</strong> If working well, lock in weights. Consider A/B testing variants later.</li>
+                    <li><strong>Never:</strong> Switch to LLM unless rules-based stops working (unlikely)</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 20px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-left: 3px solid #667eea; border-radius: 6px;">
+                <strong>Full Specification:</strong> See <code>/Users/rk/clawd/BRIDGE-FOOD-ALGORITHM.md</code> for complete sensory model, distance calculations, pseudo-code, and edge cases.
+            </p>
         </div>
 
         <!-- LONG-TERM ROADMAP -->
