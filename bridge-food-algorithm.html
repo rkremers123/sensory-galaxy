@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridge Food Recommendation Algorithm</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a1e 0%, #1a0a3e 50%, #0a0a1e 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #00d9ff; font-size: 2.5rem; margin-bottom: 10px; }
+        h2 { color: #667eea; font-size: 2rem; margin-top: 40px; margin-bottom: 20px; border-bottom: 2px solid rgba(0,217,255,0.3); padding-bottom: 10px; }
+        h3 { color: #00d9ff; font-size: 1.5rem; margin-top: 30px; margin-bottom: 15px; }
+        h4 { color: #d4af37; font-size: 1.2rem; margin-top: 20px; margin-bottom: 10px; }
+        p { margin-bottom: 15px; font-size: 1.05rem; }
+        ul, ol { margin-left: 30px; margin-bottom: 15px; }
+        li { margin-bottom: 10px; }
+        code { background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 3px; color: #00d9ff; }
+        pre { 
+            background: rgba(0,0,0,0.6); 
+            padding: 20px; 
+            border-radius: 6px; 
+            overflow-x: auto; 
+            margin: 20px 0; 
+            border-left: 3px solid #667eea;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0;
+            background: rgba(15, 15, 40, 0.8);
+        }
+        th, td { 
+            padding: 12px; 
+            text-align: left; 
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+        th { 
+            background: rgba(102, 126, 234, 0.2); 
+            color: #00d9ff; 
+            font-weight: bold;
+        }
+        .subsection { 
+            background: rgba(20, 20, 50, 0.8); 
+            border-left: 3px solid rgba(102, 126, 234, 0.5); 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 6px; 
+        }
+        .highlight { background: rgba(0, 217, 255, 0.1); padding: 15px; border-left: 3px solid #00d9ff; margin: 20px 0; }
+        .toc { background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; padding: 20px; margin-bottom: 40px; border-radius: 8px; }
+        .toc h3 { margin-top: 0; color: #00d9ff; }
+        .toc ul { list-style-position: inside; }
+        .toc a { color: #00d9ff; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Bridge Food Recommendation Algorithm</h1>
+        <p><strong>Purpose:</strong> Generate safe, progressive food recommendations for children with selective eating based on multi-dimensional sensory analysis.</p>
+
+        <div class="toc">
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#why-rules">Why Rules-Based (Not LLM)</a></li>
+                <li><a href="#model">Sensory Profile Model (6 Dimensions)</a></li>
+                <li><a href="#baseline">Baseline Calculation</a></li>
+                <li><a href="#distance">Distance Calculation</a></li>
+                <li><a href="#recommendations">Daily Recommendation Strategy</a></li>
+                <li><a href="#handles">How It Handles Infinite Foods</a></li>
+                <li><a href="#example">Example Recommendation Flow</a></li>
+                <li><a href="#tuning">Implementation & Tuning</a></li>
+            </ul>
+        </div>
+
+        <h2 id="why-rules">Why Rules-Based (Not LLM)</h2>
+        <ul>
+            <li><strong>Transparency:</strong> Parents see exactly WHY we recommend each food (e.g., "same texture, similar flavor, warm temperature")</li>
+            <li><strong>Cost:</strong> $0/month vs. $2,150/year for LLM. Phase 1 focus: prove product-market fit, not premium features</li>
+            <li><strong>App Store Safety:</strong> Health apps must have explainability. Rules = defensible. LLM = "why did it suggest sushi to a kid with 4 foods?"</li>
+            <li><strong>Control:</strong> Zero hallucinations. You own every recommendation. No surprises.</li>
+        </ul>
+
+        <h2 id="model">Sensory Profile Model (6 Dimensions)</h2>
+        <p>Every food is mapped across these sensory axes:</p>
+
+        <div class="subsection">
+            <h3>Texture (0-10 scale)</h3>
+            <ul>
+                <li><strong>0:</strong> Pure liquid (juice, milk)</li>
+                <li><strong>2:</strong> Soft/mushy (applesauce, oatmeal)</li>
+                <li><strong>4:</strong> Soft/chewy (bread, pasta)</li>
+                <li><strong>6:</strong> Mixed (chicken nuggets: crunchy exterior, soft interior)</li>
+                <li><strong>8:</strong> Crunchy (chips, apples, carrots)</li>
+                <li><strong>10:</strong> Hard/brittle (raw carrot, nuts)</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Flavor (5 sub-dimensions)</h3>
+            <ul>
+                <li><strong>Sweet:</strong> 0-10 (none to very sweet)</li>
+                <li><strong>Salty:</strong> 0-10 (none to very salty)</li>
+                <li><strong>Savory:</strong> 0-10 (umami/meaty)</li>
+                <li><strong>Sour:</strong> 0-10 (acidic)</li>
+                <li><strong>Bitter:</strong> 0-10 (astringent)</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Temperature</h3>
+            <ul>
+                <li><strong>Cold:</strong> 0-5°C (ice cream, cold juice)</li>
+                <li><strong>Cool:</strong> 5-15°C (yogurt, cheese)</li>
+                <li><strong>Room temp:</strong> 15-25°C (bread, cookies)</li>
+                <li><strong>Warm:</strong> 25-45°C (warm applesauce)</li>
+                <li><strong>Hot:</strong> 45°C+ (soup, oatmeal)</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Color</h3>
+            <ul>
+                <li>Red, Orange, Yellow, Green, Brown, White, Mixed/Multi-color</li>
+                <li>Also track: color intensity (pale vs. bright)</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Mouthfeel</h3>
+            <ul>
+                <li>Juicy, Dry, Creamy, Crispy, Tender, Chewy</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Preparation Method</h3>
+            <ul>
+                <li>Raw, Boiled, Baked, Fried, Steamed</li>
+            </ul>
+        </div>
+
+        <h2 id="baseline">Baseline Calculation</h2>
+        <p><strong>Input (from Onboarding):</strong></p>
+        <ul>
+            <li>Safe foods: 1-5 foods kid eats regularly</li>
+            <li>Super safe foods: 2-3 foods kid is obsessed with (subset of safe)</li>
+        </ul>
+
+        <p><strong>Weighting:</strong></p>
+        <pre>
+Super Safe weight: 60%
+Regular Safe weight: 40%
+
+Profile_avg = (0.60 × avg(super_safe)) + (0.40 × avg(regular_safe))
+        </pre>
+
+        <p><strong>Example:</strong> Kid eats [chicken nuggets (super safe), toast (super safe), rice (regular), cheese (regular)]</p>
+        <pre>
+Baseline Profile will be:
+- 60% weighted toward: crunchy, salty, warm, brown (nuggets + toast)
+- 40% weighted toward: soft, bland, warm, white (rice + cheese)
+
+Result: Kid is comfort with WARM, SLIGHTLY-SALTY, MIXED-TEXTURE, BROWN foods
+        </pre>
+
+        <h2 id="distance">Distance Calculation</h2>
+        <p>For each potential bridge food, calculate multi-dimensional distance:</p>
+        <pre>
+Distance² = w_texture × (texture_diff)² 
+          + w_flavor_salty × (salty_diff)² 
+          + w_flavor_savory × (savory_diff)²
+          + w_temp × (temp_diff)²
+          + (... other dimensions)
+
+Distance = √(Distance²)
+        </pre>
+
+        <p><strong>Default Weights:</strong></p>
+        <table>
+            <tr>
+                <th>Dimension</th>
+                <th>Weight</th>
+                <th>Why</th>
+            </tr>
+            <tr>
+                <td>Texture</td>
+                <td>0.15</td>
+                <td>Most critical sensory factor</td>
+            </tr>
+            <tr>
+                <td>Flavor (Salty)</td>
+                <td>0.12</td>
+                <td>Kids prefer familiar flavors</td>
+            </tr>
+            <tr>
+                <td>Temperature</td>
+                <td>0.10</td>
+                <td>Kids have temperature preferences</td>
+            </tr>
+            <tr>
+                <td>Color</td>
+                <td>0.08</td>
+                <td>Visual appeal matters</td>
+            </tr>
+            <tr>
+                <td>Bitter</td>
+                <td>0.08</td>
+                <td>Bitter is a big turn-off for kids</td>
+            </tr>
+        </table>
+
+        <p><strong>Distance Interpretation:</strong></p>
+        <ul>
+            <li><strong>0-2.5:</strong> "Super Close" - Kid can try this today</li>
+            <li><strong>2.5-4.5:</strong> "Stretch Pick" - Challenging but doable</li>
+            <li><strong>4.5-6.5:</strong> "Difficult" - Maybe week 3+</li>
+            <li><strong>6.5+:</strong> "Too Far" - Don't recommend</li>
+        </ul>
+
+        <h2 id="recommendations">Daily Recommendation Strategy</h2>
+        <p><strong>Each day: Generate 3 recommendations</strong></p>
+
+        <div class="subsection">
+            <h3>Safe Pick (Distance < 2.5)</h3>
+            <ul>
+                <li>Highest similarity to baseline</li>
+                <li>Low risk, high success chance</li>
+                <li>Role: "This is close to what you like"</li>
+                <li>Example: Kid likes crunchy salty chicken nuggets → try crispy seaweed snacks</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Stretch Pick (Distance 2.5-4.5)</h3>
+            <ul>
+                <li>Moderate challenge</li>
+                <li>One sensory dimension different (e.g., softer but same flavor)</li>
+                <li>Role: "Try this tiny challenge"</li>
+                <li>Example: Kid likes crunchy → try soft but similar flavor profile</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Variety Pick (Nutritional Gap Targeting)</h3>
+            <ul>
+                <li>Identifies if kid's diet is unbalanced (e.g., only warm foods, only brown/white colors)</li>
+                <li>Recommends different sensory category but still within 4.5 distance if possible</li>
+                <li>Role: "Let's add more colors/textures"</li>
+                <li>Example: Kid eats brown/white foods only → recommend yellow (sweet potato, banana) or orange (carrots)</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Novelty Control</h3>
+            <pre>
+Last 7 days:  Don't recommend same food twice
+Last 30 days: Lower weight by 50% if recommended before
+Last 90 days: Available again at full weight
+            </pre>
+            <p>Prevents boredom and encourages true exploration.</p>
+        </div>
+
+        <h2 id="handles">How It Handles Infinite Foods</h2>
+        <ul>
+            <li><strong>Dimensionality:</strong> Kid with only 4 safe foods → algorithm calculates sensory baseline from those 4 → ranks all 100+ foods by similarity</li>
+            <li><strong>Progressive Steps:</strong> Algorithm never jumps sensory distance. If kid likes warm salty crunchy, it recommends warm salty soft BEFORE jumping to cool bitter vegetables</li>
+            <li><strong>Diversity Weighting:</strong> If kid has eaten crunchy foods 5x this week, algorithm weights soft/mixed textures higher next recommendations</li>
+            <li><strong>Personalization:</strong> Each kid gets a unique recommendation order based on THEIR baseline, not generic "picky eaters eat these foods"</li>
+        </ul>
+
+        <h2 id="example">Example Recommendation Flow</h2>
+        <pre>
+Day 1 - Safe Pick: Seaweed snacks (Distance: 1.8)
+"We picked this because: Crunchy like chicken nuggets, salty like you like it, but something new to try!"
+
+Day 1 - Stretch Pick: Soft sweet potato fries (Distance: 3.2)
+"Still warm like you like it, a little softer than usual, but pretty similar. Maybe try just one bite?"
+
+Day 1 - Variety Pick: Yellow bell pepper slices
+"Your week has been brown & white foods. Let's add some color! This is sweet & crunchy like things you like."
+
+Day 2 - Safe Pick: Crispy bacon (Distance: 1.5)
+"Crunchy, salty, warm - all your favorite things with a fun new flavor!"
+
+Week 2 - Shift Detected
+Kid logged: mostly crunchy foods (7 of last 10 foods)
+→ Algorithm increases soft texture weight by 30% for next week's recommendations
+→ Still respects baseline (won't jump to something that's 90% different)
+        </pre>
+
+        <h2 id="tuning">Implementation & Tuning</h2>
+        <ul>
+            <li><strong>Phase 1:</strong> Build algorithm with default weights, test with beta families (week 1-2)</li>
+            <li><strong>Phase 1 Results:</strong> Track which recommendations kids actually try (Safe vs. Stretch vs. Variety success rates)</li>
+            <li><strong>Phase 1 Tuning:</strong> Adjust weights based on real data (e.g., if Stretch picks fail 80% of the time, widen distance gap)</li>
+            <li><strong>Phase 2:</strong> If working well, lock in weights. Consider A/B testing variants later.</li>
+            <li><strong>Never:</strong> Switch to LLM unless rules-based stops working (unlikely)</li>
+        </ul>
+
+        <div class="highlight">
+            <h3>Key Decisions Made</h3>
+            <ul>
+                <li><strong>Super Safe Weighting (60/40):</strong> Starting point. Tune after beta feedback. If kids make jumps too fast, increase to 70%. If stuck, lower to 50%.</li>
+                <li><strong>Daily Strategy (3 picks):</strong> Balanced between safety and challenge. If engagement is low, could increase to 5 picks. Monitor beta feedback.</li>
+                <li><strong>Distance Weights:</strong> Texture (0.15) is highest because it's the most sensitive. Tune individually per sensory dimension based on beta data.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

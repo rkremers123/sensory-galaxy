@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2-5 GitHub Project Board</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a1e 0%, #1a0a3e 50%, #0a0a1e 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: #00d9ff; font-size: 2.5rem; margin-bottom: 10px; }
+        h2 { color: #667eea; font-size: 2rem; margin-top: 40px; margin-bottom: 20px; border-bottom: 2px solid rgba(0,217,255,0.3); padding-bottom: 10px; }
+        h3 { color: #00d9ff; font-size: 1.4rem; margin-top: 30px; margin-bottom: 15px; }
+        p { margin-bottom: 15px; font-size: 1.05rem; }
+        ul, ol { margin-left: 30px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; }
+        code { background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 3px; color: #00d9ff; }
+        pre { 
+            background: rgba(0,0,0,0.6); 
+            padding: 20px; 
+            border-radius: 6px; 
+            overflow-x: auto; 
+            margin: 20px 0; 
+            border-left: 3px solid #667eea;
+            font-size: 0.9rem;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0;
+            background: rgba(15, 15, 40, 0.8);
+        }
+        th, td { 
+            padding: 12px; 
+            text-align: left; 
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+        th { 
+            background: rgba(102, 126, 234, 0.2); 
+            color: #00d9ff; 
+            font-weight: bold;
+        }
+        .subsection { 
+            background: rgba(20, 20, 50, 0.8); 
+            border-left: 3px solid rgba(102, 126, 234, 0.5); 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 6px; 
+        }
+        .highlight { background: rgba(0, 217, 255, 0.1); padding: 15px; border-left: 3px solid #00d9ff; margin: 20px 0; }
+        .toc { background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; padding: 20px; margin-bottom: 40px; border-radius: 8px; }
+        .toc h3 { margin-top: 0; color: #00d9ff; }
+        .toc ul { list-style-position: inside; }
+        .priority-p0 { color: #ff6b6b; font-weight: bold; }
+        .priority-p1 { color: #ffd93d; font-weight: bold; }
+        .priority-p2 { color: #6bcf7f; font-weight: bold; }
+        .stat-box { 
+            background: rgba(102, 126, 234, 0.1); 
+            border-left: 3px solid #667eea; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phase 2-5 GitHub Project Board</h1>
+        <p><strong>View Live:</strong> <a href="https://github.com/rkremers123/sensory-galaxy/issues" style="color: #00d9ff;">https://github.com/rkremers123/sensory-galaxy/issues</a></p>
+
+        <div class="toc">
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#issues">10 GitHub Issues (With Estimates)</a></li>
+                <li><a href="#implementation">Implementation Order (4 Phases)</a></li>
+                <li><a href="#tracking">Daily Tracking Commands</a></li>
+            </ul>
+        </div>
+
+        <h2 id="issues">10 GitHub Issues Created</h2>
+
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Estimate</th>
+                <th>Blocked By</th>
+                <th>Priority</th>
+            </tr>
+            <tr>
+                <td>#1</td>
+                <td>Food Logging Screen</td>
+                <td>2 hrs</td>
+                <td>None</td>
+                <td><span class="priority-p0">P0</span></td>
+            </tr>
+            <tr>
+                <td>#2</td>
+                <td>Analytics Tab</td>
+                <td>2.5 hrs</td>
+                <td>None</td>
+                <td><span class="priority-p0">P0</span></td>
+            </tr>
+            <tr>
+                <td>#3</td>
+                <td>Suggest Tab + Bridge Food Algorithm</td>
+                <td>3 hrs</td>
+                <td>Algorithm spec</td>
+                <td><span class="priority-p0">P0</span></td>
+            </tr>
+            <tr>
+                <td>#4</td>
+                <td>Design: Food Icons (100+)</td>
+                <td>8-12 hrs</td>
+                <td>None</td>
+                <td><span class="priority-p1">P1</span></td>
+            </tr>
+            <tr>
+                <td>#5</td>
+                <td>Design: Badge System (20)</td>
+                <td>6-8 hrs</td>
+                <td>None</td>
+                <td><span class="priority-p1">P1</span></td>
+            </tr>
+            <tr>
+                <td>#6</td>
+                <td>Design: Points Balancing</td>
+                <td>2-3 hrs</td>
+                <td>Beta feedback</td>
+                <td><span class="priority-p2">P2</span></td>
+            </tr>
+            <tr>
+                <td>#7</td>
+                <td>Feature: Onboarding Redesign</td>
+                <td>2 hrs</td>
+                <td>None</td>
+                <td><span class="priority-p1">P1</span></td>
+            </tr>
+            <tr>
+                <td>#8</td>
+                <td>Feature: Parent Education</td>
+                <td>3-4 hrs</td>
+                <td>Core UI</td>
+                <td><span class="priority-p1">P1</span></td>
+            </tr>
+            <tr>
+                <td>#9</td>
+                <td>Feature: Explorer Cosmetics</td>
+                <td>3-4 hrs</td>
+                <td>Cosmetics spec</td>
+                <td><span class="priority-p1">P1</span></td>
+            </tr>
+            <tr>
+                <td>#10</td>
+                <td>Bug Fixes & Testing</td>
+                <td>1-2 hrs</td>
+                <td>All features</td>
+                <td><span class="priority-p0">P0</span></td>
+            </tr>
+        </table>
+
+        <h2 id="implementation">Implementation Order (Suggested 4-Phase Rollout)</h2>
+
+        <div class="subsection">
+            <h3>Phase 2-5.1: Core Screens (Week 1)</h3>
+            <ol>
+                <li><strong>Issue #1:</strong> Food Logging Screen (2 hrs)</li>
+                <li><strong>Issue #2:</strong> Analytics Tab (2.5 hrs)</li>
+                <li><strong>Issue #7:</strong> Onboarding Redesign (2 hrs)</li>
+            </ol>
+            <p><strong>Subtotal:</strong> 6.5 hours</p>
+            <p><strong>Outcome:</strong> Three core screens working, onboarding collecting safe foods data</p>
+        </div>
+
+        <div class="subsection">
+            <h3>Phase 2-5.2: Bridge Food Algorithm (Week 1-2)</h3>
+            <ol>
+                <li><strong>Pre-work:</strong> Create algorithm spec (4 hrs) - see bridge-food-algorithm.html</li>
+                <li><strong>Issue #3:</strong> Suggest Tab + Bridge Food Algorithm (3 hrs)</li>
+            </ol>
+            <p><strong>Subtotal:</strong> 7 hours</p>
+            <p><strong>Outcome:</strong> Recommendation engine live, feeding 3 daily suggestions</p>
+        </div>
+
+        <div class="subsection">
+            <h3>Phase 2-5.3: Design Assets (Week 2-3, PARALLEL)</h3>
+            <ol>
+                <li><strong>Issue #4:</strong> Food Icons (100+) (8-12 hrs)</li>
+                <li><strong>Issue #5:</strong> Badge System (20 badges) (6-8 hrs)</li>
+                <li><strong>Issue #9:</strong> Explorer Cosmetics specs (reference, not code) (0 hrs)</li>
+            </ol>
+            <p><strong>Subtotal:</strong> 14-20 hours</p>
+            <p><strong>Outcome:</strong> All visual assets in place, integration ready</p>
+            <p><strong>Note:</strong> Designer can work in parallel with dev team on core screens.</p>
+        </div>
+
+        <div class="subsection">
+            <h3>Phase 2-5.4: Polish & Testing (Week 3)</h3>
+            <ol>
+                <li><strong>Issue #6:</strong> Points Balancing (after beta feedback) (2-3 hrs)</li>
+                <li><strong>Issue #8:</strong> Parent Education Module (3-4 hrs)</li>
+                <li><strong>Issue #10:</strong> Bug Fixes & Testing (1-2 hrs)</li>
+            </ol>
+            <p><strong>Subtotal:</strong> 6-9 hours</p>
+            <p><strong>Outcome:</strong> Beta-ready build</p>
+        </div>
+
+        <h2>Total Effort Estimate</h2>
+        <div class="stat-box">
+            <p><strong>Code:</strong> 6.5 + 7 + 6-9 = <strong>19.5-22.5 hours</strong></p>
+            <p><strong>Design:</strong> 14-20 hours</p>
+            <p><strong>Total: 33.5-42.5 hours</strong> (~1 week intensive or 2 weeks half-time)</p>
+        </div>
+
+        <h2 id="tracking">Daily Tracking</h2>
+        <p>You can query the board status anytime with these commands:</p>
+        <pre>
+# View all open issues
+gh issue list --state open --limit 100
+
+# View specific issue details
+gh issue view 1    (or 2, 3, 4, etc.)
+
+# Mark issue as in-progress
+gh issue edit 1 --add-label "in-progress"
+
+# Mark issue as done
+gh issue close 1 --reason "completed"
+        </pre>
+
+        <h2>Next Steps</h2>
+        <ol>
+            <li>Go to <strong>https://github.com/rkremers123/sensory-galaxy/issues</strong></li>
+            <li>Start with <strong>Issue #1</strong> (Food Logging) or <strong>Issue #7</strong> (Onboarding)</li>
+            <li>Start design work on <strong>Issue #4</strong> (food icons) and <strong>#5</strong> (badges) in parallel</li>
+            <li>Share algorithm spec (bridge-food-algorithm.html) with any dev you hire</li>
+            <li>Use this document for daily standup/progress tracking</li>
+        </ol>
+
+        <div class="highlight">
+            <h3>You're now 80% ready to start Phase 2-5 development.</h3>
+            <p>Just need designer, maybe developer. Everything else is documented.</p>
+            <p><strong>All issues and specs are ready to share with team members.</strong></p>
+        </div>
+    </div>
+</body>
+</html>
