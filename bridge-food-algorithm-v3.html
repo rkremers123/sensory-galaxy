@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridge Food Recommendation Algorithm v3 - FINAL</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a1e 0%, #1a0a3e 50%, #0a0a1e 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .badge-v3 { 
+            display: inline-block; 
+            background: #2ecc71; 
+            color: white; 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            font-size: 0.9rem; 
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        h1 { color: #00d9ff; font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { color: #999; font-size: 1.1rem; margin-bottom: 30px; }
+        h2 { color: #667eea; font-size: 2rem; margin-top: 40px; margin-bottom: 20px; border-bottom: 2px solid rgba(0,217,255,0.3); padding-bottom: 10px; }
+        h3 { color: #00d9ff; font-size: 1.4rem; margin-top: 30px; margin-bottom: 15px; }
+        p { margin-bottom: 15px; font-size: 1.05rem; }
+        ul, ol { margin-left: 30px; margin-bottom: 15px; }
+        li { margin-bottom: 10px; }
+        code { background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 3px; color: #00d9ff; }
+        pre { 
+            background: rgba(0,0,0,0.6); 
+            padding: 20px; 
+            border-radius: 6px; 
+            overflow-x: auto; 
+            margin: 20px 0; 
+            border-left: 3px solid #667eea;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0;
+            background: rgba(15, 15, 40, 0.8);
+        }
+        th, td { 
+            padding: 12px; 
+            text-align: left; 
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+        th { 
+            background: rgba(102, 126, 234, 0.2); 
+            color: #00d9ff; 
+            font-weight: bold;
+        }
+        .subsection { 
+            background: rgba(20, 20, 50, 0.8); 
+            border-left: 3px solid rgba(102, 126, 234, 0.5); 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 6px; 
+        }
+        .highlight { background: rgba(0, 217, 255, 0.1); padding: 15px; border-left: 3px solid #00d9ff; margin: 20px 0; border-radius: 6px; }
+        .clarification { background: rgba(46, 204, 113, 0.1); padding: 15px; border-left: 3px solid #2ecc71; margin: 20px 0; border-radius: 6px; }
+        .toc { background: rgba(0, 217, 255, 0.05); border: 2px solid #00d9ff; padding: 20px; margin-bottom: 40px; border-radius: 8px; }
+        .toc h3 { margin-top: 0; color: #00d9ff; }
+        .toc ul { list-style-position: inside; }
+        .toc a { color: #00d9ff; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bridge Food Recommendation Algorithm <span class="badge-v3">v3 - FINAL</span></h1>
+        <p class="subtitle">Architecture locked in. Claude-validated. Ready for Python implementation.</p>
+
+        <div class="highlight">
+            <h3>What's New in v3?</h3>
+            <ul>
+                <li><strong>Claude's 4 critical fixes incorporated</strong> (super-safe cap, deduplication, variety fallback, state weighting)</li>
+                <li><strong>SOS exposure state model complete</strong> (looked → touched → smelled → tasted → ate)</li>
+                <li><strong>Regressions tracked</strong> (last_successful_state field added)</li>
+                <li><strong>All edge cases documented</strong> (variety fallback, minimum sample size, state multiplier rationale)</li>
+                <li><strong>Data model finalized</strong> (ready for Swift implementation)</li>
+            </ul>
+        </div>
+
+        <div class="toc">
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#data-model">Data Model (Complete)</a></li>
+                <li><a href="#state-multipliers">State Multiplier Rationale</a></li>
+                <li><a href="#weighted-baseline">Weighted Baseline (Updated)</a></li>
+                <li><a href="#trend-detection">Trend Detection (Updated)</a></li>
+                <li><a href="#recommendations">Recommendation Generation</a></li>
+                <li><a href="#edge-cases">Edge Cases & Fallbacks</a></li>
+                <li><a href="#pseudo-code">Pseudo-Code (Final)</a></li>
+            </ul>
+        </div>
+
+        <h2 id="data-model">Data Model (Complete)</h2>
+
+        <div class="subsection">
+            <h3>Food Log Entry</h3>
+            <pre>
+{
+  food_id: string (unique food identifier),
+  kid_id: string (which child),
+  timestamp: ISO-8601 (when this log was created),
+  exposure_states: string[] (states achieved in THIS session),
+    Valid values: ["looked_at", "touched", "smelled", "tasted", "ate"]
+    Examples:
+      ["looked_at"]  (kid just looked at banana)
+      ["touched", "smelled"]  (parent guided through 2 steps)
+      ["looked_at", "touched", "smelled", "tasted", "ate"]  (all in one session)
+  parent_notes: string (optional notes from parent),
+  
+  // Computed fields (for query efficiency):
+  highest_state_achieved: string (derived from all logs for this food)
+    Values: "looked_at" (0.3x) | "touched" (0.5x) | "smelled" (0.6x) | 
+            "tasted" (0.8x) | "ate" (1.0x)
+  
+  last_successful_state: string (for regression detection)
+    Tracks the highest state achieved in the last 3 logs for this food
+    If last_successful_state < highest_state_achieved, apply regression penalty
+    Example: highest="ate", last_successful="looked_at" → kid regressed, apply penalty
+}
+            </pre>
+        </div>
+
+        <h2 id="state-multipliers">State Multiplier Rationale</h2>
+
+        <div class="clarification">
+            <h3>Why These Numbers? (Documented for Future Tuning)</h3>
+            <p><strong>State multipliers:</strong></p>
+            <ul>
+                <li><strong>looked_at = 0.3x</strong> — Visual exposure only, lowest sensory engagement. Not meaningful confidence yet.</li>
+                <li><strong>touched = 0.5x</strong> — Tactile contact, kid is braver. 67% jump from looking reflects significant behavioral step.</li>
+                <li><strong>smelled = 0.6x</strong> — Olfactory engagement, high barrier for selective eaters. Only 20% increase from touch because olfactory alone (without tasting) is still preliminary.</li>
+                <li><strong>tasted = 0.8x</strong> — Oral contact (may spit). This is the hard step in SOS. 33% jump from smelling because crossing into mouth is clinically significant.</li>
+                <li><strong>ate = 1.0x</strong> — Swallowed, confirmed safe. 25% increase from tasting confirms acceptance.</li>
+            </ul>
+            <p><strong>Curve logic:</strong> Flatter at bottom (looking/touching closer together), steeper at top (tasted/ate farther apart) because SOS emphasizes oral desensitization as the hardest barrier.</p>
+            <p><strong>IMPORTANT:</strong> These are starting values. Tune against real data after beta testing. If kids in beta show different barriers (e.g., smelling is scarier than tasting), adjust multipliers.</p>
+        </div>
+
+        <h2 id="weighted-baseline">Weighted Baseline Calculation</h2>
+
+        <p><strong>Formula:</strong></p>
+        <pre>
+For each food in kid's history:
+  1. Get highest_state_achieved (from all logs, ever)
+  2. Get state_multiplier (0.3 to 1.0)
+  3. Get most_recent_log_date (regardless of state)
+  4. Calculate recency_weight (last 3 days = 1.0, drops to 0.1 at 30+ days)
+  5. Combine: weight = state_multiplier × recency_weight
+  6. IF kid has regressed: apply regression_penalty (e.g., 0.8x multiplier)
+
+weighted_foods = [weight_1, weight_2, ..., weight_N]
+
+baseline_profile = weighted_average(all_foods, weights)
+        </pre>
+
+        <div class="subsection">
+            <h3>Example: Calculate Baseline for Kid</h3>
+            <pre>
+Super Safe (always 0.60 base): [chicken nuggets, toast]
+Regular Safe (always 0.40 base): [rice, cheese]
+Explored (by state + recency):
+  Apple: ate 3/20, most recent 3/20 → state=1.0 × recency=1.0 × no regression = 1.0
+  Banana: looked 3/2, most recent 3/2 → state=0.3 × recency=0.1 = 0.03 (old)
+  Seaweed: tasted 3/10, most recent 3/10 → state=0.8 × recency=0.5 = 0.4
+  Sweet potato: ate 3/15, most recent 3/18 (looked again, regression!) 
+    → highest=1.0, last_successful=0.3 → state=1.0 × recency=0.75 × regression=0.8 = 0.6
+
+Final Baseline = weighted average of:
+  nuggets (0.60), toast (0.60), rice (0.40), cheese (0.40),
+  apple (1.0), banana (0.03), seaweed (0.4), sweet_potato (0.6)
+
+Result: Baseline heavily weighted to recent ate/tasted foods, 
+        with super-safe as persistent anchor (but scaled by exploration volume)
+            </pre>
+        </div>
+
+        <div class="clarification">
+            <h3>Super-Safe Scaling Cap (Claude Fix)</h3>
+            <p><strong>Problem (v2):</strong> Kid who ate nuggets at age 3 still anchors baseline 60% at age 7 as they explore 50+ foods.</p>
+            <p><strong>Solution (v3):</strong> Scale super-safe contribution down as explored food list grows:</p>
+            <pre>
+super_safe_weight = 0.60 / (1 + ln(num_explored_foods))
+
+Examples:
+  0 explored foods: super_safe = 0.60 (full weight)
+  5 explored foods: super_safe = 0.60 / (1 + 1.6) = 0.23
+  10 explored foods: super_safe = 0.60 / (1 + 2.3) = 0.18
+  50 explored foods: super_safe = 0.60 / (1 + 3.9) = 0.11
+
+This prevents super-safe foods from asymptotically anchoring everything.
+As kid explores, super-safe recedes to "comfort zone" rather than "entire profile."
+            </pre>
+        </div>
+
+        <h2 id="trend-detection">Trend Detection (Updated)</h2>
+
+        <div class="subsection">
+            <h3>Deduplication Rule (Claude Fix)</h3>
+            <p><strong>Problem (v2):</strong> Parent logs "apple" 5x in a week. Trend detector sees "5/7 foods are sweet" (strong trend). Wrong.</p>
+            <p><strong>Solution (v3):</strong> Deduplicate by food_id. Count distinct foods, not log events.</p>
+            <pre>
+Last 7 log entries: [apple, apple, apple, banana, banana, carrot, seaweed]
+Deduplicated to distinct foods (take highest state for each):
+  Apple: ate (1.0x)
+  Banana: looked (0.3x)
+  Carrot: ate (1.0x)
+  Seaweed: touched (0.5x)
+
+Analyze on 4 distinct foods, not 7 log events
+            </pre>
+        </div>
+
+        <div class="subsection">
+            <h3>Minimum Sample Size (v3 Addition)</h3>
+            <p><strong>Rule:</strong> Don't activate trend detection unless kid has logged 5+ distinct foods.</p>
+            <p><strong>Why:</strong> Fewer than 5 foods = noisy baseline. Super-safe/regular-safe should dominate, not trends.</p>
+            <pre>
+If num_distinct_explored_foods < 5:
+  Skip trend detection entirely
+  Use baseline + variety pick only
+  No trend-aligned bonus in distance calculation
+            </pre>
+        </div>
+
+        <div class="subsection">
+            <h3>Trend Strength Threshold</h3>
+            <pre>
+Count distinct foods matching a sensory dimension:
+
+Threshold rules:
+  6/7+ foods match → STRONG trend (apply full bonus)
+  5/7 foods match → MODERATE trend (apply 50% bonus)
+  4/7 or below → WEAK trend (don't apply bonus, use baseline)
+
+Trend-aligned distance bonus:
+  bonus = (trend_strength - 0.6) × 0.5
+  
+  So:
+    5/7 (71%): bonus = (0.71 - 0.6) × 0.5 = 0.055 → 5.5% distance reduction
+    6/7 (86%): bonus = (0.86 - 0.6) × 0.5 = 0.13 → 13% distance reduction
+    7/7 (100%): bonus = (1.0 - 0.6) × 0.5 = 0.20 → 20% distance reduction
+            </pre>
+        </div>
+
+        <h2 id="recommendations">Recommendation Generation</h2>
+
+        <div class="subsection">
+            <h3>Safe Pick (Distance < 2.5)</h3>
+            <ul>
+                <li>Closest to weighted baseline</li>
+                <li>Must be distinct from last 7 logged foods (no immediate repeats)</li>
+                <li>Explanation references recent foods: "Like the [recent food] you tried, but new"</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Stretch Pick (Distance 2.5-4.5)</h3>
+            <ul>
+                <li>Moderate challenge, respects trend if present</li>
+                <li>Explanation: "You've been exploring [trend dimension]. Here's the next step."</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>Variety Pick (Nutritional Gap + Sensory Distance)</h3>
+            <p><strong>Algorithm:</strong></p>
+            <ol>
+                <li>Identify missing food groups (0 vegetables, 0 proteins, etc.)</li>
+                <li>Filter food database to foods in missing groups</li>
+                <li>Find closest match by sensory distance (within 4.5 distance if possible)</li>
+                <li>If closest is > 4.5 distance, use fallback (see below)</li>
+                <li>Explanation: "You've explored mostly [current foods]. Let's add [group]."</li>
+            </ol>
+            <p><strong>Fallback (v3 Addition - Claude Fix):</strong> If no variety pick exists within 4.5 distance:</p>
+            <pre>
+Option 1: Skip variety slot
+  Return 2 safe/stretch picks instead
+  Explanation to parent: "We're still building toward vegetables. When [child] 
+  is ready, we'll recommend some great options."
+
+Option 2: Recommend closest anyway
+  Apply distance override (explain higher challenge)
+  Use different explanation: "This is a bigger challenge, but you're making progress!"
+  
+Recommendation: Use Option 1 (don't force distance overrides on nutrition)
+            </pre>
+        </div>
+
+        <h2 id="edge-cases">Edge Cases & Fallbacks</h2>
+
+        <table>
+            <tr>
+                <th>Edge Case</th>
+                <th>Behavior</th>
+                <th>Explanation to Parent</th>
+            </tr>
+            <tr>
+                <td>Safe pick doesn't exist (&lt;2.5 distance)</td>
+                <td>Return closest food regardless of distance + fallback explanation</td>
+                <td>"New adventure, but we think you're ready"</td>
+            </tr>
+            <tr>
+                <td>Variety pick too far (&gt;4.5 distance)</td>
+                <td>Skip variety, return 2 safe/stretch picks</td>
+                <td>"We're building toward vegetables. Coming soon!"</td>
+            </tr>
+            <tr>
+                <td>Fewer than 5 explored foods</td>
+                <td>No trend detection, baseline only</td>
+                <td>Simple recommendations, no trend language</td>
+            </tr>
+            <tr>
+                <td>Kid regressed (ate → looked_at)</td>
+                <td>Apply 0.8x penalty to weight, don't de-recommend</td>
+                <td>No explanation to parent yet (log it, tune v3.1)</td>
+            </tr>
+            <tr>
+                <td>Same food logged multiple times same week</td>
+                <td>Deduplicate by food_id, take highest state</td>
+                <td>Trend detection uses distinct foods, not log count</td>
+            </tr>
+            <tr>
+                <td>All recent logs are repeats of same food</td>
+                <td>Trend detector sees 7/7 = same food, doesn't trigger</td>
+                <td>Algorithm correctly identifies "kid stuck on one food"</td>
+            </tr>
+        </table>
+
+        <h2 id="pseudo-code">Pseudo-Code (Final)</h2>
+
+        <pre>
+def generate_recommendations(kid_id: string) -> Recommendations:
+    """Generate 3 daily recommendations using dynamic weighted baseline + exposure states."""
+    
+    # Load all food history
+    all_logs = load_all_food_logs(kid_id)
+    super_safe = load_super_safe(kid_id)
+    regular_safe = load_regular_safe(kid_id)
+    
+    # Compute highest state + most recent date for each unique food
+    food_profiles = {}
+    for log in all_logs:
+        if log.food_id not in food_profiles:
+            food_profiles[log.food_id] = {
+                highest_state: log.exposure_states[0],
+                most_recent_date: log.timestamp,
+                all_logs: [log]
+            }
+        else:
+            # Update highest state and most recent date
+            food_profiles[log.food_id].highest_state = max_state(
+                food_profiles[log.food_id].highest_state,
+                log.exposure_states
+            )
+            food_profiles[log.food_id].most_recent_date = max(
+                food_profiles[log.food_id].most_recent_date,
+                log.timestamp
+            )
+            food_profiles[log.food_id].all_logs.append(log)
+    
+    # Calculate weights for baseline
+    weights = {}
+    for food in super_safe:
+        # Scale down as kid explores more
+        scale = 0.60 / (1 + ln(len(food_profiles)))
+        weights[food] = scale
+    
+    for food in regular_safe:
+        scale = 0.40 / (1 + ln(len(food_profiles)))
+        weights[food] = scale
+    
+    for food_id, profile in food_profiles.items():
+        state_mult = STATE_MULTIPLIERS[profile.highest_state]
+        days_ago = days_since(profile.most_recent_date, today())
+        recency = calculate_recency_weight(days_ago)
+        
+        # Check for regression
+        regression_penalty = 1.0
+        last_3_logs = profile.all_logs[-3:]
+        last_3_states = [log.exposure_states for log in last_3_logs]
+        last_successful = max_state(last_3_states)
+        if last_successful < profile.highest_state:
+            regression_penalty = 0.8  # Apply penalty
+        
+        weights[food_id] = state_mult × recency × regression_penalty
+    
+    # Calculate baseline
+    baseline = calculate_weighted_baseline(weights)
+    
+    # Detect trend (if 5+ explored foods)
+    if len(food_profiles) >= 5:
+        last_7_unique = deduplicate_last_7_logs(all_logs)
+        trend = detect_trend(last_7_unique)
+        trend_strength = max(trend.values())
+    else:
+        trend = None
+        trend_strength = 0
+    
+    # Generate recommendations
+    all_foods = load_food_database()
+    distances = {}
+    for food in all_foods:
+        if is_blacklisted(food, kid_id):
+            distances[food] = infinity
+        else:
+            base_dist = calculate_distance(food, baseline)
+            
+            # Apply trend bonus if strong trend
+            if trend_strength > 0.6 and food_matches_trend(food, trend):
+                bonus = (trend_strength - 0.6) × 0.5
+                base_dist = base_dist × (1 - bonus)
+            
+            distances[food] = base_dist
+    
+    # Safe pick
+    safe_pick = find_closest_food(
+        distances,
+        max_distance=2.5,
+        exclude=last_7_unique
+    )
+    if not safe_pick:
+        safe_pick = find_closest_food(distances, exclude=last_7_unique)
+        safe_explanation = "New adventure, but we think you're ready"
+    else:
+        safe_explanation = explain_safe(safe_pick, last_7_unique, trend)
+    
+    # Stretch pick
+    stretch_pick = find_closest_food(
+        distances,
+        min_distance=2.5,
+        max_distance=4.5,
+        exclude=[safe_pick],
+        prefer_trend_aligned=True
+    )
+    stretch_explanation = explain_stretch(stretch_pick, trend)
+    
+    # Variety pick
+    missing_groups = find_missing_food_groups(food_profiles)
+    variety_pick = None
+    variety_explanation = None
+    
+    if missing_groups:
+        closest_in_gap = find_closest_food(
+            distances,
+            food_group=missing_groups[0],
+            max_distance=4.5,
+            exclude=[safe_pick, stretch_pick]
+        )
+        
+        if closest_in_gap and distances[closest_in_gap] <= 4.5:
+            variety_pick = closest_in_gap
+            variety_explanation = explain_variety(variety_pick, trend, missing_groups[0])
+    
+    # Fallback if no variety pick
+    if not variety_pick:
+        # Skip variety slot, return only 2 picks
+        variety_pick = None
+        variety_explanation = "We're building toward {food_group}. Coming soon!"
+    
+    return [
+        Recommendation("Safe Pick", safe_pick, safe_explanation),
+        Recommendation("Stretch Pick", stretch_pick, stretch_explanation),
+        Recommendation("Variety Pick", variety_pick, variety_explanation) if variety_pick else None
+    ].filter(not None)
+        </pre>
+
+        <h2>Implementation Status</h2>
+        <ul>
+            <li>✅ Architecture finalized (v3)</li>
+            <li>✅ Data model complete (exposure states + regression tracking)</li>
+            <li>✅ Claude-validated (4 critical fixes + edge cases)</li>
+            <li>✅ All fallbacks documented</li>
+            <li>⏳ Python reference implementation (in progress)</li>
+            <li>⏳ Test cases (5 scenarios, edge cases)</li>
+            <li>⏳ Claude code review of Python ref</li>
+            <li>⏳ Swift translation</li>
+        </ul>
+
+        <div class="highlight">
+            <h3>Ready for Implementation</h3>
+            <p>This spec is complete and Claude-validated. The Python reference can be built directly from this document. All architectural decisions are locked in. Multiplier values are documented but noted as tunable post-beta.</p>
+        </div>
+    </div>
+</body>
+</html>
