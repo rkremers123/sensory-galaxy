@@ -1435,17 +1435,26 @@
         // Track waitlist signups for GA4
         document.addEventListener('submit', function(e) {
             if (e.target.classList.contains('waitlist-form')) {
+                e.preventDefault();
                 const form = e.target;
                 const name = form.querySelector('input[name="name"]').value;
                 const email = form.querySelector('input[name="email"]').value;
                 
-                // GA4 conversion event
+                // GA4 conversion event with callback to submit form after tracking
                 gtag('event', 'generate_lead', {
                     'event_category': 'engagement',
                     'event_label': 'waitlist_signup',
                     'user_name': name,
-                    'user_email': email
+                    'user_email': email,
+                    'event_callback': function() {
+                        form.submit();
+                    }
                 });
+                
+                // Fallback: submit after 1 second if callback doesn't fire
+                setTimeout(function() {
+                    form.submit();
+                }, 1000);
             }
         });
 
