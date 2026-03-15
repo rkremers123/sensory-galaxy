@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6F6SBXY7MQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-6F6SBXY7MQ');
+        
+        // Track conversion on page load
+        gtag('event', 'page_view', {
+            'page_path': '/thanks',
+            'page_title': 'Beta Signup Confirmation'
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In! Sensory Galaxy Beta</title>
+    <meta name="description" content="Thank you for signing up for Sensory Galaxy beta testing. We'll be in touch soon.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #0a0a1e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='20' cy='20' r='1' fill='%2300d9ff' opacity='0.3'/%3E%3Ccircle cx='80' cy='80' r='1' fill='%2300d9ff' opacity='0.2'/%3E%3C/svg%3E");
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 42px;
+            background: linear-gradient(135deg, #00d9ff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: #00d9ff;
+            font-weight: 600;
+        }
+
+        .next-steps {
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: left;
+        }
+
+        .next-steps h2 {
+            color: #00d9ff;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .next-steps li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00d9ff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d9ff, #667eea);
+            color: #0a0a1e;
+            padding: 14px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 217, 255, 0.4);
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .explorer-mention {
+            font-style: italic;
+            color: #667eea;
+            margin-top: 30px;
+            font-size: 16px;
+        }
+
+        nav {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav a {
+            color: #00d9ff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="https://sensorygalaxy.com">Back to Sensory Galaxy</a>
+    </nav>
+
+    <div class="container">
+        <div class="success-icon">🚀</div>
+        
+        <h1>You're In!</h1>
+        <p>Thank you for signing up for the <span class="highlight">Sensory Galaxy beta</span>.</p>
+        
+        <p>We're building something special for families navigating selective eating. You'll be among the first to experience it.</p>
+
+        <div class="next-steps">
+            <h2>What Happens Next</h2>
+            <ul>
+                <li>We'll send you an email with beta access details (check your inbox)</li>
+                <li>You'll be able to download Sensory Galaxy on iOS</li>
+                <li>Create your child's explorer profile and start exploring</li>
+                <li>Give us feedback. Your input shapes what we build</li>
+            </ul>
+        </div>
+
+        <p>Have questions before beta launches? Reach out to <span class="highlight">hello@sensorygalaxy.com</span>.</p>
+
+        <a href="https://sensorygalaxy.com" class="cta-button">Explore Our Story</a>
+
+        <div class="explorer-mention">
+            Nova, Cosmo, Star, and Orbit are waiting to guide your child through the sensory journey.
+        </div>
+
+        <div class="footer-note">
+            <p>Sensory Galaxy. Coming soon to iOS.</p>
+        </div>
+    </div>
+
+    <script>
+        // Additional GA4 tracking for thank you page
+        gtag('event', 'view_item', {
+            'items': [{
+                'item_id': 'beta_signup_thanks',
+                'item_name': 'Beta Signup Confirmation Page',
+                'item_category': 'conversion'
+            }]
+        });
+    </script>
+</body>
+</html>
