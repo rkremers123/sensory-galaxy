@@ -1,0 +1,117 @@
+## CRITICAL ALGORITHM REVIEW REQUEST FOR SENSORY GALAXY
+
+### Context
+I'm building Sensory Galaxy, an iOS app for kids with selective eating using the Sequential Oral Sensory (SOS) method.
+
+The core feature is a "bridge food recommendation engine" that:
+- Collects a child's food exploration history (every food they log)
+- Uses dynamic weighting (recency + safety level) to calculate a constantly-updating sensory baseline
+- Detects trends in recent exploration (what are they gravitating toward?)
+- Generates 3 daily recommendations that respect baseline + momentum
+
+### The Algorithm (v2)
+[READ: https://sensorygalaxy.com/bridge-food-algorithm-v2.html]
+
+(Or paste the HTML locally if you can't access the URL)
+
+### Key Design Decisions in v2
+1. **Dynamic baseline:** Recalculates every time a new food is logged (not static like v1)
+2. **Recency weighting:** Foods logged 3 days ago count 10x more than foods logged 30+ days ago
+3. **Trend detection:** Analyze last 7 foods to detect "this kid is trending toward sweet + crunchy"
+4. **Trend-aligned recommendations:** If kid is trending sweet, don't recommend bitter vegetables. Honor their momentum.
+5. **Explanations:** Every recommendation explains why ("You've been exploring sweet foods, so we suggest...") + references recent foods
+
+### My Implementation Plan
+1. **Build reference in Python** (45 minutes)
+   - Sensory profile weighting
+   - Recency weight calculator
+   - Multi-weighted baseline calculation
+   - Trend detection
+   - Distance calculation with trend bonus
+   - 3-recommendation generation
+
+2. **Create comprehensive test cases** (20 minutes)
+   - Week 1: Kid with 4 safe foods, no explored foods
+   - Week 2: After logging 7 foods (sweet trend detected)
+   - Week 3: Trend shifts to salty/savory
+   - Verify: recommendations shift, explanations reference trends
+
+3. **Claude Code prompt** (10 minutes)
+   - Include Python reference code
+   - Ask Claude Code to translate to Swift exactly
+   - Guardrails: "Keep same algorithm, don't modify math"
+
+4. **Validation** (20 minutes)
+   - Run same test cases in both Python + Swift
+   - Verify outputs match exactly
+   - If not, debug before production
+
+---
+
+### Questions for You (Before I Build)
+
+**1. ALGORITHM SOUNDNESS**
+   - Is this the right approach for a progressive food exploration app?
+   - Should we weight super-safe foods more heavily (60%) or less?
+   - Does trend detection (last 7 foods) make sense, or should we use last 10 or last 2 weeks?
+
+**2. RECENCY CURVE**
+   - My weights: Last 3 days (100%), 4-7 days (75%), 8-14 days (50%), 15-30 days (25%), 30+ days (10%)
+   - Does this curve feel right? Should it be more aggressive (drop to 5% faster)? More lenient?
+   - Should super-safe foods be immune to recency decay, or do they fade too?
+
+**3. TREND DETECTION EDGE CASES**
+   - Kid logs: [apple, broccoli, chicken, apple, pasta, apple, banana]
+   - Detected trend: "sweet" (3/7 foods, not strong)
+   - My logic: Don't override baseline for weak trends. Correct?
+   - What if kid has NO clear trend (perfectly mixed foods)? Should we just use baseline?
+
+**4. TREND-ALIGNED RECOMMENDATIONS**
+   - If trend is strong (6/7 foods match), should I give recommendations a 20% distance bonus?
+   - Or should I weight them differently (e.g., 50% bonus)?
+   - How aggressively should we follow trends vs. maintaining nutritional balance?
+
+**5. EXPLANATIONS TO PARENTS**
+   - Should parents see trend data ("Your child is exploring sweet foods this week")?
+   - Or just use it internally for recommendations?
+   - If parents see it, what language is non-judgmental and supportive?
+
+**6. PERFORMANCE ON DEVICE**
+   - Will calculating weighted baseline + trend detection for every recommendation be fast enough on iOS?
+   - Should we cache the baseline (update every hour) or recalculate every time?
+   - With 100+ foods in database and calculating distances for all... will this be snappy?
+
+**7. DATA STRUCTURE**
+   - Should I store food logs as [food_id, sensory_profile, timestamp]?
+   - Or richer: [food_id, sensory_profile, timestamp, kid_tried_it_bool, parent_notes]?
+   - How should I index this for fast queries?
+
+**8. PHASE-BASED PROGRESSION**
+   - Should the algorithm "reward" kids who are exploring (increase recommendations) vs. kids stuck in comfort zone (gentle nudges)?
+   - Example: Kid tried 15 new foods in 2 weeks → aggressive variety picks. Kid tried 0 new foods in 2 weeks → gentle stretch picks. Yes?
+
+**9. ALTERNATIVE APPROACHES**
+   - Is there a fundamentally different way to approach this that's simpler/better?
+   - Should we be using machine learning here instead of rules?
+   - Am I overthinking the trend detection (should it be simpler)?
+
+**10. WHAT BREAKS THIS?**
+   - What edge cases will sink this algorithm?
+   - What happens if parent logs wrong info?
+   - What if kid's sensory profiles change (grows out of texture aversions)?
+
+---
+
+### What Success Looks Like
+1. You validate the algorithm logic (or suggest changes)
+2. You identify 2-3 edge cases I missed
+3. You say "this is sound, go build the Python reference"
+4. Then I build with confidence
+
+### Timeline
+- Your review: 30 mins
+- My build: 1.5 hours total
+- Validation: 1 hour
+- Ready for Swift translation: End of tonight
+
+Don't hold back. If something's wrong, I need to know before I code it.

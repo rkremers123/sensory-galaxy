@@ -1,0 +1,320 @@
+## Bridge Food Algorithm v2 — Critical Updates Based on Claude Review + SOS Methodology
+
+### SUMMARY
+Claude's review identified 4 critical fixes needed. Then we realized v2 completely missed SOS's core methodology: graduated exposure over time. This requires changes to data model, algorithm weighting, AND app UX.
+
+---
+
+## PART 1: CLAUDE'S 4 CRITICAL FIXES
+
+### 1. Super-Safe Weighting Cap
+**Current:** Super Safe foods have fixed 0.60 weight forever
+**Problem:** A kid who ate nuggets at age 3 still anchors baseline to nuggets at age 7 as they explore rapidly. Baseline gets rigidly anchored.
+**Fix:** Scale super-safe contribution by explored food count. Simple formula:
+```
+super_safe_weight = 0.60 / (1 + log(num_explored_foods))
+So: 0 foods = 0.60, 10 foods = 0.35, 50 foods = 0.25
+```
+This prevents super-safe foods from asymptotically anchoring everything forever.
+
+### 2. Deduplication in Trend Detection
+**Current:** If parent logs "apple" 5x in a week, trend detector sees 5/7 sweet foods (strong trend)
+**Problem:** It's actually 1 food logged 5 times, not 5 different foods. Trend signal is fake.
+**Fix:** Before trend analysis, deduplicate by distinct food IDs. Count unique foods, not log events.
+```
+Last 7 logs: [apple, apple, apple, banana, banana, carrot, carrot]
+Deduplicated: [apple, banana, carrot] (3 distinct foods)
+Then analyze trend on 3 foods, not 7 log events
+```
+
+### 3. Variety Pick Nutritional Gap
+**Current:** "Find missing food group" is a black box in pseudocode
+**Problem:** If kid has 0 vegetables, recommending broccoli ignores sensory accessibility. Variety pick must marry nutritional gap + sensory distance.
+**Fix:** 
+```
+1. Identify missing food groups (0 vegetables, 0 proteins, etc.)
+2. Filter food database to foods in missing groups
+3. Find closest match by sensory distance (not just "recommend any vegetable")
+4. If too far (>4.5), don't recommend yet (don't force)
+```
+
+### 4. Safe Pick Fallback
+**Current:** `find_closest_food(distance < 2.5)` can return nothing
+**Problem:** If no foods exist in safe range, algorithm crashes or returns null
+**Fix:** If no safe pick exists, return closest food regardless of distance, with different explanation:
+```
+If found_safe_pick:
+  Explanation: "Like foods you love"
+Else:
+  Explanation: "New adventure, but we think you're ready"
+```
+
+---
+
+## PART 2: SOS EXPOSURE STATE WEIGHTING (MAJOR)
+
+### The Problem
+SOS methodology is graduated exposure: look → touch → smell → taste → eat (can take weeks)
+Current v2 treats all logs as equal (one food = one data point)
+SOS reality: one food can be in 5 states across multiple sessions
+
+### The Solution: Exposure State Tracking
+
+Each food log now captures **what exposure states were achieved**, not just binary "tried it"
+
+```
+exposure_states = [
+  "looked_at",     // visual exposure, kid sees food
+  "touched",       // tactile, kid touches with hand/lips
+  "smelled",       // olfactory, kid smells food
+  "tasted",        // oral, kid puts in mouth (might spit)
+  "ate"            // swallowed, confirmed consumption
+]
+
+Data model:
+[food_id, sensory_profile, timestamp, exposure_states: [array], parent_notes]
+
+Example:
+  Apple
+    Log 1 (March 2): [looked_at, touched]
+    Log 2 (March 5): [smelled, tasted]  (new states achieved)
+    Log 3 (March 12): [ate]              (complete)
+    
+  Banana
+    Log 1 (March 3): [looked_at, touched, smelled, tasted, ate]  (single session, all steps)
+    
+  Seaweed
+    Log 1 (March 4): [looked_at]
+    Log 2 (March 8): [looked_at, touched]  (re-exposure + new state)
+```
+
+### Exposure State Weighting
+Don't weight by recency of logs. Weight by **highest state achieved**:
+
+```
+Highest state achieved = sensory confidence level
+- looked_at:  0.3x  (just exposure, low confidence)
+- touched:    0.5x  (physical contact, medium)
+- smelled:    0.6x  (olfactory engagement, medium-high)
+- tasted:     0.8x  (oral without swallowing, high)
+- ate:        1.0x  (confirmed consumption, highest)
+
+IMPORTANT: Multiple entries for same food?
+Combine them. Take HIGHEST state achieved.
+Then apply recency weighting to that single combined entry.
+
+Example:
+  Apple: looked (3/2), touched (3/5), smelled (3/8), tasted (3/12), ate (3/20)
+  → Highest state: "ate" (1.0x)
+  → Recency: 3/20 is recent (high weight)
+  → Final weight: 1.0x × recency_multiplier
+```
+
+### Trend Detection with Exposure States
+Don't count log events. Count **distinct foods** + their **highest states**:
+
+```
+Last 7 log entries might be: [apple, apple, apple, banana, banana, carrot, seaweed]
+Deduplicated to distinct foods + highest states:
+  Apple: tasted (0.8x)
+  Banana: looked_at (0.3x)
+  Carrot: ate (1.0x)
+  Seaweed: touched (0.5x)
+
+Then analyze:
+  Sweet flavor in this set: 3/4 foods (75%) → moderate sweet trend
+  NOT "5/7 foods are sweet" (which was double-counting apple)
+```
+
+---
+
+## PART 3: APP UX CHANGES
+
+### Current Food Logging (Broken)
+Kid tries apple → log it → apple is "done"
+
+### New Food Logging (SOS-Aligned)
+Each food can be in multiple states, tracked over time
+
+**Logging Screen Changes:**
+Instead of: "Tap to log apple"
+Becomes: "What did [child] do with apple today?"
+```
+Multi-select checklist:
+  ☐ Looked at it
+  ☐ Touched it
+  ☐ Smelled it
+  ☐ Tasted it
+  ☐ Ate it
+
+Kid can check 1 box (single step) or multiple (whole progression in one sitting)
+```
+
+**Analytics Tab Changes:**
+Instead of: "Apple (1 log)"
+Becomes: 
+```
+Apple
+  Looked at: March 2
+  Touched: March 5
+  Smelled: March 8
+  Tasted: March 12
+  Ate: March 20
+  (Shows journey, not just count)
+```
+
+**Suggest Tab Integration:**
+Algorithm can now ask smarter questions:
+```
+"You tasted seaweed 3 days ago. Ready to taste something new?
+Or should we keep exploring seaweed a bit more?"
+
+"You've touched carrots but not smelled them yet. 
+Next time, smell it first — it helps kids feel ready."
+```
+
+---
+
+## PART 4: ALGORITHM CHANGES SUMMARY
+
+### Baseline Calculation (updated)
+```
+For each food:
+  1. Get highest exposure state achieved (looked=0.3x, ate=1.0x)
+  2. Apply recency weighting (last 3 days = 100%, etc.)
+  3. Combine: weight = state_multiplier × recency_multiplier
+  4. For super-safe: apply scaling cap (don't forever anchor at 0.60)
+  5. For regular-safe: apply scaling cap (don't forever anchor at 0.40)
+
+Final baseline = weighted average of all foods
+```
+
+### Trend Detection (updated)
+```
+1. Get last 7 unique food logs (deduplicated by food_id)
+2. For each food, use highest state achieved
+3. Analyze trend across sensory dimensions
+4. Require minimum 5 logs before trend detection activates
+5. Only treat as trend if 5/7+ match (don't call weak trends)
+```
+
+### Trend-Aligned Recommendations (updated)
+```
+Bonus scaling (not binary):
+  bonus = (trend_strength - 0.6) × 0.5
+  So: 5/7 = 0%, 6/7 = ~5%, 7/7 = ~25% distance reduction
+```
+
+### Safe Pick (with fallback)
+```
+Find closest food < 2.5 distance
+If not found, return closest regardless of distance
+Different explanations based on what was found
+```
+
+### Variety Pick (improved)
+```
+1. Identify missing food groups
+2. Filter to that group only
+3. Find closest match in group (sensory distance)
+4. Explain as bridge: "You've been exploring [state]. Let's add [group]."
+```
+
+---
+
+## PART 5: DATA MODEL (Updated)
+
+### Food Log Schema
+```
+{
+  food_id: string (unique identifier)
+  kid_id: string
+  timestamp: ISO-8601 (when the log was created)
+  exposure_states: string[] (["looked_at", "touched", "tasted", "ate"])
+  sensory_profile: {
+    texture: 0-10,
+    flavor_sweet: 0-10,
+    flavor_salty: 0-10,
+    flavor_savory: 0-10,
+    flavor_sour: 0-10,
+    flavor_bitter: 0-10,
+    temperature: 0-10,
+    color: string,
+    mouthfeel: string,
+    prep_method: string
+  }
+  parent_notes: string (optional)
+}
+```
+
+### Queries Needed
+```
+- Get all foods for kid_id (for baseline calculation)
+- Get highest state + most recent date for each food (for deduplication)
+- Get last N unique foods (for trend detection)
+- Get foods by group (for nutritional gap analysis)
+- Index: (kid_id, timestamp) for recency queries
+- Index: (kid_id, food_id) for deduplication
+```
+
+---
+
+## IMPLEMENTATION CHECKLIST (UPDATED)
+
+### Algorithm Reference (Python)
+- [ ] Exposure state weighting (0.3x to 1.0x multiplier)
+- [ ] Super-safe weight scaling cap formula
+- [ ] Deduplication in trend detection (distinct foods, not log events)
+- [ ] Minimum sample size for trend (5 logs minimum)
+- [ ] Variety pick with nutritional gap + sensory distance
+- [ ] Safe pick fallback (distance override)
+- [ ] Trend-aligned bonus scaling (not binary)
+- [ ] Explanation templates updated for exposure states
+
+### Test Cases
+- [ ] Week 1: Kid with 4 safe foods, 0 explored (baseline only)
+- [ ] Week 2: After logging 7 foods across states (mixed exposures, trend emerges)
+- [ ] Week 3: Trend shifts, kid reaches "ate" state on several foods (confidence grows)
+- [ ] Edge case: 1 food logged 5x in different states (deduplication works)
+- [ ] Edge case: Kid goes through all 5 states in 1 session (one food, complete)
+- [ ] Edge case: Fewer than 5 foods logged (trend detection doesn't activate)
+- [ ] Edge case: No safe picks exist <2.5 distance (fallback works)
+- [ ] Edge case: Missing food group entirely (variety pick works)
+
+### App UX (Food Logging Screen)
+- [ ] Multi-select checklist for exposure states
+- [ ] Display food journey in analytics (states + dates)
+- [ ] Suggest tab explains next step in SOS journey
+
+---
+
+## WHAT CHANGED FROM V2 SPEC
+
+### v2 (Original)
+- Log = binary (kid tried it or not)
+- All logs weighted equally
+- Super-safe foods fixed at 0.60 weight
+- No deduplication in trend detection
+
+### v2.1 (Updated)
+- Log = exposure states achieved (can be multiple per session)
+- Weighted by highest state achieved (0.3x to 1.0x)
+- Super-safe weight scales down as kid explores more
+- Trend detection deduplicates by food_id, counts distinct foods
+- Variety pick matches nutritional gap + sensory distance
+- Safe pick has fallback
+- Explanations reference exposure journey, not just "you like this"
+
+---
+
+## READY TO SHARE WITH CLAUDE?
+
+This summarizes:
+1. Claude's 4 critical fixes (super-safe cap, deduplication, variety pick, fallback)
+2. SOS exposure state model (looked → ate)
+3. Updated data model (exposure_states array)
+4. Updated algorithm weighting (state × recency)
+5. Updated app UX (multi-select logging)
+6. Updated test cases (edge cases for states)
+
+Should be comprehensive enough for Claude to validate before Python build.
